@@ -33,6 +33,7 @@
     <ClCompile Include="imGui\backends\imgui_impl_sdl.cpp">
       <Filter>ImGui\backends</Filter>
     </ClCompile>
+    <ClCompile Include="Primitive.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -74,6 +75,18 @@
       <Filter>ImGui\backends</Filter>
     </ClInclude>
     <ClInclude Include="Primitive.h" />
+    <ClInclude Include="Glew\include\eglew.h">
+      <Filter>Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Glew\include\glew.h">
+      <Filter>Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Glew\include\glxew.h">
+      <Filter>Glew</Filter>
+    </ClInclude>
+    <ClInclude Include="Glew\include\wglew.h">
+      <Filter>Glew</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ImGui">
@@ -81,6 +94,9 @@
     </Filter>
     <Filter Include="ImGui\backends">
       <UniqueIdentifier>{2ff6ccde-f926-40ac-958c-e0a1158c9116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Glew">
+      <UniqueIdentifier>{52e6fcec-a71d-4c5e-b9bf-c485cbe5a6eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
