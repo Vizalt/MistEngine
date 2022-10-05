@@ -56,8 +56,8 @@ update_status ModuleCamera3D::Update(float dt)
 		if (config) {
 			if (ImGui::Begin("Configuration")) {
 				if (ImGui::CollapsingHeader("Application")) {
-					static char str0[128] = "Mist Engine ~~";
-					ImGui::InputText("Engine Name", str0, IM_ARRAYSIZE(str0));
+					static char string[128] = "Mist Engine ~ ~";
+					ImGui::InputText("Engine Name", string, IM_ARRAYSIZE(string));
 				}
 			}
 			ImGui::End();
