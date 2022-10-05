@@ -38,7 +38,7 @@ bool ModuleCamera3D::CleanUp()
 update_status ModuleCamera3D::Update(float dt)
 {
 	{
-		
+		ImGui::ShowDemoWindow();
 		if (ImGui::BeginMainMenuBar()) {
 			if (ImGui::BeginMenu("File")) {
 				if (ImGui::MenuItem("Quit ESC")) {
@@ -47,17 +47,21 @@ update_status ModuleCamera3D::Update(float dt)
 				}
 				ImGui::EndMenu();
 			}
+			if (ImGui::BeginMenu("View")) {
+				ImGui::MenuItem("Configuration", NULL, &config);
+				ImGui::EndMenu();
+			}
 			ImGui::EndMainMenuBar();
 		}
-
-		if (ImGui::Begin("Configuration")) {
-
+		if (config) {
+			if (ImGui::Begin("Configuration")) {
+				if (ImGui::CollapsingHeader("Application")) {
+					static char str0[128] = "Mist Engine ~~";
+					ImGui::InputText("Engine Name", str0, IM_ARRAYSIZE(str0));
+				}
+			}
 			ImGui::End();
 		}
-
-
-		
-
 	}
 	
 	

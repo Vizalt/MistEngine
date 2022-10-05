@@ -29,4 +29,6 @@ public:
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
+	bool config = true;
+
 };
