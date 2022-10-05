@@ -38,7 +38,7 @@ bool ModuleCamera3D::CleanUp()
 update_status ModuleCamera3D::Update(float dt)
 {
 	{
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 		if (ImGui::BeginMainMenuBar()) {
 			if (ImGui::BeginMenu("File")) {
 				if (ImGui::MenuItem("Quit ESC")) {
