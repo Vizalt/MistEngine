@@ -99,15 +99,15 @@ void ModuleWindow::SwitchScreen()
 	{
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_RESIZABLE);
 	}
-	else if (fullScreen == true)
+	if (fullScreen == true)
 	{
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 	}
-	else if (borderless == true)
+	if (borderless == true)
 	{
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_BORDERLESS);
 	}
-	else if (desktop == true)
+	if (desktop == true)
 	{
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	}

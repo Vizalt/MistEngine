@@ -20,6 +20,7 @@ public:
 
 	void SetTitle(const char* title);
 
+	//void SwitchScreen(int s);
 	void SwitchScreen();
 
 public:
@@ -33,6 +34,7 @@ public:
 		 resizable = true, 
 		 borderless = false, 
 		 desktop = false;
+	int screenType;
 };
 
 #endif // __ModuleWindow_H__
