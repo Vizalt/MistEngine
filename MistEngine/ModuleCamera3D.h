@@ -17,7 +17,7 @@ public:
 	void LookAt(const vec3 &Spot);
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
-	void PrintLicense();
+	//void PrintLicense();
 
 private:
 
@@ -30,8 +30,8 @@ public:
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
-	bool config = true, about = false;
+	/*bool config = true, about = false;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;
-	int height = SCREEN_HEIGHT * SCREEN_SIZE;
+	int height = SCREEN_HEIGHT * SCREEN_SIZE;*/
 
 };

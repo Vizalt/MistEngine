@@ -5,6 +5,7 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Primitive.h"
+#include "ModuleGui.h"
 
 #include <stdio.h>      /* printf, scanf, puts, NULL */
 #include <stdlib.h>     /* srand, rand */
