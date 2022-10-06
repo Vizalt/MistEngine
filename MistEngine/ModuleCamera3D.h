@@ -30,5 +30,7 @@ private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 	bool config = true;
+	int width = SCREEN_WIDTH * SCREEN_SIZE;
+	int height = SCREEN_HEIGHT * SCREEN_SIZE;
 
 };

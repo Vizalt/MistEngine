@@ -92,3 +92,24 @@ void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);
 }
+
+void ModuleWindow::SwitchScreen()
+{
+	if (resizable == true)
+	{
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_RESIZABLE);
+	}
+	else if (fullScreen == true)
+	{
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+	}
+	else if (borderless == true)
+	{
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_BORDERLESS);
+	}
+	else if (desktop == true)
+	{
+		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
+
+}

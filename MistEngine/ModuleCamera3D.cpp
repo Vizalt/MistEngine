@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleCamera3D.h"
+#include "ModuleWindow.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -58,6 +59,21 @@ update_status ModuleCamera3D::Update(float dt)
 				if (ImGui::CollapsingHeader("Application")) {
 					static char string[128] = "Mist Engine ~ ~";
 					ImGui::InputText("Engine Name", string, IM_ARRAYSIZE(string));
+					static char string2[128] = "CITM UPC";
+					ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
+				}
+				if (ImGui::CollapsingHeader("Window")) {
+					ImGui::Checkbox("Full Screen", &App->window->fullScreen);
+					ImGui::SameLine();
+					ImGui::Checkbox("Resizable", &App->window->resizable);
+					ImGui::Checkbox("Borderless", &App->window->borderless);
+					ImGui::SameLine();
+					ImGui::Checkbox("Full Desktop", &App->window->desktop);
+					App->window->SwitchScreen();
+					//ImGui::SliderInt("Brightness", );
+					ImGui::SliderInt("Width", &width, 640, 1920);
+					ImGui::SliderInt("Height", &height, 480, 1080);
+					SDL_SetWindowSize(App->window->window, width, height);
 				}
 			}
 			ImGui::End();

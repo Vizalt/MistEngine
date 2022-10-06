@@ -20,12 +20,19 @@ public:
 
 	void SetTitle(const char* title);
 
+	void SwitchScreen();
+
 public:
 	//The window we'll be rendering to
 	SDL_Window* window;
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
+
+	bool fullScreen = false, 
+		 resizable = true, 
+		 borderless = false, 
+		 desktop = false;
 };
 
 #endif // __ModuleWindow_H__

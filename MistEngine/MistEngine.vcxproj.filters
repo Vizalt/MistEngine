@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Color.cpp" />
-    <ClCompile Include="glmath.cpp" />
-    <ClCompile Include="Light.cpp" />
-    <ClCompile Include="log.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="ModuleCamera3D.cpp" />
-    <ClCompile Include="ModuleInput.cpp" />
-    <ClCompile Include="ModuleRenderer3D.cpp" />
-    <ClCompile Include="ModuleWindow.cpp" />
-    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="imGui\imgui.cpp">
       <Filter>External\ImGui</Filter>
     </ClCompile>
@@ -33,7 +22,6 @@
     <ClCompile Include="imGui\backends\imgui_impl_sdl.cpp">
       <Filter>External\ImGui\backends</Filter>
     </ClCompile>
-    <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="MathGeoLib\include\Algorithm\Random\LCG.cpp">
       <Filter>External\MathGeoLib\Algorithm\Random</Filter>
     </ClCompile>
@@ -130,19 +118,44 @@
     <ClCompile Include="MathGeoLib\include\Time\Clock.cpp">
       <Filter>External\MathGeoLib\Time</Filter>
     </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCamera3D.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRenderer3D.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="glmath.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Color.h" />
-    <ClInclude Include="glmath.h" />
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="Light.h" />
-    <ClInclude Include="ModuleCamera3D.h" />
-    <ClInclude Include="ModuleRenderer3D.h" />
-    <ClInclude Include="Module.h" />
-    <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleWindow.h" />
-    <ClInclude Include="Timer.h" />
     <ClInclude Include="imGui\imconfig.h">
       <Filter>External\ImGui</Filter>
     </ClInclude>
@@ -170,7 +183,6 @@
     <ClInclude Include="imGui\backends\imgui_impl_sdl.h">
       <Filter>External\ImGui\backends</Filter>
     </ClInclude>
-    <ClInclude Include="Primitive.h" />
     <ClInclude Include="Glew\include\eglew.h">
       <Filter>External\Glew</Filter>
     </ClInclude>
@@ -363,6 +375,42 @@
     <ClInclude Include="MathGeoLib\include\Time\Clock.h">
       <Filter>External\MathGeoLib\Time</Filter>
     </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCamera3D.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRenderer3D.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="glmath.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -394,6 +442,15 @@
     </Filter>
     <Filter Include="External\MathGeoLib\Time">
       <UniqueIdentifier>{c049606e-4071-4179-97d4-b9fa9e214c22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{dd8a5b9a-d35c-4293-ae25-9104722fa7c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{23377a55-9ddc-4add-8420-d96f76247eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{7004c66c-49f1-4711-b283-b12ac68125f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
