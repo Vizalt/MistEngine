@@ -77,7 +77,52 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Assimp\include\ai_assert.h" />
+    <ClInclude Include="Assimp\include\anim.h" />
+    <ClInclude Include="Assimp\include\camera.h" />
+    <ClInclude Include="Assimp\include\cexport.h" />
+    <ClInclude Include="Assimp\include\cfileio.h" />
+    <ClInclude Include="Assimp\include\cimport.h" />
+    <ClInclude Include="Assimp\include\color4.h" />
+    <ClInclude Include="Assimp\include\Compiler\poppack1.h" />
+    <ClInclude Include="Assimp\include\Compiler\pstdint.h" />
+    <ClInclude Include="Assimp\include\Compiler\pushpack1.h" />
+    <ClInclude Include="Assimp\include\config.h" />
+    <ClInclude Include="Assimp\include\DefaultLogger.hpp" />
+    <ClInclude Include="Assimp\include\defs.h" />
+    <ClInclude Include="Assimp\include\Exporter.hpp" />
+    <ClInclude Include="Assimp\include\Importer.hpp" />
+    <ClInclude Include="Assimp\include\importerdesc.h" />
+    <ClInclude Include="Assimp\include\IOStream.hpp" />
+    <ClInclude Include="Assimp\include\IOSystem.hpp" />
+    <ClInclude Include="Assimp\include\light.h" />
+    <ClInclude Include="Assimp\include\Logger.hpp" />
+    <ClInclude Include="Assimp\include\LogStream.hpp" />
+    <ClInclude Include="Assimp\include\material.h" />
+    <ClInclude Include="Assimp\include\matrix3x3.h" />
+    <ClInclude Include="Assimp\include\matrix4x4.h" />
+    <ClInclude Include="Assimp\include\mesh.h" />
+    <ClInclude Include="Assimp\include\metadata.h" />
+    <ClInclude Include="Assimp\include\NullLogger.hpp" />
+    <ClInclude Include="Assimp\include\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="Assimp\include\postprocess.h" />
+    <ClInclude Include="Assimp\include\ProgressHandler.hpp" />
+    <ClInclude Include="Assimp\include\quaternion.h" />
+    <ClInclude Include="Assimp\include\scene.h" />
+    <ClInclude Include="Assimp\include\texture.h" />
+    <ClInclude Include="Assimp\include\types.h" />
+    <ClInclude Include="Assimp\include\vector2.h" />
+    <ClInclude Include="Assimp\include\vector3.h" />
+    <ClInclude Include="Assimp\include\version.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="DevIL\include\devil_cpp_wrapper.hpp" />
+    <ClInclude Include="DevIL\include\devil_internal_exports.h" />
+    <ClInclude Include="DevIL\include\il.h" />
+    <ClInclude Include="DevIL\include\ilu.h" />
+    <ClInclude Include="DevIL\include\ilut.h" />
+    <ClInclude Include="DevIL\include\ilut_config.h" />
+    <ClInclude Include="DevIL\include\ilu_region.h" />
+    <ClInclude Include="DevIL\include\il_wrap.h" />
     <ClInclude Include="Glew\include\eglew.h" />
     <ClInclude Include="Glew\include\glew.h" />
     <ClInclude Include="Glew\include\glxew.h" />
@@ -159,12 +204,14 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="PhysFS\include\physfs.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="DevIL\include\luadevil.c" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="imGui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imGui\backends\imgui_impl_sdl.cpp" />
@@ -216,6 +263,19 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assimp\include\.editorconfig" />
+    <None Include="Assimp\include\color4.inl" />
+    <None Include="Assimp\include\material.inl" />
+    <None Include="Assimp\include\matrix3x3.inl" />
+    <None Include="Assimp\include\matrix4x4.inl" />
+    <None Include="Assimp\include\quaternion.inl" />
+    <None Include="Assimp\include\vector2.inl" />
+    <None Include="Assimp\include\vector3.inl" />
+    <None Include="DevIL\include\build-lua" />
+    <None Include="DevIL\include\build-python" />
+    <None Include="DevIL\include\config.h.win" />
+    <None Include="DevIL\include\DevIL.i" />
+    <None Include="DevIL\include\stamp-h.in" />
     <None Include="MathGeoLib\include\Geometry\KDTree.inl" />
     <None Include="MathGeoLib\include\Geometry\QuadTree.inl" />
     <None Include="MathGeoLib\include\Geometry\TriangleMesh_IntersectRay_AVX.inl" />

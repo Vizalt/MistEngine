@@ -154,6 +154,9 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
+    <ClCompile Include="DevIL\include\luadevil.c">
+      <Filter>External\DevIL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imGui\imconfig.h">
@@ -411,6 +414,144 @@
     <ClInclude Include="Timer.h">
       <Filter>Tools</Filter>
     </ClInclude>
+    <ClInclude Include="Assimp\include\ai_assert.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\anim.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\camera.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\cexport.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\cfileio.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\cimport.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\color4.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\config.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\DefaultLogger.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\defs.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\Exporter.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\Importer.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\importerdesc.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\IOStream.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\IOSystem.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\light.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\Logger.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\LogStream.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\material.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\matrix3x3.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\matrix4x4.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\mesh.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\metadata.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\NullLogger.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\postprocess.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\ProgressHandler.hpp">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\quaternion.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\scene.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\texture.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\types.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\vector2.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\vector3.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\version.h">
+      <Filter>External\Assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\Compiler\poppack1.h">
+      <Filter>External\Assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\Compiler\pstdint.h">
+      <Filter>External\Assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\Compiler\pushpack1.h">
+      <Filter>External\Assimp\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="Assimp\include\port\AndroidJNI\AndroidJNIIOSystem.h">
+      <Filter>External\Assimp\port\AndroidJNI</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysFS\include\physfs.h">
+      <Filter>External\PhysFS</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\devil_cpp_wrapper.hpp">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\devil_internal_exports.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\il.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\il_wrap.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\ilu.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\ilu_region.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\ilut.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\include\ilut_config.h">
+      <Filter>External\DevIL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -452,6 +593,24 @@
     <Filter Include="Tools">
       <UniqueIdentifier>{7004c66c-49f1-4711-b283-b12ac68125f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="External\Assimp">
+      <UniqueIdentifier>{fedee4b3-6862-4b66-b978-ccc9eaa0ab52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\DevIL">
+      <UniqueIdentifier>{ae44998b-b64e-4c9f-83e0-1b45b16b9049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\PhysFS">
+      <UniqueIdentifier>{6efc88c2-bd66-42dc-8f9c-731517aa9c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Assimp\Compiler">
+      <UniqueIdentifier>{09e60f96-ce3a-4eb8-9454-1c8834a65dd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Assimp\port">
+      <UniqueIdentifier>{f5ea6676-6673-40c9-8e27-2ce78366af0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\Assimp\port\AndroidJNI">
+      <UniqueIdentifier>{d19aac43-a3fd-4511-bedf-0281212a6fd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="MathGeoLib\include\Geometry\KDTree.inl">
@@ -471,6 +630,45 @@
     </None>
     <None Include="MathGeoLib\include\Math\Matrix.inl">
       <Filter>External\MathGeoLib\Math</Filter>
+    </None>
+    <None Include="Assimp\include\.editorconfig">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\color4.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\material.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\matrix3x3.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\matrix4x4.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\quaternion.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\vector2.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="Assimp\include\vector3.inl">
+      <Filter>External\Assimp</Filter>
+    </None>
+    <None Include="DevIL\include\build-lua">
+      <Filter>External\DevIL</Filter>
+    </None>
+    <None Include="DevIL\include\build-python">
+      <Filter>External\DevIL</Filter>
+    </None>
+    <None Include="DevIL\include\config.h.win">
+      <Filter>External\DevIL</Filter>
+    </None>
+    <None Include="DevIL\include\DevIL.i">
+      <Filter>External\DevIL</Filter>
+    </None>
+    <None Include="DevIL\include\stamp-h.in">
+      <Filter>External\DevIL</Filter>
     </None>
   </ItemGroup>
 </Project>
