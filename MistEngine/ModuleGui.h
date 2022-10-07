@@ -34,4 +34,5 @@ private:
 	int height = SCREEN_HEIGHT * SCREEN_SIZE;
 	ImVec2 MousePos;
 	ImVec2 MouseDelta;
+	char* data_path = NULL;
 };

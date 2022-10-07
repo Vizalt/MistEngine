@@ -126,20 +126,23 @@ update_status ModuleGui::Update(float dt)
 			}
 			if (ImGui::CollapsingHeader("File System")) {
 				/*if(ImGui::Checkbox("Active\t")){}*/
-				//Base Path ...
+				char* base_path = SDL_GetBasePath();
 				ImGui::Text("Base Path:"); ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Insert project path here :)");
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", base_path);
 				ImGui::Text("Read Path:");
 
 				ImGui::Text("Write Path:");
 			}
 			if (ImGui::CollapsingHeader("Input")) {
 				ImGuiIO& io = ImGui::GetIO();
+				int count = IM_ARRAYSIZE(io.MouseDown);
 				ImGui::Text("Mouse Position:"); ImGui::SameLine();
 				ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f), "%g, %g", io.MousePos.x, io.MousePos.y);
 				ImGui::Text("Mouse Motion:"); ImGui::SameLine();
 				ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f), "%g, %g", io.MouseDelta.x, io.MouseDelta.y);
 				ImGui::Text("Mouse Wheel:");
+				ImGui::Text("Mouse down:");         for (int i = 0; i < count; i++) if (ImGui::IsMouseDown(i)) { ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f),"b%d (%.02f secs)", i, io.MouseDownDuration[i]); }
+
 			}
 			if (ImGui::CollapsingHeader("Hardware")) {
 				
