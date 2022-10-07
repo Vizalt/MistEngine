@@ -42,7 +42,7 @@ update_status ModuleCamera3D::Update(float dt)
 		//ImGui::ShowDemoWindow();
 		if (ImGui::BeginMainMenuBar()) {
 			if (ImGui::BeginMenu("File")) {
-				if (ImGui::MenuItem("Quit ESC")) {
+				if (ImGui::MenuItem("Quit", "ESC")) {
 					return UPDATE_STOP;
 					ImGui::EndMenu();
 				}
