@@ -93,6 +93,9 @@ update_status ModuleGui::Update(float dt)
 				static char string2[128] = "CITM UPC";
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
 				//Intento de Plotting
+				//char title[25];
+				//sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
+				//ImGui::PlotHistogram("##Framerate", &fps_log[0],fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100.0f));
 				/*float framerate[] = { xd };
 				ImGui::PlotHistogram("Framerate", framerate, IM_ARRAYSIZE(framerate), 0, NULL, 0.0f, 1.0f, ImVec2(0, 80.0f));
 			*/
@@ -124,19 +127,25 @@ update_status ModuleGui::Update(float dt)
 			if (ImGui::CollapsingHeader("File System")) {
 				/*if(ImGui::Checkbox("Active\t")){}*/
 				//Base Path ...
-				ImGui::Text("Base Path:");
+				ImGui::Text("Base Path:"); ImGui::SameLine();
 				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Insert project path here :)");
 				ImGui::Text("Read Path:");
+
 				ImGui::Text("Write Path:");
 			}
 			if (ImGui::CollapsingHeader("Input")) {
-				SDL_GetMouseState(&mouseposx, &mouseposy);
-				ImGui::Text("Mouse Position:");
-				ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "%i, %i", mouseposx, mouseposy);
-				ImGui::Text("Mouse Motion:");
+				ImGuiIO& io = ImGui::GetIO();
+				ImGui::Text("Mouse Position:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f), "%g, %g", io.MousePos.x, io.MousePos.y);
+				ImGui::Text("Mouse Motion:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 0.0f, 1.0f, 1.0f), "%g, %g", io.MouseDelta.x, io.MouseDelta.y);
 				ImGui::Text("Mouse Wheel:");
 			}
 			if (ImGui::CollapsingHeader("Hardware")) {
+				
+				ImGui::Text("RAM: %d", SDL_GetSystemRAM);
+				ImGui::Text("CPU: %d", SDL_GetCPUCount);
+
 
 			}
 		}
