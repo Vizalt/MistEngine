@@ -92,6 +92,10 @@ update_status ModuleGui::Update(float dt)
 				ImGui::InputText("Engine Name", string, IM_ARRAYSIZE(string));
 				static char string2[128] = "CITM UPC";
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
+				//Intento de Plotting
+				/*float framerate[] = { xd };
+				ImGui::PlotHistogram("Framerate", framerate, IM_ARRAYSIZE(framerate), 0, NULL, 0.0f, 1.0f, ImVec2(0, 80.0f));
+			*/
 			}
 			if (ImGui::CollapsingHeader("Window")) {
 				if (ImGui::Checkbox("Full Screen\t", &App->window->fullScreen)) {
@@ -117,9 +121,27 @@ update_status ModuleGui::Update(float dt)
 				ImGui::SliderInt("Height", &height, 480, 1080);
 				SDL_SetWindowSize(App->window->window, width, height);
 			}
+			if (ImGui::CollapsingHeader("File System")) {
+				/*if(ImGui::Checkbox("Active\t")){}*/
+				//Base Path ...
+				ImGui::Text("Base Path:");
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "Insert project path here :)");
+				ImGui::Text("Read Path:");
+				ImGui::Text("Write Path:");
+			}
+			if (ImGui::CollapsingHeader("Input")) {
+				SDL_GetMouseState(&mouseposx, &mouseposy);
+				ImGui::Text("Mouse Position:");
+				ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), "%i, %i", mouseposx, mouseposy);
+				ImGui::Text("Mouse Motion:");
+				ImGui::Text("Mouse Wheel:");
+			}
+			if (ImGui::CollapsingHeader("Hardware")) {
+
+			}
 		}
 		ImGui::End();
-	}	
+	}
 	
 	return UPDATE_CONTINUE;
 }

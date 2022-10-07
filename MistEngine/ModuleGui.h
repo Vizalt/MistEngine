@@ -32,4 +32,5 @@ private:
 	bool config = true, about = false;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;
 	int height = SCREEN_HEIGHT * SCREEN_SIZE;
+	int mouseposx, mouseposy;
 };
