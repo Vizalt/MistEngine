@@ -48,8 +48,9 @@ update_status ModuleGui::Update(float dt)
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("File")) {
 			if (ImGui::MenuItem("Quit ESC")) {
-				return UPDATE_STOP;
 				ImGui::EndMenu();
+				return UPDATE_STOP;
+				
 			}
 			ImGui::EndMenu();
 		}
@@ -118,8 +119,9 @@ update_status ModuleGui::Update(float dt)
 			}
 		}
 		ImGui::End();
-	}
+	}	
 	
+	return UPDATE_CONTINUE;
 }
 
 // -----------------------------------------------------------------
