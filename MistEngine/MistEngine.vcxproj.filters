@@ -154,9 +154,6 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Tools</Filter>
     </ClCompile>
-    <ClCompile Include="DevIL\include\luadevil.c">
-      <Filter>External\DevIL</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imGui\imconfig.h">
@@ -528,29 +525,8 @@
     <ClInclude Include="PhysFS\include\physfs.h">
       <Filter>External\PhysFS</Filter>
     </ClInclude>
-    <ClInclude Include="DevIL\include\devil_cpp_wrapper.hpp">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\devil_internal_exports.h">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\il.h">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\il_wrap.h">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\ilu.h">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\ilu_region.h">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\ilut.h">
-      <Filter>External\DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\include\ilut_config.h">
-      <Filter>External\DevIL</Filter>
+    <ClInclude Include="MemLeaks.h">
+      <Filter>Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -595,9 +571,6 @@
     </Filter>
     <Filter Include="External\Assimp">
       <UniqueIdentifier>{fedee4b3-6862-4b66-b978-ccc9eaa0ab52}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="External\DevIL">
-      <UniqueIdentifier>{ae44998b-b64e-4c9f-83e0-1b45b16b9049}</UniqueIdentifier>
     </Filter>
     <Filter Include="External\PhysFS">
       <UniqueIdentifier>{6efc88c2-bd66-42dc-8f9c-731517aa9c30}</UniqueIdentifier>
@@ -654,21 +627,6 @@
     </None>
     <None Include="Assimp\include\vector3.inl">
       <Filter>External\Assimp</Filter>
-    </None>
-    <None Include="DevIL\include\build-lua">
-      <Filter>External\DevIL</Filter>
-    </None>
-    <None Include="DevIL\include\build-python">
-      <Filter>External\DevIL</Filter>
-    </None>
-    <None Include="DevIL\include\config.h.win">
-      <Filter>External\DevIL</Filter>
-    </None>
-    <None Include="DevIL\include\DevIL.i">
-      <Filter>External\DevIL</Filter>
-    </None>
-    <None Include="DevIL\include\stamp-h.in">
-      <Filter>External\DevIL</Filter>
     </None>
   </ItemGroup>
 </Project>
