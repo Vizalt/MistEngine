@@ -95,12 +95,14 @@ update_status ModuleGui::Update(float dt)
 				static char string2[128] = "CITM UPC";
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
 				//Intento de Plotting
-				//char title[25];
-				//sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
-				//ImGui::PlotHistogram("##Framerate", &fps_log[0],fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100.0f));
-				/*float framerate[] = { xd };
-				ImGui::PlotHistogram("Framerate", framerate, IM_ARRAYSIZE(framerate), 0, NULL, 0.0f, 1.0f, ImVec2(0, 80.0f));
-			*/
+				char title[25];
+				float framerate[] = { 1000.0 / ImGui::GetIO().Framerate };
+				sprintf_s(title, 25, "Framerate %.1f", 1000.0 / ImGui::GetIO().Framerate);
+				ImGui::PlotHistogram("##Framerate", framerate, IM_ARRAYSIZE(framerate), 0, title, 0.0f, 1.0f, ImVec2(0, 80.0f));
+
+
+				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
+					1000.0 / ImGui::GetIO().Framerate);
 			}
 			if (ImGui::CollapsingHeader("Window")) {
 				if (ImGui::Checkbox("Full Screen\t", &App->window->fullScreen)) {
