@@ -5,18 +5,23 @@
 #include "glmath.h"
 #include "ModuleRenderer3D.h"
 
+#include <vector>
+
 #include "Assimp/include/cimport.h"
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+using namespace std;
 
 struct Mesh {
-	uint id_index = 0; // index in VRAM
-	uint num_index = 0;
-	uint* index = nullptr;
-	uint id_vertex = 0; // unique vertex in VRAM
-	uint num_vertex = 0;
-	float* vertex = nullptr;
+	uint id_indices = 0; // index in VRAM
+	uint num_indices = 0;
+	uint* indices = nullptr;
+	uint id_vertices = 0; // unique vertex in VRAM
+	uint num_vertices = 0;
+	float* vertices = nullptr;
+
+	void Draw();
 };
 
 class ModuleGeoLoader : public Module
@@ -29,13 +34,16 @@ public:
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
+	void LoadFile(string Path);
 	bool CleanUp();
+	
+	void Draw();
 
 private:
 
 public:
-	Mesh* mesh;
-	const char* file_path;
+	vector<Mesh*> meshes;
+	string file_path;
 
 private:
 	

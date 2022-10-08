@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleGeoLoader.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -177,6 +178,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	plano.axis = true;
 	plano.Render();
 
+	App->loader->Draw();
+
 	ImGui::Render();
 	glViewport(0, 0, (int)io->DisplaySize.x, (int)io->DisplaySize.y);
 	
@@ -199,6 +202,7 @@ bool ModuleRenderer3D::CleanUp()
 
 	return true;
 }
+
 
 
 void ModuleRenderer3D::OnResize(int width, int height)
