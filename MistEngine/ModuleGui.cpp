@@ -96,13 +96,17 @@ update_status ModuleGui::Update(float dt)
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
 				//Intento de Plotting
 				char title[25];
-				float framerate[] = { 1000.0 / ImGui::GetIO().Framerate };
-				sprintf_s(title, 25, "Framerate %.1f", 1000.0 / ImGui::GetIO().Framerate);
+				float miliseconds[] = { 1000.0 / ImGui::GetIO().Framerate };
+				float framerate[] = {ImGui::GetIO().Framerate };
+				sprintf_s(title, 25, "Framerate %.1f",ImGui::GetIO().Framerate);
 				ImGui::PlotHistogram("##Framerate", framerate, IM_ARRAYSIZE(framerate), 0, title, 0.0f, 1.0f, ImVec2(0, 80.0f));
+				sprintf_s(title, 25, "Miliseconds %0.1f", 1000.0 / ImGui::GetIO().Framerate);
+				ImGui::PlotHistogram("##Miliseconds", miliseconds, IM_ARRAYSIZE(miliseconds), 0, title, 0.0f, 1.0f, ImVec2(0, 80.0f));
 
 
+				//Debug
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
-					1000.0 / ImGui::GetIO().Framerate);
+					1000.0 / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 			}
 			if (ImGui::CollapsingHeader("Window")) {
 				if (ImGui::Checkbox("Full Screen\t", &App->window->fullScreen)) {
