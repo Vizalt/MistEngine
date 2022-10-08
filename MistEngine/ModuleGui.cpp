@@ -47,7 +47,7 @@ update_status ModuleGui::Update(float dt)
 	ImGui::ShowDemoWindow();
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("File")) {
-			if (ImGui::MenuItem("Quit ESC")) {
+			if (ImGui::MenuItem("Quit", "ESC")) {
 				ImGui::EndMenu();
 				return UPDATE_STOP;
 				
