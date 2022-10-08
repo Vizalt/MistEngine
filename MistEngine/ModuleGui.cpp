@@ -75,9 +75,11 @@ update_status ModuleGui::Update(float dt)
 			ImGui::Text("3rd Partie Libraries:");
 			ImGui::BulletText("SDL 2.0");
 			ImGui::BulletText("ImGui 1.88");
-			ImGui::BulletText("Glew ");
-			ImGui::BulletText("MathGeoLib");
-			ImGui::BulletText("OpenGL");
+			ImGui::BulletText("Glew 2.1.0");
+			ImGui::BulletText("MathGeoLib 1.5");
+			ImGui::BulletText("OpenGL 3.1");
+			ImGui::BulletText("PhysFS");
+			ImGui::BulletText("Assimp");
 			ImGui::NewLine();
 			ImGui::Text("License:");
 			ImGui::NewLine();
