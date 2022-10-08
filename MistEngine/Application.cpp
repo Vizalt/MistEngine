@@ -7,6 +7,7 @@ Application::Application()
 	renderer3D = new ModuleRenderer3D(this);
 	camera = new ModuleCamera3D(this);
 	gui = new ModuleGui(this);
+	loader = new ModuleGeoLoader(this);
 
 
 	// The order of calls is very important!
@@ -18,6 +19,8 @@ Application::Application()
 	AddModule(camera);
 	AddModule(input);//////
 	AddModule(gui);
+	AddModule(loader);
+	
 
 	// Renderer last!
 	AddModule(renderer3D);

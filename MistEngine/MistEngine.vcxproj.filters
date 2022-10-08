@@ -157,6 +157,9 @@
     <ClCompile Include="ModuleGui.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleGeoLoader.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imGui\imconfig.h">
@@ -533,6 +536,9 @@
     </ClInclude>
     <ClInclude Include="MemLeaks.h">
       <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGeoLoader.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
