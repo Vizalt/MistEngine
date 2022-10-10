@@ -35,4 +35,5 @@ private:
 	ImVec2 MousePos;
 	ImVec2 MouseDelta;
 	char* data_path = NULL;
+
 };

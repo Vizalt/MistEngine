@@ -20,7 +20,7 @@ bool ModuleGui::Start()
 {
 	LOG("Setting up the UI");
 	bool ret = true;
-
+	
 	return ret;
 }
 
@@ -90,7 +90,7 @@ update_status ModuleGui::Update(float dt)
 	}
 	if (github) {
 		if (ImGui::Begin("GitHub")) {
-			
+			//ShellExecute(NULL, "open", "https://github.com/Vizalt/MistEngine", NULL, NULL, SW_SHOWNORMAL);
 		}
 		ImGui::End();
 	}
@@ -101,7 +101,7 @@ update_status ModuleGui::Update(float dt)
 				ImGui::InputText("Engine Name", string, IM_ARRAYSIZE(string));
 				static char string2[128] = "CITM UPC";
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
-				//Intento de Plotting
+		
 				char title[25];
 				float miliseconds[] = { 1000.0 / ImGui::GetIO().Framerate };
 				float framerate[] = {ImGui::GetIO().Framerate };
@@ -170,6 +170,8 @@ update_status ModuleGui::Update(float dt)
 				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%u.%u.%u\n",
 					compiled.major, compiled.minor, compiled.patch);
 
+				ImGui::Separator();
+
 				float ram = SDL_GetSystemRAM()/1024;
 				ImGui::Text("RAM size:"); ImGui::SameLine();
 				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%0.1fGb", ram);
@@ -177,6 +179,8 @@ update_status ModuleGui::Update(float dt)
 				int cpu_count = SDL_GetCPUCount(); //number of logical cpu cores
 				ImGui::Text("CPUs:"); ImGui::SameLine();
 				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d (Cache: kb)", cpu_count);
+
+				ImGui::Separator();
 
 				const char* platform = SDL_GetPlatform();
 				ImGui::Text("Platform:"); ImGui::SameLine();
