@@ -60,6 +60,7 @@ update_status ModuleGui::Update(float dt)
 		}
 		if (ImGui::BeginMenu("Help")) {
 			ImGui::MenuItem("About", NULL, &about);
+			ImGui::MenuItem("GitHub", NULL, &github);
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
@@ -69,7 +70,7 @@ update_status ModuleGui::Update(float dt)
 			ImGui::Text("MIST ENGINE ~ ~");
 			ImGui::Separator();
 			ImGui::NewLine();
-			ImGui::Text("A 3D Game Engine made by studients of CITM.");
+			ImGui::Text("A 3D Game Engine made by students of CITM.");
 			ImGui::Text("By Marina Albala and David Benages");
 			ImGui::NewLine();
 			ImGui::Text("3rd Partie Libraries:");
@@ -87,6 +88,12 @@ update_status ModuleGui::Update(float dt)
 		}
 		ImGui::End();
 	}
+	if (github) {
+		if (ImGui::Begin("GitHub")) {
+			
+		}
+		ImGui::End();
+	}
 	if (config) {
 		if (ImGui::Begin("Configuration")) {
 			if (ImGui::CollapsingHeader("Application")) {
@@ -99,9 +106,9 @@ update_status ModuleGui::Update(float dt)
 				float miliseconds[] = { 1000.0 / ImGui::GetIO().Framerate };
 				float framerate[] = {ImGui::GetIO().Framerate };
 				sprintf_s(title, 25, "Framerate %.1f",ImGui::GetIO().Framerate);
-				ImGui::PlotHistogram("##Framerate", framerate, IM_ARRAYSIZE(framerate), 0, title, 0.0f, 1.0f, ImVec2(0, 80.0f));
+				ImGui::PlotHistogram("##Framerate", framerate, IM_ARRAYSIZE(framerate), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
 				sprintf_s(title, 25, "Miliseconds %0.1f", 1000.0 / ImGui::GetIO().Framerate);
-				ImGui::PlotHistogram("##Miliseconds", miliseconds, IM_ARRAYSIZE(miliseconds), 0, title, 0.0f, 1.0f, ImVec2(0, 80.0f));
+				ImGui::PlotHistogram("##Miliseconds", miliseconds, IM_ARRAYSIZE(miliseconds), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
 
 
 				//Debug

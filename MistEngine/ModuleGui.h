@@ -29,7 +29,7 @@ public:
 
 private:
 
-	bool config = true, about = false;
+	bool config = true, about = false, github=false;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;
 	int height = SCREEN_HEIGHT * SCREEN_SIZE;
 	ImVec2 MousePos;
