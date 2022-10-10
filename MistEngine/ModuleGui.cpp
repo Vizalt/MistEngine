@@ -7,6 +7,7 @@
 #include "Glew/include/glew.h"
 #include "Primitive.h"
 
+
 ModuleGui::ModuleGui(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	
@@ -110,7 +111,6 @@ update_status ModuleGui::Update(float dt)
 				sprintf_s(title, 25, "Miliseconds %0.1f", 1000.0 / ImGui::GetIO().Framerate);
 				ImGui::PlotHistogram("##Miliseconds", miliseconds, IM_ARRAYSIZE(miliseconds), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
 
-
 				//Debug
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
 					1000.0 / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
@@ -172,9 +172,9 @@ update_status ModuleGui::Update(float dt)
 
 				ImGui::Separator();
 
-				float ram = SDL_GetSystemRAM()/1024;
+				float ram = SDL_GetSystemRAM();
 				ImGui::Text("RAM size:"); ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%0.1fGb", ram);
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%0.1fGb", ram/1024);
 
 				int cpu_count = SDL_GetCPUCount(); //number of logical cpu cores
 				ImGui::Text("CPUs:"); ImGui::SameLine();
@@ -196,6 +196,7 @@ update_status ModuleGui::Update(float dt)
 					ImGui::Text("Display:"); ImGui::SameLine();
 					ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s\n", name);
 				}
+
 
 
 			}
