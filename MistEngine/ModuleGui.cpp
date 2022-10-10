@@ -161,10 +161,28 @@ update_status ModuleGui::Update(float dt)
 			}
 			if (ImGui::CollapsingHeader("Hardware")) {
 				
-				ImGui::Text("RAM: %d", SDL_GetSystemRAM);
-				ImGui::Text("CPU: %d", SDL_GetCPUCount);
+				int ram = SDL_GetSystemRAM();
+				ImGui::Text("RAM size:", ram); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%dMB", ram);
 
+				int cpu_count = SDL_GetCPUCount(); //number of logical cpu cores
+				ImGui::Text("CPUs:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d (Cache: %kb)", cpu_count);
 
+				const char* platform = SDL_GetPlatform();
+				ImGui::Text("Platform:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s\n", platform);
+
+				int display_num = SDL_GetNumVideoDisplays();
+				ImGui::Text("Display Count:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d\n", display_num);
+
+				for (int i = 0; i < display_num; i++)
+				{
+					const char* name = SDL_GetDisplayName(i);
+					ImGui::Text("Display:"); ImGui::SameLine();
+					ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s\n", name);
+				}
 			}
 		}
 		ImGui::End();
