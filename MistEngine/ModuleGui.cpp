@@ -160,14 +160,23 @@ update_status ModuleGui::Update(float dt)
 
 			}
 			if (ImGui::CollapsingHeader("Hardware")) {
-				
-				int ram = SDL_GetSystemRAM();
-				ImGui::Text("RAM size:", ram); ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%dMB", ram);
+
+				SDL_version compiled;
+				SDL_version linked;
+
+				SDL_VERSION(&compiled);
+				SDL_GetVersion(&linked);
+				ImGui::Text("SDL Version:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%u.%u.%u\n",
+					compiled.major, compiled.minor, compiled.patch);
+
+				float ram = SDL_GetSystemRAM()/1024;
+				ImGui::Text("RAM size:"); ImGui::SameLine();
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%0.1fGb", ram);
 
 				int cpu_count = SDL_GetCPUCount(); //number of logical cpu cores
 				ImGui::Text("CPUs:"); ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d (Cache: %kb)", cpu_count);
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d (Cache: kb)", cpu_count);
 
 				const char* platform = SDL_GetPlatform();
 				ImGui::Text("Platform:"); ImGui::SameLine();
@@ -183,6 +192,8 @@ update_status ModuleGui::Update(float dt)
 					ImGui::Text("Display:"); ImGui::SameLine();
 					ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s\n", name);
 				}
+
+
 			}
 		}
 		ImGui::End();
