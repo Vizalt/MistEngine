@@ -178,7 +178,7 @@ update_status ModuleGui::Update(float dt)
 
 				int cpu_count = SDL_GetCPUCount(); //number of logical cpu cores
 				ImGui::Text("CPUs:"); ImGui::SameLine();
-				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d (Cache: kb)", cpu_count);
+				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%d (Cache: %dkb)", cpu_count, SDL_GetCPUCacheLineSize());
 
 				ImGui::Separator();
 
