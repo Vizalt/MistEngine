@@ -91,7 +91,8 @@ update_status ModuleGui::Update(float dt)
 	}
 	if (github) {
 		if (ImGui::Begin("GitHub")) {
-			//ShellExecute(NULL, "open", "https://github.com/Vizalt/MistEngine", NULL, NULL, SW_SHOWNORMAL);
+			ShellExecute(NULL, "open", "https://github.com/Vizalt/MistEngine", NULL, NULL, SW_SHOWNORMAL);
+			github = false;
 		}
 		ImGui::End();
 	}
