@@ -28,9 +28,9 @@ bool ModuleGeoLoader::Start()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
 
-	file_path = "Assets/BakerHouse.fbx";
+	/*file_path = "Assets/BakerHouse.fbx";
 
-	LoadFile(file_path);
+	LoadFile(file_path);*/
 
 	return ret;
 }
