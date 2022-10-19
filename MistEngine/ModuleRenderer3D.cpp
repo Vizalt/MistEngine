@@ -119,6 +119,9 @@ bool ModuleRenderer3D::Init()
 	io = &ImGui::GetIO(); (void)io;
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	io->ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+
+	//io->ConfigDockingWithShift = true;
 
 	// Setup Dear ImGui style
 	ImGui::StyleColorsDark();
@@ -166,6 +169,20 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
 
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoDocking;
+
+	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
+	ImGui::SetNextWindowPos(main_viewport->Pos);
+	ImGui::SetNextWindowSize(main_viewport->Size);
+
+	ImGui::Begin("DockingInv", nullptr, flags);
+
+	ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
+	//ImGui::DockSpaceOverViewport();
+	
+	ImGui::End();
 
 	return UPDATE_CONTINUE;
 }
