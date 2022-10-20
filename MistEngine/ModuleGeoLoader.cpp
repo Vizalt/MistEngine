@@ -30,7 +30,8 @@ bool ModuleGeoLoader::Start()
 
 	/*file_path = "Assets/BakerHouse.fbx";
 
-	LoadFile(file_path);*/
+	LoadFile(file_pat
+	h);*/
 
 	return ret;
 }

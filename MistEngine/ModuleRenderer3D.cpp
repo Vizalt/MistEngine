@@ -170,13 +170,21 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	ImGui::NewFrame();
 
 	ImGuiWindowFlags flags = ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoDocking;
+		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoNavFocus;
 
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
 	ImGui::SetNextWindowPos(main_viewport->Pos);
 	ImGui::SetNextWindowSize(main_viewport->Size);
+	ImGui::SetNextWindowViewport(main_viewport->ID);
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);     
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);     
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 19.0f));
+	
 
 	ImGui::Begin("DockingInv", nullptr, flags);
+
+	ImGui::PopStyleVar(3);
 
 	ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
 	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
