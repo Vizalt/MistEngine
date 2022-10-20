@@ -173,14 +173,14 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 		ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoNavFocus;
 
 	const ImGuiViewport* main_viewport = ImGui::GetMainViewport();
-	ImGui::SetNextWindowPos(main_viewport->Pos);
+	ImGui::SetNextWindowPos(main_viewport->WorkPos /*+ ImVec2(0.0f, ImGui::GetFrameHeight())*/);
 	ImGui::SetNextWindowSize(main_viewport->Size);
 	ImGui::SetNextWindowViewport(main_viewport->ID);
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);     
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);     
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 19.0f));
-	
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+	//
 
 	ImGui::Begin("DockingInv", nullptr, flags);
 
@@ -188,7 +188,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
 	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
-	//ImGui::DockSpaceOverViewport();
 	
 	ImGui::End();
 
