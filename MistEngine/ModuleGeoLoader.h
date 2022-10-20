@@ -35,6 +35,7 @@ public:
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
 	void LoadFile(string Path);
+	//void BufferMesh(Mesh* mesh);
 	bool CleanUp();
 	
 	void Draw();

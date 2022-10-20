@@ -108,9 +108,31 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 	}
 }
 
+//void ModuleGeoLoader::BufferMesh(Mesh* mesh)
+//{
+//	//Fill buffers with vertices
+//	glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
+//	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+//	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh->num_vertices * 3, mesh->vertices, GL_STATIC_DRAW);
+//
+//	//Fill buffers with indices
+//	glGenBuffers(1, (GLuint*)&(mesh->id_indices));
+//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
+//
+//	//Add mesh to meshes vector
+//	meshes.push_back(mesh);
+//}
+
 // -----------------------------------------------------------------
 bool ModuleGeoLoader::CleanUp()
 {
+	//Delete Meshes array
+	for (int i = 0; i < meshes.size(); i++) {
+		delete meshes[i];
+		meshes[i] = nullptr;
+	}
+	meshes.clear();
 	// detach log stream
 	aiDetachAllLogStreams();
 
