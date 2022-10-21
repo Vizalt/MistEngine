@@ -30,10 +30,9 @@ bool ModuleGeoLoader::Start()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
 
-	/*file_path = "Assets/BakerHouse.fbx";
+	file_path = "Assets/BakerHouse.fbx";
 
-	LoadFile(file_pat
-	h);*/
+	LoadFile(file_path);
 
 	return ret;
 }
@@ -122,6 +121,8 @@ void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
 
+	glDisableClientState(GL_VERTEX_ARRAY);
+
 	//Add mesh to meshes vector
 	meshes.push_back(mesh);
 }
@@ -150,6 +151,18 @@ void ModuleGeoLoader::Draw()
 
 void Mesh::Draw()
 {
+	//Vertices
+	//glEnableClientState(GL_VERTEX_ARRAY);
+	//glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	//glVertexPointer(3, GL_FLOAT, 0, NULL);
+	//// … bind and use other buffers
+	//glDrawArrays(GL_TRIANGLES, 0, num_vertices);
+	//glDisableClientState(GL_VERTEX_ARRAY);
+
+	////Indices
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	//glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
+
 	glBegin(GL_TRIANGLES);
 
 	for (int i = 0; i < num_indices; i++) 
@@ -158,4 +171,6 @@ void Mesh::Draw()
 	}
 
 	glEnd();
+
+	
 }
