@@ -18,6 +18,7 @@ enum main_states
 
 int main(int argc, char ** argv)
 {
+	
 
 	LOG("Starting game '%s'...", TITLE);
 
@@ -84,10 +85,10 @@ int main(int argc, char ** argv)
 		}
 	}
 
+	ReportMemoryLeaks();
+
 	delete App;
 	LOG("Exiting game '%s'...\n", TITLE);
-
-	ReportMemoryLeaks();
 
 	return main_return;
 }

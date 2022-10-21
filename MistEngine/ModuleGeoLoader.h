@@ -11,6 +11,8 @@
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+#pragma comment (lib, "Glew/libx86/glew32.lib")
+
 using namespace std;
 
 struct Mesh {
@@ -35,7 +37,7 @@ public:
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
 	void LoadFile(string Path);
-	//void BufferMesh(Mesh* mesh);
+	void BufferMesh(Mesh* mesh);
 	bool CleanUp();
 	
 	void Draw();
