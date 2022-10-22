@@ -151,10 +151,11 @@ update_status ModuleGui::Update(float dt)
 					App->window->fullScreen = false; App->window->resizable = false; App->window->borderless = false;
 					App->window->SwitchScreen();
 				}
-				//ImGui::SliderInt("Brightness", );
+				ImGui::SliderFloat("Brightness", &brightness,minBright, maxBright);
 				ImGui::SliderInt("Width", &width, 640, 1920);
 				ImGui::SliderInt("Height", &height, 480, 1080);
 				SDL_SetWindowSize(App->window->window, width, height);
+				SDL_SetWindowBrightness(App->window->window, brightness);
 			}
 			if (ImGui::CollapsingHeader("File System")) {
 				/*if(ImGui::Checkbox("Active\t")){}*/

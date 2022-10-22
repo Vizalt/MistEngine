@@ -32,6 +32,9 @@ private:
 	bool config = true, about = false, github=false, console=true, releases = false, issues=false;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;
 	int height = SCREEN_HEIGHT * SCREEN_SIZE;
+	float brightness = 1.0f;
+	float maxBright = 0.0f;
+	float minBright = 1.0f;
 	ImVec2 MousePos;
 	ImVec2 MouseDelta;
 	char* data_path = NULL;
