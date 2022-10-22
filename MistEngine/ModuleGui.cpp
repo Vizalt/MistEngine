@@ -61,7 +61,9 @@ update_status ModuleGui::Update(float dt)
 		}
 		if (ImGui::BeginMenu("Help")) {
 			ImGui::MenuItem("About", NULL, &about);
-			ImGui::MenuItem("GitHub", NULL, &github);
+			ImGui::MenuItem("Documentation", NULL, &github);
+			ImGui::MenuItem("Download latest", NULL, &releases);
+			ImGui::MenuItem("Report a bug", NULL, &issues);
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
@@ -92,7 +94,21 @@ update_status ModuleGui::Update(float dt)
 	if (github) {
 		if (ImGui::Begin("GitHub")) {
 			ShellExecute(NULL, "open", "https://github.com/Vizalt/MistEngine", NULL, NULL, SW_SHOWNORMAL);
-			github = false; //fasilito marina no le sabes
+			github = false;
+		}
+		ImGui::End();
+	}
+	if (releases) {
+		if (ImGui::Begin("GitHub")) {
+			ShellExecute(NULL, "open", "https://github.com/Vizalt/MistEngine/releases", NULL, NULL, SW_SHOWNORMAL);
+			releases = false;
+		}
+		ImGui::End();
+	}
+	if (issues) {
+		if (ImGui::Begin("Report a bug")) {
+			ShellExecute(NULL, "open", "https://github.com/Vizalt/MistEngine/issues", NULL, NULL, SW_SHOWNORMAL);
+			issues = false;
 		}
 		ImGui::End();
 	}
@@ -204,6 +220,15 @@ update_status ModuleGui::Update(float dt)
 		}
 		ImGui::End();
 	}
+	if (console) {
+		if (ImGui::Begin("console")) {
+			
+			/*ImGui::Text("%s", App->);*/
+		}
+		ImGui::End();
+	}
+
+	
 	
 	return UPDATE_CONTINUE;
 }
