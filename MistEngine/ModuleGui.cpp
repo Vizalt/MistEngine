@@ -266,3 +266,21 @@ void ModuleGui::PrintLicense() {
 	ImGui::Text("OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE");
 	ImGui::Text("SOFTWARE.");
 }
+
+void ModuleGui::savelogs(string log)
+{
+	logs.push_back(log);
+}
+
+void ModuleGui::PrintConsole()
+{
+	if (console) {
+		if (ImGui::Begin("console")) {
+			string infolog = " ";
+			for (int i = 0; i < logs.size(); i++) {
+				ImGui::Text(logs[i].c_str());
+			}
+		}
+		ImGui::End();
+	}
+}

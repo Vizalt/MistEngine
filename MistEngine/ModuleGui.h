@@ -8,6 +8,12 @@
 #include "imGui/backends/imgui_impl_sdl.h"
 #include "imGui/backends/imgui_impl_opengl3.h"
 
+#include <vector>
+#include <string>
+
+using namespace std;
+
+
 class ModuleGui : public Module
 {
 public:
@@ -21,6 +27,9 @@ public:
 	bool CleanUp();
 
 	void PrintLicense();
+	void savelogs(string log);
+
+	void PrintConsole();
 
 private:
 
@@ -39,4 +48,6 @@ private:
 	ImVec2 MouseDelta;
 	char* data_path = NULL;
 
+	vector<string> logs;
+	string logstring[4096];
 };
