@@ -4,6 +4,8 @@
 #include "glmath.h"
 #include "Light.h"
 
+#include "Glew/include/glew.h"
+
 #include "imGui/imgui.h"
 #include "imGui/backends/imgui_impl_sdl.h"
 #include "imGui/backends/imgui_impl_opengl3.h"

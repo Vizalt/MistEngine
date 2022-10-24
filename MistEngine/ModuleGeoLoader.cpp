@@ -95,7 +95,8 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 					}
 						
 				}
-				meshes.push_back(mesh);
+				//meshes.push_back(mesh);
+				BufferMesh(mesh);
 			}
 			else {
 				
@@ -112,6 +113,7 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 {
 	//Fill buffers with vertices
+	glEnableClientState(GL_VERTEX_ARRAY);
 	glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
 	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh->num_vertices * 3, mesh->vertices, GL_STATIC_DRAW);
@@ -152,25 +154,26 @@ void ModuleGeoLoader::Draw()
 void Mesh::Draw()
 {
 	//Vertices
-	//glEnableClientState(GL_VERTEX_ARRAY);
-	//glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
-	//glVertexPointer(3, GL_FLOAT, 0, NULL);
-	//// … bind and use other buffers
-	//glDrawArrays(GL_TRIANGLES, 0, num_vertices);
-	//glDisableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+	glVertexPointer(3, GL_FLOAT, 0, NULL);
+	// … bind and use other buffers
+	
 
-	////Indices
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-	//glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
+	//Indices
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 
-	glBegin(GL_TRIANGLES);
+	glDisableClientState(GL_VERTEX_ARRAY);
+
+	/*glBegin(GL_TRIANGLES);
 
 	for (int i = 0; i < num_indices; i++) 
 	{
 		glVertex3f(vertices[indices[i] * 3], vertices[indices[i] * 3 + 1], vertices[indices[i] * 3 + 2]);
 	}
 
-	glEnd();
+	glEnd();*/
 
 	
 }
