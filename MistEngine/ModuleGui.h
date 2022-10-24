@@ -33,11 +33,6 @@ public:
 
 private:
 
-public:
-
-
-private:
-
 	bool config = true, about = false, github=false, console=true, releases = false, issues=false;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;
 	int height = SCREEN_HEIGHT * SCREEN_SIZE;

@@ -1,7 +1,14 @@
 #include "Application.h"
+#include<string>
+#include "Globals.h"
+
+extern Application* externalapp =nullptr;
 
 Application::Application()
 {
+	externalapp = this;
+
+
 	window = new ModuleWindow(this);
 	input = new ModuleInput(this);
 	renderer3D = new ModuleRenderer3D(this);
@@ -9,6 +16,7 @@ Application::Application()
 	gui = new ModuleGui(this);
 	loader = new ModuleGeoLoader(this);
 
+	LOG("...");
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
