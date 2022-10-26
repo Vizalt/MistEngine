@@ -5,6 +5,7 @@
 #include "glmath.h"
 #include "ModuleRenderer3D.h"
 
+
 #include <vector>
 
 #include "Assimp/include/cimport.h"
@@ -15,7 +16,7 @@
 
 using namespace std;
 
-#define VERTEX_ARGUMENTS 5
+#define VERTICES 5
 
 struct Mesh {
 	uint id_indices = 0; // index in VRAM

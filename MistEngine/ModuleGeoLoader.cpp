@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleGeoLoader.h"
 #include "ModuleWindow.h"
+#include "ModuleTexture.h"
 
 #include "ModuleRenderer3D.h"
 #include "Glew/include/glew.h"
@@ -74,8 +75,20 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 			Mesh* mesh = new Mesh();
 			// copy vertices
 			mesh->num_vertices = scene->mMeshes[i]->mNumVertices;
-			mesh->vertices = new float[mesh->num_vertices * 3];
-			memcpy(mesh->vertices, scene->mMeshes[i]->mVertices, sizeof(float) * mesh->num_vertices * 3);
+			mesh->vertices = new float[mesh->num_vertices * VERTICES];
+			//memcpy(mesh->vertices, scene->mMeshes[i]->mVertices, sizeof(float) * mesh->num_vertices * 3);
+			
+			for (int k = 0; k < mesh->num_vertices; k++) {
+
+				mesh->vertices[k * VERTICES] = scene->mMeshes[i]->mVertices[k].x;
+				mesh->vertices[k * VERTICES + 1] = scene->mMeshes[i]->mVertices[k].y;
+				mesh->vertices[k * VERTICES + 2] = scene->mMeshes[i]->mVertices[k].z;
+
+				mesh->vertices[k * VERTICES + 3] = scene->mMeshes[i]->mTextureCoords[0][k].x;
+				mesh->vertices[k * VERTICES + 4] = scene->mMeshes[i]->mTextureCoords[0][k].y;
+
+			}
+
 			LOG("New mesh with %d vertices", mesh->num_vertices);
 
 			// copy faces
@@ -116,7 +129,7 @@ void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
 	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh->num_vertices * 3, mesh->vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh->num_vertices * VERTICES, mesh->vertices, GL_STATIC_DRAW);
 
 	//Fill buffers with indices
 	glGenBuffers(1, (GLuint*)&(mesh->id_indices));
@@ -156,24 +169,20 @@ void Mesh::Draw()
 	//Vertices
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
+	glVertexPointer(3, GL_FLOAT, sizeof(float) * VERTICES, NULL);
+	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTICES, (void*)(sizeof(float) * 3));
 	// … bind and use other buffers
-	
 
 	//Indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 
+	glEnable(GL_TEXTURE_2D);
+
+
 	glDisableClientState(GL_VERTEX_ARRAY);
-
-	/*glBegin(GL_TRIANGLES);
-
-	for (int i = 0; i < num_indices; i++) 
-	{
-		glVertex3f(vertices[indices[i] * 3], vertices[indices[i] * 3 + 1], vertices[indices[i] * 3 + 2]);
-	}
-
-	glEnd();*/
-
+	//cleaning texture
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glDisable(GL_TEXTURE_2D);
 	
 }
