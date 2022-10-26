@@ -47,18 +47,18 @@ bool ModuleTexture::Start()
 		0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
 
 	//Mipmap can be added or not
-	//glGenerateMipmap(GL_TEXTURE_2D);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	//cleaning texture
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisable(GL_TEXTURE_2D);
 
-	return false;
+	return true;
 }
 
 
 
 bool ModuleTexture::CleanUp()
 {
-	return false;
+	return true;
 }
