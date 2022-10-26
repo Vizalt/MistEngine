@@ -15,6 +15,8 @@
 
 using namespace std;
 
+#define VERTEX_ARGUMENTS 5
+
 struct Mesh {
 	uint id_indices = 0; // index in VRAM
 	uint num_indices = 0;
