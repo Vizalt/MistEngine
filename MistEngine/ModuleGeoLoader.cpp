@@ -166,14 +166,5 @@ void Mesh::Draw()
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 
-	/*glBegin(GL_TRIANGLES);
-
-	for (int i = 0; i < num_indices; i++) 
-	{
-		glVertex3f(vertices[indices[i] * 3], vertices[indices[i] * 3 + 1], vertices[indices[i] * 3 + 2]);
-	}
-
-	glEnd();*/
-
 	
 }
