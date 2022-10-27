@@ -10,6 +10,7 @@
 #include "ModuleCamera3D.h"
 #include "ModuleGui.h"
 #include "ModuleGeoLoader.h"
+#include "ModuleTexture.h"
 
 
 class Application
@@ -21,6 +22,7 @@ public:
 	ModuleCamera3D* camera;
 	ModuleGui* gui;
 	ModuleGeoLoader* loader;
+	ModuleTexture* texture;
 
 
 private:

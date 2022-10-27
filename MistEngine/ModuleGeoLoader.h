@@ -5,6 +5,7 @@
 #include "glmath.h"
 #include "ModuleRenderer3D.h"
 
+
 #include <vector>
 
 #include "Assimp/include/cimport.h"
@@ -15,6 +16,8 @@
 
 using namespace std;
 
+#define VERTICES 5
+
 struct Mesh {
 	uint id_indices = 0; // index in VRAM
 	uint num_indices = 0;
@@ -22,6 +25,8 @@ struct Mesh {
 	uint id_vertices = 0; // unique vertex in VRAM
 	uint num_vertices = 0;
 	float* vertices = nullptr;
+
+	GLuint id_texture;
 
 	void Draw();
 };

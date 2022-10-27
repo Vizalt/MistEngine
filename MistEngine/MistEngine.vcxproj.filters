@@ -160,6 +160,9 @@
     <ClCompile Include="ModuleGeoLoader.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleTexture.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imGui\imconfig.h">
@@ -538,6 +541,9 @@
       <Filter>Tools</Filter>
     </ClInclude>
     <ClInclude Include="ModuleGeoLoader.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTexture.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

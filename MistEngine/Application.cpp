@@ -15,6 +15,7 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	gui = new ModuleGui(this);
 	loader = new ModuleGeoLoader(this);
+	texture = new ModuleTexture(this);
 
 	LOG("...");
 
@@ -25,8 +26,9 @@ Application::Application()
 	// Main Modules
 	AddModule(window);
 	AddModule(camera);
-	AddModule(input);//////
+	AddModule(input);
 	AddModule(gui);
+	AddModule(texture);
 	AddModule(loader);
 	
 
