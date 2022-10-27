@@ -8,11 +8,11 @@
 
 #include <vector>
 
-#include "Assimp/include/cimport.h"
-#include "Assimp/include/scene.h"
-#include "Assimp/include/postprocess.h"
-#pragma comment (lib, "Assimp/libx86/assimp.lib")
-#pragma comment (lib, "Glew/libx86/glew32.lib")
+#include "cimport.h"
+#include "scene.h"
+#include "postprocess.h"
+//#pragma comment (lib, "Source Code/External/Assimp/libx86/assimp.lib")
+//#pragma comment (lib, "Source Code/External/Glew/libx86/glew32.lib")
 
 using namespace std;
 

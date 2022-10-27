@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleGeoLoader.h"
-#include "SDL\include\SDL_opengl.h"
+#include "SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Primitive.h"

@@ -4,7 +4,7 @@
 #include "ModuleWindow.h"
 
 #include "ModuleRenderer3D.h"
-#include "Glew/include/glew.h"
+#include "glew.h"
 #include "Primitive.h"
 
 

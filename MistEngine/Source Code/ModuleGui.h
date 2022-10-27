@@ -4,9 +4,9 @@
 #include "glmath.h"
 #include "ModuleRenderer3D.h"
 
-#include "imGui/imgui.h"
-#include "imGui/backends/imgui_impl_sdl.h"
-#include "imGui/backends/imgui_impl_opengl3.h"
+#include "imgui.h"
+#include "backends/imgui_impl_sdl.h"
+#include "backends/imgui_impl_opengl3.h"
 
 #include <vector>
 #include <string>

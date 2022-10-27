@@ -4,11 +4,11 @@
 #include "glmath.h"
 #include "Light.h"
 
-#include "Glew/include/glew.h"
+#include "glew.h"
 
-#include "imGui/imgui.h"
-#include "imGui/backends/imgui_impl_sdl.h"
-#include "imGui/backends/imgui_impl_opengl3.h"
+#include "imgui.h"
+#include "backends/imgui_impl_sdl.h"
+#include "backends/imgui_impl_opengl3.h"
 
 #define MAX_LIGHTS 8
 
