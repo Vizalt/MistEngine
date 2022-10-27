@@ -26,6 +26,8 @@ struct Mesh {
 	uint num_vertices = 0;
 	float* vertices = nullptr;
 
+	GLuint id_texture;
+
 	void Draw();
 };
 

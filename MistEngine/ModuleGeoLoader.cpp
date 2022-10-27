@@ -108,6 +108,9 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 					}
 						
 				}
+
+				mesh->id_texture = App->texture->textureID;
+
 				//meshes.push_back(mesh);
 				BufferMesh(mesh);
 			}
@@ -167,22 +170,26 @@ void ModuleGeoLoader::Draw()
 void Mesh::Draw()
 {
 	//Vertices
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_COORD_ARRAY);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
+
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * VERTICES, NULL);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTICES, (void*)(sizeof(float) * 3));
 	// … bind and use other buffers
 
+	glBindTexture(GL_TEXTURE_2D, id_texture);
+
 	//Indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
-
-	glEnable(GL_TEXTURE_2D);
 
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	//cleaning texture
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_COORD_ARRAY);
 	
 }
