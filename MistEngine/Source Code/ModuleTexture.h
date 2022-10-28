@@ -28,6 +28,8 @@ public:
 	void FreeTexture();
 
 	GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
-	GLuint textureID = 0;
+	GLuint textureID = 0, 
+		textureWidth = 0,
+		textureHeight = 0;
 	string texPath = "";
 };

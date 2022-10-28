@@ -83,6 +83,9 @@ bool ModuleTexture::GenTexture(GLuint* imgData, GLuint width, GLuint height)
 	//Clean textures if there is another
 	FreeTexture();
 
+	textureWidth = width;
+	textureHeight = height;
+
 	glEnable(GL_TEXTURE_2D);
 
 	//Generate and bind a texture buffer

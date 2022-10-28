@@ -110,6 +110,8 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 				}
 
 				mesh->id_texture = App->texture->textureID;
+				mesh->texture_height = App->texture->textureWidth;
+				mesh->texture_width = App->texture->textureWidth;
 
 				//meshes.push_back(mesh);
 				BufferMesh(mesh);
