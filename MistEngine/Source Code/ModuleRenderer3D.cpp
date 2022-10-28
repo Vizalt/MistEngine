@@ -42,6 +42,7 @@ bool ModuleRenderer3D::Init()
 		ret = false;
 	}
 
+	//Initialize Glew
 	glewInit();
 	
 	if(ret == true)

@@ -32,7 +32,7 @@ bool ModuleGeoLoader::Start()
 	aiAttachLogStream(&stream);
 
 	file_path = "Assets/BakerHouse.fbx";
-
+	
 	LoadFile(file_path);
 
 	return ret;

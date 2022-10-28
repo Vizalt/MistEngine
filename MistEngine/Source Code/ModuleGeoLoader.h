@@ -51,7 +51,8 @@ private:
 
 public:
 	vector<Mesh*> meshes;
-	string file_path;
+	string file_path = "";
+	
 
 private:
 	
