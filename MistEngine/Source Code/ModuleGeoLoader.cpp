@@ -85,7 +85,7 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 				mesh->vertices[k * VERTICES + 2] = scene->mMeshes[i]->mVertices[k].z;
 
 				mesh->vertices[k * VERTICES + 3] = scene->mMeshes[i]->mTextureCoords[0][k].x;
-				mesh->vertices[k * VERTICES + 4] = scene->mMeshes[i]->mTextureCoords[0][k].y;
+				mesh->vertices[k * VERTICES + 4] = 1 - scene->mMeshes[i]->mTextureCoords[0][k].y;
 
 			}
 

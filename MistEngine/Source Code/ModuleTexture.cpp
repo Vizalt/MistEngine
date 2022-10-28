@@ -13,7 +13,7 @@ ModuleTexture::~ModuleTexture()
 
 bool ModuleTexture::Start()
 {
-	/*
+	
 	{
 		//create procedurally a checker texture
 		for (int i = 0; i < CHECKERS_HEIGHT; i++) {
@@ -54,7 +54,7 @@ bool ModuleTexture::Start()
 		//cleaning texture
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glDisable(GL_TEXTURE_2D);
-	}*/
+	}
 
 	//Initialize clear color
 	glClearColor(0.f, 0.f, 0.f, 1.f);
