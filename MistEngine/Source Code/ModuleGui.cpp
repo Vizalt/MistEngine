@@ -45,7 +45,7 @@ update_status ModuleGui::PreUpdate(float dt)
 update_status ModuleGui::Update(float dt)
 {
 
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("File")) {
 			if (ImGui::MenuItem("Quit", "ESC")) {
@@ -214,20 +214,18 @@ update_status ModuleGui::Update(float dt)
 					ImGui::Text("Display:"); ImGui::SameLine();
 					ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s\n", name);
 				}
-
-
-
 			}
 		}
 		ImGui::End();
 	}
-	if (console) {
-		if (ImGui::Begin("console")) {
+	if (hierarchy) {
+		if (ImGui::Begin("Hierarchy")) {
 			
-			/*ImGui::Text("%s", App->);*/
+
 		}
 		ImGui::End();
 	}
+	PrintConsole();
 
 	
 	
