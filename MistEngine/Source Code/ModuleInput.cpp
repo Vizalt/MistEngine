@@ -143,10 +143,12 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	std::string extension = fileName.substr(fileName.find_last_of(".") + 1);
 	if (extension == "fbx")
 	{
+		LOG("Loading FBX");
 		App->loader->LoadFile(fileName);
 	}
 	if (extension == "png" || extension == "dds")
 	{
+		LOG("Loading Textures");
 		App->texture->LoadTexture(fileName);
 	}
 	else
