@@ -119,15 +119,7 @@ update_status ModuleInput::PreUpdate(float dt)
 
 			case SDL_DROPFILE:
 			{
-				std::string fileName = e.drop.file;
-				if (fileName.substr(fileName.find_last_of(".") + 1) == "fbx")
-				{
-					App->loader->LoadFile(e.drop.file);
-				}
-				else
-				{
-					break;
-				}
+				CheckFileExtension(e.drop.file);
 			}
 		}
 	}
@@ -144,4 +136,21 @@ bool ModuleInput::CleanUp()
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
+}
+
+void ModuleInput::CheckFileExtension(std::string fileName)
+{
+	std::string extension = fileName.substr(fileName.find_last_of(".") + 1);
+	if (extension == "fbx")
+	{
+		App->loader->LoadFile(fileName);
+	}
+	if (extension == "png" || extension == "dds")
+	{
+		App->texture->LoadTexture(fileName);
+	}
+	else
+	{
+		LOG("Error: this file extension not supported")
+	}
 }

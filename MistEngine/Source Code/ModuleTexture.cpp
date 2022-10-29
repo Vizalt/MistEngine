@@ -66,7 +66,7 @@ bool ModuleTexture::Start()
 
 	texPath = "Assets/Baker_house.png";
 
-	LoadTexture(texPath);
+	//LoadTexture(texPath);
 
 	return true;
 }

@@ -2,6 +2,8 @@
 #include "Module.h"
 #include "Globals.h"
 
+#include <string>
+
 #define MAX_MOUSE_BUTTONS 5
 
 enum KEY_STATE
@@ -57,6 +59,8 @@ public:
 	{
 		return mouse_y_motion;
 	}
+
+	void CheckFileExtension(std::string fileName);
 
 private:
 	KEY_STATE* keyboard;
