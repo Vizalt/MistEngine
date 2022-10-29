@@ -134,15 +134,6 @@
     <ClInclude Include="Source Code\ModuleWindow.h">
       <Filter>Source Code\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\p2DynArray.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\p2List.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\p2Point.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="Source Code\Primitive.h">
       <Filter>Source Code\Tools</Filter>
     </ClInclude>
