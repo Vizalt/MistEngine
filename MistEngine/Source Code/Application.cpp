@@ -79,6 +79,9 @@ void Application::PrepareUpdate()
 // ---------------------------------------------
 void Application::FinishUpdate()
 {
+	MsFrame = ms_timer.Read();     
+	float FrameWait = (1000.f / (float)fps) - (float)MsFrame;     
+	SDL_Delay(static_cast<Uint32>(fabs(FrameWait)));
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules

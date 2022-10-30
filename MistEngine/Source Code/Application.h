@@ -35,6 +35,9 @@ private:
 
 public:
 
+	int fps = 60;
+	Uint32 MsFrame;
+
 	Application();
 	~Application();
 

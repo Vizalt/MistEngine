@@ -44,7 +44,6 @@ private:
 
 	vector<string> logs;
 	string logstring[4096];
-	int fps = 60;
 	std::vector<float> fps_log;
 	std::vector<float> ms_log;
 };
