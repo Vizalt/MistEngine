@@ -29,6 +29,7 @@
     <ClCompile Include="Source Code\ModuleGui.cpp" />
     <ClCompile Include="Source Code\ModuleInput.cpp" />
     <ClCompile Include="Source Code\ModuleRenderer3D.cpp" />
+    <ClCompile Include="Source Code\ModuleScene.cpp" />
     <ClCompile Include="Source Code\ModuleTexture.cpp" />
     <ClCompile Include="Source Code\ModuleWindow.cpp" />
     <ClCompile Include="Source Code\Primitive.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="Source Code\ModuleGui.h" />
     <ClInclude Include="Source Code\ModuleInput.h" />
     <ClInclude Include="Source Code\ModuleRenderer3D.h" />
+    <ClInclude Include="Source Code\ModuleScene.h" />
     <ClInclude Include="Source Code\ModuleTexture.h" />
     <ClInclude Include="Source Code\ModuleWindow.h" />
     <ClInclude Include="Source Code\Primitive.h" />

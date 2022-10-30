@@ -90,6 +90,9 @@
     <ClCompile Include="Source Code\External\imGui\backends\imgui_impl_sdl.cpp">
       <Filter>External\imGui\backends</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\ModuleScene.cpp">
+      <Filter>Source Code\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\Application.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_sdl.h">
       <Filter>External\imGui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ModuleScene.h">
+      <Filter>Source Code\Modules</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

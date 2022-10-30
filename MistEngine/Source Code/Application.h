@@ -10,6 +10,7 @@
 #include "ModuleGui.h"
 #include "ModuleGeoLoader.h"
 #include "ModuleTexture.h"
+#include "ModuleScene.h"
 
 #include <vector>
 
@@ -23,6 +24,7 @@ public:
 	ModuleGui* gui;
 	ModuleGeoLoader* loader;
 	ModuleTexture* texture;
+	ModuleScene* scene;
 
 
 private:

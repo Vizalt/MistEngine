@@ -16,6 +16,7 @@ Application::Application()
 	gui = new ModuleGui(this);
 	loader = new ModuleGeoLoader(this);
 	texture = new ModuleTexture(this);
+	scene = new ModuleScene(this);
 
 	LOG("...");
 
@@ -27,10 +28,10 @@ Application::Application()
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
+	AddModule(scene);
 	AddModule(gui);
 	AddModule(texture);
-	AddModule(loader);
-	
+	AddModule(loader);	
 
 	// Renderer last!
 	AddModule(renderer3D);
