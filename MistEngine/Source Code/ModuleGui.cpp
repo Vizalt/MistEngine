@@ -120,13 +120,19 @@ update_status ModuleGui::Update(float dt)
 				static char string2[128] = "CITM UPC";
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
 		
+				ImGui::SliderInt("FPS", &fps , 1 , 120);
+
 				char title[25];
-				float miliseconds[] = { 1000.0 / ImGui::GetIO().Framerate };
-				float framerate[] = {ImGui::GetIO().Framerate };
-				sprintf_s(title, 25, "Framerate %.1f",ImGui::GetIO().Framerate);
-				ImGui::PlotHistogram("##Framerate", framerate, IM_ARRAYSIZE(framerate), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
-				sprintf_s(title, 25, "Miliseconds %0.1f", 1000.0 / ImGui::GetIO().Framerate);
-				ImGui::PlotHistogram("##Miliseconds", miliseconds, IM_ARRAYSIZE(miliseconds), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
+
+				float FPS = 1 / dt;
+				fps_log.push_back(FPS);
+				float MS = 1000 * dt;
+				ms_log.push_back(MS);
+
+				sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size()-1]);
+				ImGui::PlotHistogram("##Framerate", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
+				sprintf_s(title, 25, "Miliseconds %0.1f", ms_log[fps_log.size() - 1]);
+				ImGui::PlotHistogram("##Miliseconds", &ms_log[0], ms_log.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
 
 				//Debug
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
