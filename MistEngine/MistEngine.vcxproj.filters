@@ -93,6 +93,9 @@
     <ClCompile Include="Source Code\ModuleScene.cpp">
       <Filter>Source Code\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\GameObject.cpp">
+      <Filter>Source Code\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\Application.h">
@@ -108,9 +111,6 @@
       <Filter>Source Code\Main</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\Light.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\MemLeaks.h">
       <Filter>Source Code\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\Module.h">
@@ -172,6 +172,12 @@
     </ClInclude>
     <ClInclude Include="Source Code\ModuleScene.h">
       <Filter>Source Code\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\GameObject.h">
+      <Filter>Source Code\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\MemoryLeaks.h">
+      <Filter>Source Code\Main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

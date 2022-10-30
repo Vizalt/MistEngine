@@ -20,6 +20,7 @@
     <ClCompile Include="Source Code\External\imGui\imgui_draw.cpp" />
     <ClCompile Include="Source Code\External\imGui\imgui_tables.cpp" />
     <ClCompile Include="Source Code\External\imGui\imgui_widgets.cpp" />
+    <ClCompile Include="Source Code\GameObject.cpp" />
     <ClCompile Include="Source Code\glmath.cpp" />
     <ClCompile Include="Source Code\Light.cpp" />
     <ClCompile Include="Source Code\log.cpp" />
@@ -47,10 +48,11 @@
     <ClInclude Include="Source Code\External\imGui\imstb_rectpack.h" />
     <ClInclude Include="Source Code\External\imGui\imstb_textedit.h" />
     <ClInclude Include="Source Code\External\imGui\imstb_truetype.h" />
+    <ClInclude Include="Source Code\GameObject.h" />
     <ClInclude Include="Source Code\glmath.h" />
     <ClInclude Include="Source Code\Globals.h" />
     <ClInclude Include="Source Code\Light.h" />
-    <ClInclude Include="Source Code\MemLeaks.h" />
+    <ClInclude Include="Source Code\MemoryLeaks.h" />
     <ClInclude Include="Source Code\Module.h" />
     <ClInclude Include="Source Code\ModuleCamera3D.h" />
     <ClInclude Include="Source Code\ModuleGeoLoader.h" />
