@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Source Code\Application.cpp" />
     <ClCompile Include="Source Code\Color.cpp" />
+    <ClCompile Include="Source Code\Component.cpp" />
     <ClCompile Include="Source Code\External\imGui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Source Code\External\imGui\backends\imgui_impl_sdl.cpp" />
     <ClCompile Include="Source Code\External\imGui\imgui.cpp" />
@@ -35,10 +36,12 @@
     <ClCompile Include="Source Code\ModuleWindow.cpp" />
     <ClCompile Include="Source Code\Primitive.cpp" />
     <ClCompile Include="Source Code\Timer.cpp" />
+    <ClCompile Include="Source Code\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\Application.h" />
     <ClInclude Include="Source Code\Color.h" />
+    <ClInclude Include="Source Code\Component.h" />
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_sdl.h" />
@@ -64,6 +67,7 @@
     <ClInclude Include="Source Code\ModuleWindow.h" />
     <ClInclude Include="Source Code\Primitive.h" />
     <ClInclude Include="Source Code\Timer.h" />
+    <ClInclude Include="Source Code\Transform.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{746CC4C3-787F-4B0E-AA66-E388FE3FF4F6}</ProjectGuid>

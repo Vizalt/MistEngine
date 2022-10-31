@@ -83,11 +83,7 @@ int main(int argc, char ** argv)
 			break;
 
 		}
-	}
-
-	float* hola = new float(4);
-
-	
+	}	
 
 	delete App;
 	LOG("Exiting game '%s'...\n", TITLE);

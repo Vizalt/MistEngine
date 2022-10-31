@@ -1,15 +1,12 @@
 #pragma once
-#include "SDL.h"
+#include "Globals.h"
+#include "Component.h"
+#include "Transform.h"
+
 #include <vector>
 #include <string>
 
-enum class ComponentType
-{
-	TRANSFORM,
-	MESH,
-	TEXTURE,
-};
-
+enum class ComponentType;
 class Component;
 
 class GameObject
@@ -18,22 +15,12 @@ public:
 	GameObject();
 	~GameObject();
 
+	GameObject(GameObject* parent);
+
 	void CreateComponent(ComponentType type);
 
 	std::string name;
-	std::vector<Component*> Components;
+	std::vector<Component*> components;
 	GameObject* parent;
 	std::vector<GameObject*> children;
-};
-
-
-class Component
-{
-public:
-	Component();
-	~Component();
-
-	ComponentType type;
-	bool active;
-	GameObject* owner;
 };

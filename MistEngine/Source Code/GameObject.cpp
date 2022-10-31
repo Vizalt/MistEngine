@@ -1,22 +1,15 @@
 #include "GameObject.h"
 
-Component::Component()
-{
-	type = ComponentType::TRANSFORM;
-	active = false;
-	owner = nullptr;
-}
-
-Component::~Component()
-{
-	active = false;
-	owner = nullptr;
-}
-
 GameObject::GameObject()
 {
 	name = "gameObject";
 	parent = nullptr;
+}
+
+GameObject::GameObject(GameObject* parent)
+{
+	name = "gameObject";
+	this->parent = parent;
 }
 
 GameObject::~GameObject()
@@ -27,13 +20,34 @@ GameObject::~GameObject()
 
 void GameObject::CreateComponent(ComponentType type)
 {
-	Component* newComponent = new Component();
+	Component* newComponent = new Component(this);
+	Transform* newTransform = new Transform(this);
 
-	newComponent->type = type;
-	newComponent->active = true;
-	newComponent->owner = this;
+	switch (type)
+	{
+	case ComponentType::NONE:
 
-	Components.push_back(newComponent);
+		newComponent->type = type;
+		newComponent->active = true;
+
+		components.push_back(newComponent);
+
+		break;
+
+	case ComponentType::TRANSFORM:
+
+		newTransform->type = type;
+		newTransform->active = true;
+
+		components.push_back(newTransform);
+
+		break;
+
+	default:
+		break;
+	}
+
 	delete newComponent;
+	delete newTransform;
 }
 
