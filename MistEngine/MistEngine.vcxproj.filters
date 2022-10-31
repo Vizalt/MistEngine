@@ -10,9 +10,6 @@
     <Filter Include="Source Code\Modules">
       <UniqueIdentifier>{3c0a4ad7-1c95-4239-bf42-db29ad53c008}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\Tools">
-      <UniqueIdentifier>{dba1b0e6-ad71-4020-8f87-30722dcd20ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="External">
       <UniqueIdentifier>{739c8af0-8d77-4406-b552-39f8deeccd76}</UniqueIdentifier>
     </Filter>
@@ -22,15 +19,18 @@
     <Filter Include="External\imGui\backends">
       <UniqueIdentifier>{7207cc58-eb27-4bd1-8716-d73aaf0e5ffe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Code\GameObjects">
+      <UniqueIdentifier>{6cc4e957-739a-4a69-a21b-37bf5ce1caee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Tools">
+      <UniqueIdentifier>{dba1b0e6-ad71-4020-8f87-30722dcd20ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Code\Application.cpp">
       <Filter>Source Code\Main</Filter>
     </ClCompile>
     <ClCompile Include="Source Code\Color.cpp">
-      <Filter>Source Code\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Code\glmath.cpp">
       <Filter>Source Code\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Source Code\Light.cpp">
@@ -95,6 +95,17 @@
     </ClCompile>
     <ClCompile Include="Source Code\ModuleHierarchy.cpp">
       <Filter>Source Code\Modules</Filter>
+    <ClCompile Include="Source Code\Transform.cpp">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\GameObject.cpp">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Component.cpp">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\glmath.cpp">
+      <Filter>Source Code\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,16 +115,10 @@
     <ClInclude Include="Source Code\Color.h">
       <Filter>Source Code\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\glmath.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="Source Code\Globals.h">
       <Filter>Source Code\Main</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\Light.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\MemLeaks.h">
       <Filter>Source Code\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\Module.h">
@@ -178,6 +183,20 @@
     </ClInclude>
     <ClInclude Include="Source Code\ModuleHierarchy.h">
       <Filter>Source Code\Modules</Filter>
+    <ClInclude Include="Source Code\MemoryLeaks.h">
+      <Filter>Source Code\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Transform.h">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\GameObject.h">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Component.h">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\glmath.h">
+      <Filter>Source Code\Tools</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

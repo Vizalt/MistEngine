@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "Application.h"
-#include "MemLeaks.h"
 #include "Globals.h"
+#include "MemoryLeaks.h"
 
 #include "SDL.h"
 //#pragma comment( lib, "SDL/libx86/SDL2.lib" )
@@ -18,7 +18,7 @@ enum main_states
 
 int main(int argc, char ** argv)
 {
-	
+	ReportMemoryLeaks();
 
 	LOG("Starting game '%s'...", TITLE);
 
@@ -66,7 +66,7 @@ int main(int argc, char ** argv)
 			if (update_return == UPDATE_STOP)
 				state = MAIN_FINISH;
 		}
-			break;
+		break;
 
 		case MAIN_FINISH:
 
@@ -83,9 +83,7 @@ int main(int argc, char ** argv)
 			break;
 
 		}
-	}
-
-	ReportMemoryLeaks();
+	}	
 
 	delete App;
 	LOG("Exiting game '%s'...\n", TITLE);
