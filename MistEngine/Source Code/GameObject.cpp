@@ -30,9 +30,7 @@ GameObject::~GameObject()
 		delete components[i];
 		components[i] = nullptr;
 	}
-	components.clear();
-
-	
+	components.clear();	
 }
 
 void GameObject::CreateComponent(ComponentType type)
