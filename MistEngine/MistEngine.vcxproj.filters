@@ -61,26 +61,26 @@
     <ClCompile Include="Source Code\Timer.cpp">
       <Filter>Source Code\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Source Code\Main.cpp">
-      <Filter>Source Code</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Code\Application.cpp">
-      <Filter>Source Code</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Code\GameObject.cpp">
-      <Filter>Source Code</Filter>
-    </ClCompile>
     <ClCompile Include="Source Code\External\imGui\backends\imgui_impl_opengl3.cpp">
       <Filter>Externals\ImGui\backends</Filter>
     </ClCompile>
-    <ClCompile Include="Source Code\glmath.cpp">
-      <Filter>Source Code</Filter>
+    <ClCompile Include="Source Code\Application.cpp">
+      <Filter>Source Code\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Source Code\Transform.cpp">
+    <ClCompile Include="Source Code\Main.cpp">
+      <Filter>Source Code\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\glmath.cpp">
       <Filter>Source Code\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\GameObject.cpp">
+      <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Source Code\Component.cpp">
-      <Filter>Source Code\Tools</Filter>
+      <Filter>Source Code\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Code\Transform.cpp">
+      <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,18 +132,6 @@
     <ClInclude Include="Source Code\Primitive.h">
       <Filter>Source Code\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\Globals.h">
-      <Filter>Source Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\Module.h">
-      <Filter>Source Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\Application.h">
-      <Filter>Source Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\GameObject.h">
-      <Filter>Source Code</Filter>
-    </ClInclude>
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_opengl3_loader.h">
       <Filter>Externals\ImGui\backends</Filter>
     </ClInclude>
@@ -162,17 +150,29 @@
     <ClInclude Include="Source Code\External\imGui\imconfig.h">
       <Filter>Externals\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="Source Code\Application.h">
+      <Filter>Source Code\Application</Filter>
+    </ClInclude>
     <ClInclude Include="Source Code\MemoryLeaks.h">
-      <Filter>Source Code</Filter>
+      <Filter>Source Code\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Module.h">
+      <Filter>Source Code\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Globals.h">
+      <Filter>Source Code\Application</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\glmath.h">
-      <Filter>Source Code</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\Transform.h">
       <Filter>Source Code\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\GameObject.h">
+      <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\Component.h">
-      <Filter>Source Code\Tools</Filter>
+      <Filter>Source Code\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Transform.h">
+      <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +193,12 @@
     </Filter>
     <Filter Include="Externals\ImGui\backends">
       <UniqueIdentifier>{f2f24bfd-681b-4b77-8fbc-1d735329929b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\Application">
+      <UniqueIdentifier>{22e983ae-cb6b-41d7-b9b3-843b406c8fd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Code\GameObjects">
+      <UniqueIdentifier>{345da99d-bac0-4476-b540-79d70b2bbd26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

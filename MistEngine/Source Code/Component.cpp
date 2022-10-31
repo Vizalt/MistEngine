@@ -10,3 +10,7 @@ Component::Component(GameObject* owner)
 Component::~Component()
 {
 }
+
+void Component::Inspector()
+{
+}

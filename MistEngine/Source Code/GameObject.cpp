@@ -33,6 +33,20 @@ GameObject::~GameObject()
 	components.clear();	
 }
 
+void GameObject::InspectorWindow()
+{
+	ImGui::Begin("Inspector");
+	ImGui::SameLine;
+	ImGui::InputText("Game Object", string, IM_ARRAYSIZE(string));
+
+	for (size_t i = 0; i < components.size(); i++)
+	{
+		ImGui::Separator();
+		ImGui::NewLine();
+	}
+	ImGui::End();
+}
+
 void GameObject::CreateComponent(ComponentType type)
 {
 	Component* newComponent = new Component(this);

@@ -2,12 +2,14 @@
 #include "Globals.h"
 #include "Component.h"
 #include "Transform.h"
+#include "imgui.h"
 
 #include <vector>
 #include <string>
 
 enum class ComponentType;
 class Component;
+class Transform;
 
 class GameObject
 {
@@ -17,11 +19,14 @@ public:
 
 	GameObject(GameObject* parent);
 
+	void InspectorWindow();
+
 	void CreateComponent(ComponentType type);
 
 	Transform* transform;
 
 	std::string name;
+	char string[128];
 	std::vector<Component*> components;
 	GameObject* parent;
 	std::vector<GameObject*> children;
