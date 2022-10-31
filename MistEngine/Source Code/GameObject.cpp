@@ -4,50 +4,46 @@ GameObject::GameObject()
 {
 	name = "gameObject";
 	parent = nullptr;
+
+	transform = new Transform();
+	components.push_back(transform);
 }
 
 GameObject::GameObject(GameObject* parent)
 {
 	name = "gameObject";
 	this->parent = parent;
+
+	transform = new Transform();
+	components.push_back(transform);
 }
 
 GameObject::~GameObject()
 {
 	name = "";
 	parent = nullptr;
+
+	transform = nullptr;
+
+	for (size_t i = 0; i < components.size(); i++)
+	{
+		delete components[i];
+		components[i] = nullptr;
+	}
+	components.clear();
+
+	
 }
 
 void GameObject::CreateComponent(ComponentType type)
 {
 	Component* newComponent = new Component(this);
-	Transform* newTransform = new Transform(this);
 
-	switch (type)
-	{
-	case ComponentType::NONE:
+	newComponent->type = type;
+	newComponent->active = true;
 
-		newComponent->type = type;
-		newComponent->active = true;
-
-		components.push_back(newComponent);
-
-		break;
-
-	case ComponentType::TRANSFORM:
-
-		newTransform->type = type;
-		newTransform->active = true;
-
-		components.push_back(newTransform);
-
-		break;
-
-	default:
-		break;
-	}
+	components.push_back(newComponent);
 
 	delete newComponent;
-	delete newTransform;
 }
 

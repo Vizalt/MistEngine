@@ -1,8 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Math/float4x4.h"
-#include "Math/float3.h"
-#include "Math/Quat.h"
+#include "glmath.h"
 
 class GameObject;
 class Component;
@@ -15,12 +13,11 @@ public:
 	Transform(GameObject* owner);
 	~Transform();
 
-	float4x4 glTransform, glTransformT;
-	float4x4 lTransform;
+	mat4x4 glTransform, glTransformT;
+	mat4x4 lTransform;
 
-	float3 position, scale;
-	Quat rotation;
+	vec3 position, scale, rotation;
 
-	void SetTransformMatrix(float3 _position, Quat _rotation, float3 _localScale);
+	void SetTransformMatrix(vec3 _position, vec3 _rotation, vec3 _localScale);
 
 };

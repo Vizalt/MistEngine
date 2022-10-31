@@ -19,6 +19,8 @@ public:
 
 	void CreateComponent(ComponentType type);
 
+	Transform* transform;
+
 	std::string name;
 	std::vector<Component*> components;
 	GameObject* parent;
