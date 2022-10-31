@@ -1,4 +1,5 @@
 #pragma once
+#include "Globals.h"
 #include "Component.h"
 #include "glmath.h"
 
@@ -18,6 +19,6 @@ public:
 
 	vec3 position, scale, rotation;
 
-	void SetTransformMatrix(vec3 _position, vec3 _rotation, vec3 _localScale);
+	void SetTransformMatrix(vec3 position, vec3 rotation, vec3 scale);
 
 };
