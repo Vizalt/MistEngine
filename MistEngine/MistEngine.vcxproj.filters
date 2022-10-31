@@ -93,6 +93,9 @@
     <ClCompile Include="Source Code\ModuleScene.cpp">
       <Filter>Source Code\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\ModuleHierarchy.cpp">
+      <Filter>Source Code\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\Application.h">
@@ -171,6 +174,9 @@
       <Filter>External\imGui\backends</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\ModuleScene.h">
+      <Filter>Source Code\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ModuleHierarchy.h">
       <Filter>Source Code\Modules</Filter>
     </ClInclude>
   </ItemGroup>

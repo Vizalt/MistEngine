@@ -40,9 +40,18 @@ update_status ModuleGui::PreUpdate(float dt)
 	return UPDATE_CONTINUE;
 }
 
+vector<float> ModuleGui::fps_log;
+vector<float> ModuleGui::ms_log;
+vector<float> ModuleGui::stackfps = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+vector<float> ModuleGui::stackms = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
 // -----------------------------------------------------------------
 update_status ModuleGui::Update(float dt)
 {
+	float FPS = 1 / dt;
+	fps_log.push_back(FPS);
+	float MS = 1000.0f * dt;
+	ms_log.push_back(MS);
 
 	//ImGui::ShowDemoWindow();
 	if (ImGui::BeginMainMenuBar()) {
@@ -121,28 +130,27 @@ update_status ModuleGui::Update(float dt)
 				ImGui::InputText("Organization", string2, IM_ARRAYSIZE(string2));
 		
 				ImGui::SliderInt("FPS", &App->fps , 1, 120);
-
+								
 				char title[25];
-
-				float FPS = 1 / dt;
-				fps_log.push_back(FPS);
-				float MS = 1000.0f * dt;
-				ms_log.push_back(MS);
-				
-
-
-				sprintf_s(title, 25, "Framerate %1.f", fps_log[fps_log.size() - 1]);
+				sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
 				ImGui::PlotHistogram("##Framerate", &fps_log[0], stackfps.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
 
 				sprintf_s(title, 25, "Miliseconds %0.1f", ms_log[fps_log.size() - 1]);
 				ImGui::PlotHistogram("##Miliseconds", &ms_log[0], stackms.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
 				
 
-			/*	if (fps_log.size() >= 24)
+				if (fps_log.size() >= 20)
 				{
 					stackfps[0] = fps_log[fps_log.size() - 1];
 					stackms[0] = ms_log[ms_log.size() - 1];
-				}*/
+				}
+
+				for (int j = 0; j < fps_log.size() - 1; j++)
+				{
+					fps_log[j] = fps_log[j + 1];
+					ms_log[j] = ms_log[j + 1];
+				}
+
 
 				//Debug
 				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",

@@ -17,6 +17,7 @@ Application::Application()
 	loader = new ModuleGeoLoader(this);
 	texture = new ModuleTexture(this);
 	scene = new ModuleScene(this);
+	hierarchy = new ModuleHierarchy(this);
 
 	LOG("...");
 
@@ -32,6 +33,7 @@ Application::Application()
 	AddModule(gui);
 	AddModule(texture);
 	AddModule(loader);	
+	AddModule(hierarchy);
 
 	// Renderer last!
 	AddModule(renderer3D);

@@ -11,6 +11,7 @@
 #include "ModuleGeoLoader.h"
 #include "ModuleTexture.h"
 #include "ModuleScene.h"
+#include "ModuleHierarchy.h"
 
 #include <vector>
 
@@ -25,7 +26,7 @@ public:
 	ModuleGeoLoader* loader;
 	ModuleTexture* texture;
 	ModuleScene* scene;
-
+	ModuleHierarchy* hierarchy;
 
 private:
 

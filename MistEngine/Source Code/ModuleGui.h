@@ -30,10 +30,10 @@ public:
 
 	void PrintConsole();
 
-	std::vector<float> fps_log;
-	std::vector<float> ms_log;
-	std::vector<float> stackfps;
-	std::vector<float> stackms;
+	static std::vector<float> fps_log;
+	static std::vector<float> ms_log;
+	static std::vector<float> stackfps;
+	static std::vector<float> stackms;
 
 private:
 
@@ -49,6 +49,4 @@ private:
 
 	vector<string> logs;
 	string logstring[4096];
-
-
 };
