@@ -66,6 +66,7 @@ update_status ModuleGui::Update(float dt)
 		if (ImGui::BeginMenu("View")) {
 			ImGui::MenuItem("Configuration", NULL, &config);
 			ImGui::MenuItem("Console", NULL, &console);
+			ImGui::MenuItem("Hierarchy", NULL, &hierarchy);
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Help")) {

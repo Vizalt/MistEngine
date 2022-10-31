@@ -15,7 +15,7 @@ ModuleHierarchy::ModuleHierarchy(Application* app, bool start_enabled) : Module(
 ModuleHierarchy::~ModuleHierarchy()
 {}
 
-// -----------------------------------------------------------------
+ //-----------------------------------------------------------------
 bool ModuleHierarchy::Start()
 {
 	//LOG("Setting up the hierarchy");
@@ -27,7 +27,7 @@ bool ModuleHierarchy::Start()
 // -----------------------------------------------------------------
 bool ModuleHierarchy::CleanUp()
 {
-	LOG("Cleaning UI");
+	LOG("Cleaning Hierarchy");
 
 	return true;
 }
@@ -55,3 +55,4 @@ update_status ModuleHierarchy::PostUpdate(float dt)
 
 	return UPDATE_CONTINUE;
 }
+
