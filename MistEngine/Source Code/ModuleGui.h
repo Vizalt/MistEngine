@@ -30,6 +30,11 @@ public:
 
 	void PrintConsole();
 
+	std::vector<float> fps_log;
+	std::vector<float> ms_log;
+	std::vector<float> stackfps;
+	std::vector<float> stackms;
+
 private:
 
 	bool config = true, about = false, github=false, console=true, releases = false, issues=false, hierarchy=true;
@@ -44,6 +49,6 @@ private:
 
 	vector<string> logs;
 	string logstring[4096];
-	std::vector<float> fps_log;
-	std::vector<float> ms_log;
+
+
 };
