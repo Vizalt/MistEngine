@@ -31,10 +31,6 @@ bool ModuleGeoLoader::Start()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
 
-	file_path = "Assets/BakerHouse.fbx";
-	
-	LoadFile(file_path);
-
 	return ret;
 }
 
@@ -182,12 +178,18 @@ void Mesh::Draw()
 	// � bind and use other buffers
 
 	glBindTexture(GL_TEXTURE_2D, id_texture);
-
 	//Indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
+
+	glPushMatrix();
+
+	if (Application::GetApp()->hierarchy->objSelected != nullptr) {
+		glMultMatrixf(&(Application::GetApp()->hierarchy->objSelected->transform->lTransform));
+	}
+
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 
-
+	glPopMatrix();
 	glDisableClientState(GL_VERTEX_ARRAY);
 	//cleaning texture
 	glBindTexture(GL_TEXTURE_2D, 0);

@@ -42,6 +42,9 @@ public:
 	Application();
 	~Application();
 
+	static Application* GetApp();
+	//static Application* app;
+
 	bool Init();
 	update_status Update();
 	bool CleanUp();

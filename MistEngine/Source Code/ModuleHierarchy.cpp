@@ -49,7 +49,9 @@ update_status ModuleHierarchy::PreUpdate(float dt)
 update_status ModuleHierarchy::Update(float dt)
 {
 	DrawHierarchy();
-	//objSelected->InspectorWindow();
+
+	if(objSelected != nullptr)
+		objSelected->InspectorWindow();
 
 	return UPDATE_CONTINUE;
 }

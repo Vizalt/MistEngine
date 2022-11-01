@@ -28,7 +28,7 @@ public:
 	Transform* transform;
 
 	std::string name;
-	char string[128];
+	char string[128] = "gameObject";
 	std::vector<Component*> components;
 	GameObject* parent;
 	std::vector<GameObject*> children;

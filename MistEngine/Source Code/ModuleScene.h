@@ -4,7 +4,10 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "ModuleGeoLoader.h"
 #include "ModuleRenderer3D.h"
+
+#include<string>
 
 using namespace std;
 
@@ -25,7 +28,7 @@ public:
 	GameObject* createObj(GameObject* parent);
 
 private:
-
+	std::string file_path;
 	GameObject* objdebug;
 };
 

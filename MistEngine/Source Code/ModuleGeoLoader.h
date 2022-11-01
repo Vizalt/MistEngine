@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleHierarchy.h"
 
 
 #include <vector>

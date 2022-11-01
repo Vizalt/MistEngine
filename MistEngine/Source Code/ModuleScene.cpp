@@ -22,6 +22,8 @@ bool ModuleScene::Start()
 	LOG("Setting up the Scene");
 	bool ret = true;
 
+	file_path = "Assets/BakerHouse.fbx";
+	App->loader->LoadFile(file_path);
 	objdebug = new GameObject(App->hierarchy->roots);
 
 	return ret;

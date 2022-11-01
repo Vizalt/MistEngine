@@ -65,7 +65,6 @@ bool ModuleTexture::Start()
 	ilClearColour(255, 255, 255, 000);
 
 	texPath = "Assets/Baker_house.png";
-
 	LoadTexture(texPath);
 
 	return true;

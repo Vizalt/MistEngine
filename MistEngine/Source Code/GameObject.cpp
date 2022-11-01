@@ -5,7 +5,7 @@ GameObject::GameObject()
 	name = "gameObject";
 	parent = nullptr;
 
-	transform = new Transform();
+	transform = new Transform(this);
 	components.push_back(transform);
 }
 
@@ -18,7 +18,7 @@ GameObject::GameObject(GameObject* parent)
 		parent->children.push_back(this);
 	}
 
-	transform = new Transform();
+	transform = new Transform(this);
 	components.push_back(transform);
 }
 
@@ -41,9 +41,10 @@ void GameObject::InspectorWindow()
 {
 	ImGui::Begin("Inspector");
 	ImGui::SameLine;
-	ImGui::InputText("Game Object", string, IM_ARRAYSIZE(string));
+	ImGui::InputText("Name", string, IM_ARRAYSIZE(string), ImGuiInputTextFlags_EnterReturnsTrue);
 	
-	name = string;
+	if(ImGui::IsKeyDown(ImGuiKey_Enter))
+		name = string;
 
 	for (size_t i = 0; i < components.size(); i++)
 	{

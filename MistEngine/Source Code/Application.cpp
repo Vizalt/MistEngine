@@ -40,6 +40,15 @@ Application::Application()
 	AddModule(renderer3D);
 }
 
+Application* Application::GetApp()
+{
+	if (externalapp == nullptr)
+	{
+		externalapp = new Application();
+	}
+	return externalapp;
+}
+
 Application::~Application()
 {
 	for (int i = list_modules.size() - 1; i >= 0; i--)

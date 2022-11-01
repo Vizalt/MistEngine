@@ -8,7 +8,11 @@ Transform::Transform() : Component(nullptr)
 
 Transform::Transform(GameObject* owner) : Component(owner)
 {
-	
+	this->owner = owner;
+
+	position = { 0, 0, 0 };
+	rotation = { 0, 0, 0 };
+	scale = { 1, 1, 1 };
 }
 
 Transform::~Transform()
@@ -33,7 +37,7 @@ void Transform::SetTransformMatrix(vec3 _position, vec3 _rotation, vec3 _scale)
 
 	lTransform[8] = -sin(y);
 	lTransform[9] = cos(y) * sin(x);
-	lTransform[10] = cos(x) * sin(y);
+	lTransform[10] = cos(x) * cos(y);
 	lTransform[11] = _position.z;
 
 	lTransform[12] = 0;
@@ -45,52 +49,31 @@ void Transform::SetTransformMatrix(vec3 _position, vec3 _rotation, vec3 _scale)
 	lTransform[5] *= _scale.y;
 	lTransform[10] *= _scale.z;
 
-	if (owner->parent->transform != nullptr) 
+
+	/*if (owner->parent->transform != nullptr) 
 	{
 		glTransform = owner->parent->transform->glTransform * lTransform;
 		glTransformT = transpose(glTransform);
-	}
+	}*/
+
+	lTransform = transpose(lTransform);
 
 }
 
 void Transform::Inspector()
 {
-	ImGui::CollapsingHeader("Transform");
-	ImGui::Text("Position\tX");
-	ImGui::SameLine;
-	ImGui::InputFloat("x", &position.x);
-	ImGui::SameLine;
-	ImGui::Text("Y");
-	ImGui::SameLine;
-	ImGui::InputFloat("y", &position.y);
-	ImGui::SameLine;
-	ImGui::Text("Z");
-	ImGui::SameLine;
-	ImGui::InputFloat("z", &position.z);
+	if (ImGui::CollapsingHeader("Transform"))
+	{
+		ImGui::Text("X\t\t Y\t\t Z");
+		ImGui::InputFloat3("Position", &position);
 
-	ImGui::Text("Rotation\tX");
-	ImGui::SameLine;
-	ImGui::InputFloat("x", &rotation.x);
-	ImGui::SameLine;
-	ImGui::Text("Y");
-	ImGui::SameLine;
-	ImGui::InputFloat("y", &rotation.y);
-	ImGui::SameLine;
-	ImGui::Text("Z");
-	ImGui::SameLine;
-	ImGui::InputFloat("z", &rotation.z);
+		ImGui::Text("X\t\t Y\t\t Z");
+		ImGui::InputFloat3("Rotation", &rotation);
 
-	ImGui::Text("Scale\tX");
-	ImGui::SameLine;
-	ImGui::InputFloat("x", &scale.x);
-	ImGui::SameLine;
-	ImGui::Text("Y");
-	ImGui::SameLine;
-	ImGui::InputFloat("y", &scale.y);
-	ImGui::SameLine;
-	ImGui::Text("Z");
-	ImGui::SameLine;
-	ImGui::InputFloat("z", &scale.z);
+		ImGui::Text("X\t\t Y\t\t Z");
+		ImGui::InputFloat3("Scale", &scale);
+	}
+	
 
 	SetTransformMatrix(position, rotation, scale);
 }
