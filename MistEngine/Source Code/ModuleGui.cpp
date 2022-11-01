@@ -187,9 +187,9 @@ update_status ModuleGui::Update(float dt)
 				char* base_path = SDL_GetBasePath();
 				ImGui::Text("Base Path:"); ImGui::SameLine();
 				ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", base_path);
-				ImGui::Text("Read Path:");
+				//ImGui::Text("Read Path:");
 
-				ImGui::Text("Write Path:");
+				//ImGui::Text("Write Path:");
 			}
 			if (ImGui::CollapsingHeader("Input")) {
 				ImGuiIO& io = ImGui::GetIO();
