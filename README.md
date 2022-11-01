@@ -13,7 +13,7 @@ Click [here](https://github.com/Vizalt/MistEngine) to see our project:
 - Extract files from the .zip
 - Execute .exe
 
-#### Camera
+### Camera
 - **W** - Move forward
 - **A** - Move Left
 - **S** - Move backwards
@@ -25,8 +25,31 @@ Click [here](https://github.com/Vizalt/MistEngine) to see our project:
 - **Holding Shift + 'WASD'** - Duplicates movement speed
 
 
-#### Drag and Drop
-The engine allows the user to drag and drop FBX files from anywhere in the hard drive and later, drag and drop files to put textures for the GameObjects.
+### Drag&Drop
+The engine allows the user to Drag&Drop FBX files from anywhere in the hard drive and later, drag and drop files to put textures for the GameObjects.
+
+## Move between windows
+### Configuration
+- Application
+  -  Frame Information.
+  -  Slider to limitate FPS.
+- Window
+  - Window Options:
+    - Full Screen, resizable, full desk and borderless.
+    - Change brightness, width and height.
+- File System
+  - Shows base path.
+- Input
+  -  Mouse Information (Position and Motion).
+- Hardware Information
+  - SDL Version.
+  - Memory consumption.
+### Hierarchy
+Shows a list of all GameObjects and create and move them.
+### Inspector
+Move, rotate and scale the GameObject selected. And also GameObject's name.
+### Console
+Shows the user geometry loading process from ASSIMP and the external libraries initialization process.
 
 ### External libraries
 Externals libraries used in our engine:
@@ -38,4 +61,3 @@ Externals libraries used in our engine:
 - DevIL
 - PhysFS
 
-### Additional funcionalities
