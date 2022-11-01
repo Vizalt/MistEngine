@@ -12,7 +12,7 @@ GameObject::GameObject()
 GameObject::GameObject(GameObject* parent)
 {
 	name = "gameObject";
-	/*this->parent = parent;*/
+	this->parent = parent;
 
 	transform = new Transform();
 	components.push_back(transform);
@@ -38,6 +38,8 @@ void GameObject::InspectorWindow()
 	ImGui::Begin("Inspector");
 	ImGui::SameLine;
 	ImGui::InputText("Game Object", string, IM_ARRAYSIZE(string));
+	
+	name = string;
 
 	for (size_t i = 0; i < components.size(); i++)
 	{
@@ -60,5 +62,10 @@ void GameObject::CreateComponent(ComponentType type)
 	components.push_back(newComponent);
 
 	delete newComponent;
+}
+
+GameObject* GameObject::GetParent()
+{
+	return parent;
 }
 

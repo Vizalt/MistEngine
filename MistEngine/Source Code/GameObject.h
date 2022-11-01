@@ -23,6 +23,8 @@ public:
 
 	void CreateComponent(ComponentType type);
 
+	GameObject* GetParent();
+
 	Transform* transform;
 
 	std::string name;
