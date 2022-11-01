@@ -6,6 +6,8 @@
 
 #define MAX_MOUSE_BUTTONS 5
 
+class GameObject;
+
 enum KEY_STATE
 {
 	KEY_IDLE = 0,
@@ -70,5 +72,6 @@ private:
 	int mouse_z;
 	int mouse_x_motion;
 	int mouse_y_motion;
+	GameObject* objdebug2;
 	//int mouse_z_motion;
 };

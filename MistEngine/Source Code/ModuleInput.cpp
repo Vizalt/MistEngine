@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleInput.h"
 #include "ModuleRenderer3D.h"
+#include "GameObject.h"
 
 #define MAX_KEYS 300
 
@@ -135,6 +136,7 @@ bool ModuleInput::CleanUp()
 {
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
+	delete objdebug2;
 	return true;
 }
 
@@ -144,7 +146,7 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	if (extension == "fbx")
 	{
 		LOG("Loading FBX");
-		App->loader->LoadFile(fileName);
+		objdebug2 = App->loader->LoadFile(fileName);
 	}
 	if (extension == "png" || extension == "dds")
 	{
