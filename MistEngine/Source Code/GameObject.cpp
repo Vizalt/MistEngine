@@ -12,7 +12,7 @@ GameObject::GameObject()
 GameObject::GameObject(GameObject* parent)
 {
 	name = "gameObject";
-	this->parent = parent;
+	/*this->parent = parent;*/
 
 	transform = new Transform();
 	components.push_back(transform);

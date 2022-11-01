@@ -2,6 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "GameObject.h"
 
 #include "imgui.h"
 #include "backends/imgui_impl_sdl.h"
@@ -20,8 +21,13 @@ public:
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();
-		
-private:
 
+	void DrawHierarchy();
+	void GameObjectTree(GameObject* gameobject);
+	
+	GameObject* TargetDropped;
+	GameObject* roots;
+	GameObject* objSelected;
 
+	bool clown;
 };
