@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Mesh.h"
 #include "imgui.h"
 
 #include <vector>
@@ -21,9 +22,10 @@ public:
 
 	void InspectorWindow();
 
-	void CreateComponent(ComponentType type);
+	void CreateComponent(Component* type);
 
 	GameObject* GetParent();
+	CMesh* ReturnMeshComp();
 
 	Transform* transform;
 

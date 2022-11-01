@@ -23,8 +23,8 @@ bool ModuleScene::Start()
 	bool ret = true;
 
 	file_path = "Assets/BakerHouse.fbx";
-	App->loader->LoadFile(file_path);
-	objdebug = new GameObject(App->hierarchy->roots);
+	//App->loader->LoadFile(file_path);
+	objdebug = App->loader->LoadFile(file_path);
 
 	return ret;
 }
@@ -57,7 +57,6 @@ update_status ModuleScene::PostUpdate(float dt)
 bool ModuleScene::CleanUp()
 {
 	LOG("Cleaning Scene");
-
 	delete objdebug;
 
 	return true;

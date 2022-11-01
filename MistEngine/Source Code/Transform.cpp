@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "GameObject.h"
 
 
 Transform::Transform() : Component(nullptr)

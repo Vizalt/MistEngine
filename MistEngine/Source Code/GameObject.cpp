@@ -49,28 +49,29 @@ void GameObject::InspectorWindow()
 	for (size_t i = 0; i < components.size(); i++)
 	{
 		ImGui::NewLine();
-		ImGui::Separator();
-		ImGui::NewLine();
 
 		components[i]->Inspector();
 	}
 	ImGui::End();
 }
 
-void GameObject::CreateComponent(ComponentType type)
+void GameObject::CreateComponent(Component* component)
 {
-	Component* newComponent = new Component(this);
-
-	newComponent->type = type;
-	newComponent->active = true;
-
-	components.push_back(newComponent);
-
-	delete newComponent;
+	components.push_back(component);
 }
 
 GameObject* GameObject::GetParent()
 {
 	return parent;
+}
+
+CMesh* GameObject::ReturnMeshComp()
+{
+	for (size_t i = 0; i < components.size(); i++)
+	{
+		if (components[i]->type == ComponentType::MESH) 
+			return (CMesh*)components[i];
+	}
+	return nullptr;
 }
 

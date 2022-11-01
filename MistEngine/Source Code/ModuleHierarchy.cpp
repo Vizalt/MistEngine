@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 
 #include "ModuleRenderer3D.h"
+#include "ModuleHierarchy.h"
 #include "glew.h"
 #include "Primitive.h"
 

@@ -144,7 +144,7 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	if (extension == "fbx")
 	{
 		LOG("Loading FBX");
-		App->loader->LoadFile(fileName);
+		//App->loader->LoadFile(fileName);
 	}
 	if (extension == "png" || extension == "dds")
 	{
