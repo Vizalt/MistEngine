@@ -41,8 +41,11 @@ void GameObject::InspectorWindow()
 
 	for (size_t i = 0; i < components.size(); i++)
 	{
+		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
+
+		components[i]->Inspector();
 	}
 	ImGui::End();
 }
