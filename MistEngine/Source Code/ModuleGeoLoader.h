@@ -3,8 +3,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
-#include "ModuleRenderer3D.h"
-#include "ModuleHierarchy.h"
+#include "SDL_opengl.h"
 
 
 #include <vector>
@@ -19,6 +18,8 @@ using namespace std;
 
 #define VERTICES 5
 
+class GameObject;
+
 struct Mesh {
 	uint id_indices = 0; // index in VRAM
 	uint num_indices = 0;
@@ -28,6 +29,8 @@ struct Mesh {
 	float* vertices = nullptr;
 
 	GLuint id_texture = 0, texture_width = 0, texture_height = 0;
+
+	GameObject* Owner;
 
 	void Draw();
 };
@@ -42,7 +45,7 @@ public:
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
-	void LoadFile(string Path);
+	GameObject* LoadFile(string Path);
 	void BufferMesh(Mesh* mesh);
 	bool CleanUp();
 	

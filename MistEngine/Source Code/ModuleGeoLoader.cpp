@@ -4,7 +4,11 @@
 #include "ModuleGeoLoader.h"
 #include "ModuleWindow.h"
 #include "ModuleTexture.h"
+#include "Mesh.h"
+#include "GameObject.h"
 
+
+#include "ModuleHierarchy.h"
 #include "ModuleRenderer3D.h"
 #include "glew.h"
 #include "Primitive.h"
@@ -59,12 +63,14 @@ update_status ModuleGeoLoader::PostUpdate(float dt)
 	return UPDATE_CONTINUE;
 }
 
-void ModuleGeoLoader::LoadFile(std::string Path)
+GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 {
 	const aiScene* scene = aiImportFile(Path.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
 	if (scene != nullptr && scene->HasMeshes())
 	{
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
+
+		GameObject* gObj = new GameObject(App->hierarchy->roots);
 
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
@@ -111,6 +117,11 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 
 				//meshes.push_back(mesh);
 				BufferMesh(mesh);
+				CMesh* component = new CMesh(gObj);
+				mesh->Owner = gObj;
+				component->mesh = mesh;
+				if(gObj->components.size()==1)
+					gObj->components.push_back(component);
 			}
 			else {
 				
@@ -118,6 +129,8 @@ void ModuleGeoLoader::LoadFile(std::string Path)
 			}
 		}
 		aiReleaseImport(scene);
+
+		return gObj;
 	}
 	else {
 		LOG("Error loading scene %s", Path);
@@ -183,8 +196,8 @@ void Mesh::Draw()
 
 	glPushMatrix();
 
-	if (Application::GetApp()->hierarchy->objSelected != nullptr) {
-		glMultMatrixf(&(Application::GetApp()->hierarchy->objSelected->transform->lTransform));
+	if (Owner != nullptr) {
+		glMultMatrixf(&Owner->transform->lTransform);
 	}
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);

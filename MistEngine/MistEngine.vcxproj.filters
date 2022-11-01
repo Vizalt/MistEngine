@@ -82,6 +82,9 @@
     <ClCompile Include="Source Code\Transform.cpp">
       <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\Mesh.cpp">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\External\imGui\imgui.h">
@@ -172,6 +175,9 @@
       <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Source Code\Transform.h">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Mesh.h">
       <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
