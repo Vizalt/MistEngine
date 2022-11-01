@@ -32,4 +32,5 @@ public:
 	std::vector<Component*> components;
 	GameObject* parent;
 	std::vector<GameObject*> children;
+
 };

@@ -14,8 +14,9 @@ GameObject::GameObject(GameObject* parent)
 	name = "gameObject";
 	this->parent = parent;
 
-	if(parent!= nullptr)
-	 parent->children.push_back(this);
+	if(parent!= nullptr){
+		parent->children.push_back(this);
+	}
 
 	transform = new Transform();
 	components.push_back(transform);

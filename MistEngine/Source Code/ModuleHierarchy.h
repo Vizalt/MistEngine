@@ -29,5 +29,5 @@ public:
 	GameObject* roots;
 	GameObject* objSelected;
 
-	bool clown;
+
 };

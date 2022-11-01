@@ -22,6 +22,8 @@ bool ModuleScene::Start()
 	LOG("Setting up the Scene");
 	bool ret = true;
 
+	objdebug = new GameObject(App->hierarchy->roots);
+
 	return ret;
 }
 
@@ -54,5 +56,14 @@ bool ModuleScene::CleanUp()
 {
 	LOG("Cleaning Scene");
 
+	delete objdebug;
+
 	return true;
+}
+
+GameObject* ModuleScene::createObj(GameObject* parent)
+{
+	GameObject* b = new GameObject(parent);
+
+	return b;
 }

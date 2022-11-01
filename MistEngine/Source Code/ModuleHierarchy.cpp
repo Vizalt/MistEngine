@@ -20,7 +20,7 @@ ModuleHierarchy::~ModuleHierarchy()
  //-----------------------------------------------------------------
 bool ModuleHierarchy::Start()
 {
-	LOG("Setting up the hierarchy");
+	//LOG("Setting up the hierarchy");
 	bool ret = true;
 
 	roots = new GameObject(); //con esto no peta xD
@@ -49,6 +49,7 @@ update_status ModuleHierarchy::PreUpdate(float dt)
 update_status ModuleHierarchy::Update(float dt)
 {
 	DrawHierarchy();
+	//objSelected->InspectorWindow();
 
 	return UPDATE_CONTINUE;
 }
@@ -63,19 +64,28 @@ update_status ModuleHierarchy::PostUpdate(float dt)
 
 void ModuleHierarchy::DrawHierarchy()
 {
-
-	if (ImGui::Begin("Hierarchy")) {
+	if (ImGui::Begin("GameObjects Hierarchy")) {
 		GameObjectTree(roots);
+		if (ImGui::BeginPopupContextWindow())
+		{
+			if (ImGui::Selectable("Create Object")) {
+				GameObject* parent = objSelected;
+				App->scene->createObj(parent);
+
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
+		}		
 	}
 	ImGui::End();
 
-
-	
 
 }
 
 void ModuleHierarchy::GameObjectTree(GameObject* obj)
 {
+	//if (obj->chooseChild /*|| SDL_SCANCODE_0==KEY_DOWN*/) objSelected->InspectorWindow();
+
 	ImGuiTreeNodeFlags flag_TNode = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen;
 
 	if (obj->children.size() == 0)
@@ -84,49 +94,52 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 	if (obj == objSelected)
 		flag_TNode |= ImGuiTreeNodeFlags_::ImGuiTreeNodeFlags_Selected;
 
-	clown = ImGui::TreeNodeEx(obj, flag_TNode, obj->name.c_str());
-	
-	if (clown) {
-		for (int i = 0; i < obj->children.size(); i++)
-		{
-			GameObjectTree(obj->children[i]);
+	bool clown = ImGui::TreeNodeEx(obj, flag_TNode, obj->name.c_str());
+			
+	if (clown)
+	{
+		if (!obj->children.empty()) {
+			for (int i = 0; i < obj->children.size(); i++)
+			{
+				GameObjectTree(obj->children[i]);
+			}
+			ImGui::TreePop();
 		}
+
+
+		//if (ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Right || ImGuiMouseButton_::ImGuiMouseButton_Left)) {
+		//	objSelected = obj;
+		//}
 	}
 
-}
-
-
-//bool fuck=ImGui::TreeNodeEx(gameobject, flag, gameobject->name.c_str());
-
-
-	//for (int i = 0; i < gameobject->children.size(); i++)
+	//if (ImGui::BeginDragDropSource())
 	//{
-	//	GameObjectTree(gameobject->children[i],i);
+	//	ImGui::SetDragDropPayload("GameObj", obj, sizeof(GameObject*));
+
+	//	TargetDropped = obj;
+	//	ImGui::Text("aaaaaaaaa");
+	//	ImGui::EndDragDropSource();
 	//}
 
+	if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Left, true))
+	{
+		if (objSelected != obj) {
+			objSelected = obj;
 
-/*
-	if (gameobject->children.size() == 0)
-		flags |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+		}
+		GameObjectTree(obj);
+	}	
 
-	*/
+	if (ImGui::BeginDragDropTarget())
+	{
+		if (const ImGuiPayload* PayLoad = ImGui::AcceptDragDropPayload("GameObj"))
+		{
+			//TargetDropped->AnotherParent(obj);
+			TargetDropped = nullptr;
+		}
+		ImGui::EndDragDropTarget();
+	}
 
 
 
-
-
-
-
-/*bool nOpen = ImGui::TreeNodeEx(gameobject, a, gameobject->name.c_str());*/
-
-//if (ImGui::BeginDragDropTarget())
-//{
-//	if (const ImGuiPayload* PayLoad = ImGui::AcceptDragDropPayload("GameObj"))
-//	{
-
-//		//TargetDropped->AnotherParent(gameobject);
-//		LOG("%s", TargetDropped->name.c_str());
-//		TargetDropped = nullptr;
-//	}
-//	ImGui::EndDragDropTarget();
-//}
+}

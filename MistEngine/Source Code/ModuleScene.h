@@ -8,6 +8,8 @@
 
 using namespace std;
 
+class GameObject;
+
 class ModuleScene : public Module
 {
 public:
@@ -20,9 +22,11 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	GameObject* createObj(GameObject* parent);
+
 private:
 
-
+	GameObject* objdebug;
 };
 
 #endif

@@ -29,11 +29,12 @@ Application::Application()
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
-	AddModule(scene);
-	AddModule(gui);
+
 	AddModule(texture);
 	AddModule(loader);	
 	AddModule(hierarchy);
+	AddModule(scene);
+	AddModule(gui);
 
 	// Renderer last!
 	AddModule(renderer3D);

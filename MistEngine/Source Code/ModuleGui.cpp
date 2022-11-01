@@ -243,9 +243,7 @@ update_status ModuleGui::Update(float dt)
 		}
 		ImGui::End();
 	}
-	if (hierarchy) {
-		App->hierarchy->DrawHierarchy();
-	}
+
 	PrintConsole();
 
 	
