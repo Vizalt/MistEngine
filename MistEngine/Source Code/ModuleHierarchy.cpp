@@ -65,25 +65,26 @@ update_status ModuleHierarchy::Update(float dt)
 // -----------------------------------------------------------------
 update_status ModuleHierarchy::PostUpdate(float dt)
 {
-
-
 	return UPDATE_CONTINUE;
 }
 
 void ModuleHierarchy::DrawHierarchy()
 {
 	if (ImGui::Begin("GameObjects Hierarchy")) {
+
 		GameObjectTree(roots);
-		if (ImGui::BeginPopupContextWindow())
-		{
-			if (ImGui::Selectable("Create Object")) {
+		if (objSelected != nullptr) {// don't show the option of creating a gameobj if nothing it's selected :)
+			if (ImGui::BeginPopupContextWindow())
+			{
+				if (ImGui::Selectable("Create Object")) {
 				GameObject* parent = objSelected;
 				App->scene->createObj(parent);
 
 				ImGui::CloseCurrentPopup();
 			}
-			ImGui::EndPopup();
-		}		
+				ImGui::EndPopup();
+			}		
+		}
 	}
 	ImGui::End();
 
@@ -92,25 +93,28 @@ void ModuleHierarchy::DrawHierarchy()
 
 void ModuleHierarchy::GameObjectTree(GameObject* obj)
 {
-	ImGuiTreeNodeFlags flag_TNode = ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_OpenOnArrow;
+	ImGuiTreeNodeFlags flag_TNode = ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding | ImGuiTreeNodeFlags_OpenOnArrow;
+	
+	bool clown;
 
-	if (obj->children.size() == 0)
-		flag_TNode |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+	if (obj->parent == nullptr) {
+		flag_TNode |= ImGuiTreeNodeFlags_DefaultOpen;
+	}
+	else {
+		flag_TNode |= ImGuiTreeNodeFlags_OpenOnArrow;
+	}
 
-	if (obj == objSelected)
+	if (obj == objSelected) {
 		flag_TNode |= ImGuiTreeNodeFlags_Selected;
+	}
 
-	bool clown = ImGui::TreeNodeEx(obj, flag_TNode, obj->name.c_str());
-			
-	if (clown)
-	{
-		if (!obj->children.empty()) {
-			for (unsigned int i = 0; i < obj->children.size(); i++)
-			{
-				GameObjectTree(obj->children[i]);
-			}
-			ImGui::TreePop();
-		}
+	if (obj->children.size() != 0)
+		clown = ImGui::TreeNodeEx(obj, flag_TNode, obj->name.c_str());
+
+	else {
+		flag_TNode |= ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+		ImGui::TreeNodeEx(obj, flag_TNode, obj->name.c_str());
+		clown = false;
 	}
 
 	if (obj->parent != nullptr) {
@@ -130,9 +134,20 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 				if (objSelected != obj) {
 					SetGameObject(objSelected);
 				}
-
 	
 		}
+	}
+
+	if (clown)
+	{
+		if (!obj->children.empty()) {
+			for (unsigned int i = 0; i < obj->children.size(); i++)
+			{
+				GameObjectTree(obj->children[i]);
+			}
+
+		}
+		ImGui::TreePop();
 	}
 	
 }
