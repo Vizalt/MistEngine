@@ -25,6 +25,7 @@ public:
 	void DrawHierarchy();
 	void GameObjectTree(GameObject* obj);
 	void SetGameObject(GameObject* obj);
+	void ChangeParent(GameObject* obj);
 	
 	GameObject* TargetDropped;
 	GameObject* roots;

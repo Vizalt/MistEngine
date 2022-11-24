@@ -76,12 +76,11 @@ void ModuleHierarchy::DrawHierarchy()
 		if (objSelected != nullptr) {// don't show the option of creating a gameobj if nothing it's selected :)
 			if (ImGui::BeginPopupContextWindow())
 			{
-				if (ImGui::Selectable("Create Object")) {
-				GameObject* parent = objSelected;
-				App->scene->createObj(parent);
-
-				ImGui::CloseCurrentPopup();
-			}
+				if (ImGui::Selectable("Create Empty")) {
+					GameObject* parent = objSelected;
+					App->scene->createObj(parent);
+					ImGui::CloseCurrentPopup();
+				}
 				ImGui::EndPopup();
 			}		
 		}
@@ -124,17 +123,15 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 			ImGui::SetDragDropPayload("GameObject", obj, sizeof(GameObject*));
 
 			TargetDropped = obj;
-			ImGui::Text("Changing...");
 			ImGui::EndDragDropSource();
 		}
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Left))
 		{
-				SetGameObject(obj);
-				if (objSelected != obj) {
-					SetGameObject(objSelected);
-				}
-	
+			SetGameObject(obj);
+			if (objSelected != obj) {
+				SetGameObject(objSelected);
+			}	
 		}
 	}
 
@@ -145,14 +142,17 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 			{
 				GameObjectTree(obj->children[i]);
 			}
-
 		}
 		ImGui::TreePop();
-	}
-	
+	}	
 }
 
 void ModuleHierarchy::SetGameObject(GameObject* obj)
 {
 	objSelected = obj;
+}
+
+void ModuleHierarchy::ChangeParent(GameObject* obj)
+{
+
 }
