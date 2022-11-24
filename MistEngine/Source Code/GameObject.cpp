@@ -5,7 +5,6 @@ GameObject::GameObject()
 	name = "gameObject";
 	parent = nullptr;
 
-	transform = new Transform(this);
 	components.push_back(transform);
 }
 
