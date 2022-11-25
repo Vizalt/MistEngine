@@ -120,7 +120,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 				CMesh* component = new CMesh(gObj);
 				mesh->Owner = gObj;
 				component->mesh = mesh;
-				if(gObj->components.size()==1)
+				//if(gObj->components.size()==1)
 					gObj->components.push_back(component);
 			}
 			else {
