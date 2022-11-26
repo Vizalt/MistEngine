@@ -119,7 +119,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 				//meshes.push_back(mesh);
 				BufferMesh(mesh);
 				mesh->Owner = gObj;
-				component->meshList.push_back(mesh);
+				//component->meshList.push_back(mesh);
 				//if(gObj->components.size()==1)
 				
 			}
@@ -128,6 +128,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 				delete mesh;
 			}
 		}
+		component->meshList = meshes;
 		gObj->components.push_back(component);
 		aiReleaseImport(scene);
 
@@ -161,11 +162,11 @@ void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 bool ModuleGeoLoader::CleanUp()
 {
 	//Delete Meshes array
-	/*for (int i = 0; i < meshes.size(); i++) {
+	for (int i = 0; i < meshes.size(); i++) {
 		delete meshes[i];
 		meshes[i] = nullptr;
 	}
-	meshes.clear();*/
+	meshes.clear();
 	// detach log stream
 	aiDetachAllLogStreams();
 
