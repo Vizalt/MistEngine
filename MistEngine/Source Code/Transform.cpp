@@ -51,13 +51,11 @@ void Transform::SetTransformMatrix(vec3 _position, vec3 _rotation, vec3 _scale)
 	lTransform[10] *= _scale.z;
 
 
-	/*if (owner->parent->transform != nullptr) 
+	if (owner->parent->transform != nullptr) 
 	{
 		glTransform = owner->parent->transform->glTransform * lTransform;
 		glTransformT = transpose(glTransform);
-	}*/
-
-	lTransform = transpose(lTransform);
+	}
 
 }
 

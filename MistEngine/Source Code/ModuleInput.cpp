@@ -3,6 +3,8 @@
 #include "ModuleInput.h"
 #include "ModuleRenderer3D.h"
 #include "GameObject.h"
+#include "Texture.h";
+#include "ModuleHierarchy.h"
 
 #define MAX_KEYS 300
 
@@ -151,7 +153,11 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	if (extension == "png" || extension == "dds")
 	{
 		LOG("Loading Textures");
-		//App->texture->LoadTexture(fileName);
+		GameObject* obj = App->hierarchy->objSelected;
+
+		CTexture* componentT = new CTexture(obj);
+		componentT->LinkTexture(fileName);
+		obj->components.push_back(componentT);
 	}
 	else
 	{

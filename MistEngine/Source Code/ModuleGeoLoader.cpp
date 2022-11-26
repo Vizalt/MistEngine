@@ -214,7 +214,7 @@ void Mesh::Draw()
 	glPushMatrix();
 
 	if (Owner != nullptr) {
-		glMultMatrixf(&Owner->transform->lTransform);
+		glMultMatrixf(&Owner->transform->glTransformT);
 	}
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
