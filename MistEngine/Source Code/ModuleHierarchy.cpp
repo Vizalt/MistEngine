@@ -159,8 +159,3 @@ void ModuleHierarchy::SetGameObject(GameObject* obj)
 {
 	objSelected = obj;
 }
-
-void ModuleHierarchy::ChangeParent(GameObject* obj)
-{
-
-}
