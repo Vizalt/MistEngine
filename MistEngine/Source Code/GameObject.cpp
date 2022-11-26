@@ -70,7 +70,23 @@ void GameObject::CreateComponent(ComponentType type)
 
 void GameObject::DeleteChild(GameObject* child)
 {
-	delete child;
+	children.erase(std::find(children.begin(), children.end(), child));
+}
+
+bool GameObject::checkChild(GameObject* obj)
+{
+	if (obj == nullptr) {
+		return false;
+	}
+	if (obj == this)
+		return true;
+	else {
+		return checkChild(obj->parent);
+	}
+
+
+
+	return false;
 }
 
 GameObject* GameObject::GetParent()
@@ -78,16 +94,26 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
-GameObject* GameObject::ChangeParent(GameObject* newP)
+//GameObject* GameObject::ToParent(GameObject* newP)
+//{
+//	parent->DeleteChild(this); //deletes the actual parent
+//	
+//	NewChild(newP);
+//
+//	return nullptr;
+//}
+
+GameObject* GameObject::NewChild(GameObject* childObj)
 {
-	if(newP != nullptr && newP != this) {
-		return newP->parent;
+	if (parent != nullptr) {
+		parent->DeleteChild(this);
 	}
-	parent->DeleteChild(this);
-	//parent = newP;
-	//parent->children.push_back(this);
+
+	if (checkChild(childObj))
+		return false;
+
+	parent = childObj;
+	if(childObj->parent != nullptr)
+		parent->children.push_back(this);
 	return nullptr;
 }
-
-
-

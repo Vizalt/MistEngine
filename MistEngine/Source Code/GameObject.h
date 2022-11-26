@@ -24,8 +24,10 @@ public:
 	void CreateComponent(ComponentType type);
 
 	GameObject* GetParent();
-	GameObject* ChangeParent(GameObject* newP);
+	GameObject* ToParent(GameObject* NParent);//Move obj to new parent
+	GameObject* NewChild(GameObject* childObj);//Adds the child to the parent
 	void DeleteChild(GameObject* child);
+	bool checkChild(GameObject* obj);
 
 	Transform* transform;
 

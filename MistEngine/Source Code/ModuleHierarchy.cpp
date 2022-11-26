@@ -10,7 +10,7 @@
 ModuleHierarchy::ModuleHierarchy(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	roots = nullptr;
-	TargetDropped = nullptr;
+	//TargetDropped = nullptr;
 	objSelected = nullptr;
 }
 
@@ -138,10 +138,11 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 	}
 
 	if (ImGui::BeginDragDropTarget()) {
-		if (const ImGuiPayload* PL = ImGui::AcceptDragDropPayload("GameObject")) {
-			TargetDropped->ChangeParent(obj);
+		if (const ImGuiPayload* PL = ImGui::AcceptDragDropPayload("GameObject")) {			
+			TargetDropped->NewChild(obj);
 			TargetDropped = nullptr;
 		}
+		ImGui::EndDragDropTarget();
 	}
 	if (clown)
 	{
