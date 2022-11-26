@@ -68,6 +68,11 @@ void GameObject::CreateComponent(ComponentType type)
 	delete newComponent;
 }
 
+void GameObject::DeleteChild(GameObject* child)
+{
+	delete child;
+}
+
 GameObject* GameObject::GetParent()
 {
 	return parent;
@@ -75,8 +80,14 @@ GameObject* GameObject::GetParent()
 
 GameObject* GameObject::ChangeParent(GameObject* newP)
 {
-	parent = newP;
-	parent->children.push_back(this);
+	if(newP != nullptr && newP != this) {
+		return newP->parent;
+	}
+	parent->DeleteChild(this);
+	//parent = newP;
+	//parent->children.push_back(this);
 	return nullptr;
 }
+
+
 

@@ -25,6 +25,7 @@ public:
 
 	GameObject* GetParent();
 	GameObject* ChangeParent(GameObject* newP);
+	void DeleteChild(GameObject* child);
 
 	Transform* transform;
 
