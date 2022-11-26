@@ -71,6 +71,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 
 		GameObject* gObj = new GameObject(App->hierarchy->roots);
+		CMesh* component = new CMesh(gObj);
 
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
@@ -117,17 +118,17 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 
 				//meshes.push_back(mesh);
 				BufferMesh(mesh);
-				CMesh* component = new CMesh(gObj);
 				mesh->Owner = gObj;
-				component->mesh = mesh;
+				component->meshList.push_back(mesh);
 				//if(gObj->components.size()==1)
-					gObj->components.push_back(component);
+				
 			}
 			else {
 				
 				delete mesh;
 			}
 		}
+		gObj->components.push_back(component);
 		aiReleaseImport(scene);
 
 		return gObj;
@@ -160,11 +161,11 @@ void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 bool ModuleGeoLoader::CleanUp()
 {
 	//Delete Meshes array
-	for (int i = 0; i < meshes.size(); i++) {
+	/*for (int i = 0; i < meshes.size(); i++) {
 		delete meshes[i];
 		meshes[i] = nullptr;
 	}
-	meshes.clear();
+	meshes.clear();*/
 	// detach log stream
 	aiDetachAllLogStreams();
 
