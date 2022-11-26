@@ -29,6 +29,7 @@ public:
 
 private:
 	std::string file_path;
+	std::string texture_path;
 	GameObject* objdebug;
 };
 

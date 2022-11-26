@@ -1,8 +1,9 @@
 #pragma once
 #include "Globals.h"
-#include "Component.h"
-#include "Transform.h"
 #include "imgui.h"
+
+#include "Transform.h"
+#include "Mesh.h"
 
 #include <vector>
 #include <string>
@@ -10,6 +11,7 @@
 enum class ComponentType;
 class Component;
 class Transform;
+class CMesh;
 
 class GameObject
 {
@@ -24,6 +26,7 @@ public:
 	void CreateComponent(ComponentType type);
 
 	GameObject* GetParent();
+	CMesh* GetComponentMesh();
 
 	Transform* transform;
 

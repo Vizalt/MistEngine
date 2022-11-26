@@ -151,7 +151,7 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	if (extension == "png" || extension == "dds")
 	{
 		LOG("Loading Textures");
-		App->texture->LoadTexture(fileName);
+		//App->texture->LoadTexture(fileName);
 	}
 	else
 	{

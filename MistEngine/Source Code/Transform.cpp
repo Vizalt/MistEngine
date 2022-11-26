@@ -3,11 +3,12 @@
 
 Transform::Transform() : Component(nullptr)
 {
-
+	
 }
 
 Transform::Transform(GameObject* owner) : Component(owner)
 {
+	type = ComponentType::TRANSFORM;
 	this->owner = owner;
 
 	position = { 0, 0, 0 };

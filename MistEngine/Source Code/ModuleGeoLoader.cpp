@@ -5,6 +5,7 @@
 #include "ModuleWindow.h"
 #include "ModuleTexture.h"
 #include "Mesh.h"
+#include "Texture.h"
 #include "GameObject.h"
 
 
@@ -74,6 +75,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
+			GameObject* meshObj = new GameObject(gObj);
 			Mesh* mesh = new Mesh();
 			// copy vertices
 			mesh->num_vertices = scene->mMeshes[i]->mNumVertices;
@@ -111,17 +113,32 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 						
 				}
 
-				mesh->id_texture = App->texture->textureID;
-				mesh->texture_height = App->texture->textureWidth;
-				mesh->texture_width = App->texture->textureWidth;
-
 				//meshes.push_back(mesh);
 				BufferMesh(mesh);
-				CMesh* component = new CMesh(gObj);
-				mesh->Owner = gObj;
+				CMesh* component = new CMesh(meshObj);
+				mesh->Owner = meshObj;
 				component->mesh = mesh;
-				if(gObj->components.size()==1)
-					gObj->components.push_back(component);
+				meshObj->components.push_back(component);
+				meshObj->name = "Mesh " + to_string(i + 1);
+
+				if (scene->HasMaterials())
+				{
+					aiMaterial* MaterialIndex = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
+					if (MaterialIndex->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
+						aiString TextPath;
+						aiString AssetsPath;
+						AssetsPath.Set("Assets/");
+						MaterialIndex->GetTexture(aiTextureType_DIFFUSE, 0, &TextPath);
+
+						AssetsPath.Append(TextPath.C_Str());
+
+						CTexture* componentT = new CTexture(meshObj);
+						componentT->LinkTexture(AssetsPath.C_Str());
+						meshObj->components.push_back(componentT);
+						
+					}
+				}
+
 			}
 			else {
 				

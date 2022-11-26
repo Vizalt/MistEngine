@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Component.h"
 
 GameObject::GameObject()
 {
@@ -74,3 +75,13 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
+CMesh* GameObject::GetComponentMesh()
+{
+	for (int i = 0; i < components.size(); i++) {
+
+		if (components[i]->type == ComponentType::MESH)
+		{ 
+			return (CMesh*)components[i]; 
+		}
+	}
+}

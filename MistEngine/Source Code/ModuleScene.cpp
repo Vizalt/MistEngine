@@ -6,6 +6,7 @@
 #include "ModuleRenderer3D.h"
 #include "glew.h"
 #include "Primitive.h"
+#include "Texture.h"
 
 
 ModuleScene::ModuleScene(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -23,7 +24,9 @@ bool ModuleScene::Start()
 	bool ret = true;
 
 	file_path = "Assets/BakerHouse.fbx";
+	texture_path = "Assets/Baker_house.png";
 	objdebug = App->loader->LoadFile(file_path);
+	objdebug->name = "Baker House";
 
 	return ret;
 }

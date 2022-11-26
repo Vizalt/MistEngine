@@ -21,15 +21,13 @@ public:
 
 	bool CleanUp();
 
-	bool GenTexture(GLuint* imgData, GLuint width, GLuint height);
+	GLuint GenTexture(GLuint* imgData, GLuint width, GLuint height);
 
-	bool LoadTexture(string path);
+	GLuint LoadTexture(string path);
 
-	void FreeTexture();
+	void FreeTexture(GLuint ID);
 
 	GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
-	GLuint textureID = 0, 
-		textureWidth = 0,
-		textureHeight = 0;
-	string texPath = "";
+	GLuint checkerID = 0;
+	string texPath;
 };

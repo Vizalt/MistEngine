@@ -30,8 +30,8 @@ bool ModuleTexture::Start()
 
 		//Generate and bind a texture buffer
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		glGenTextures(1, &textureID);
-		glBindTexture(GL_TEXTURE_2D, textureID);
+		glGenTextures(1, &checkerID);
+		glBindTexture(GL_TEXTURE_2D, checkerID);
 
 		//Pick your texture settings with glTexParameter()
 
@@ -64,8 +64,8 @@ bool ModuleTexture::Start()
 	ilInit();
 	ilClearColour(255, 255, 255, 000);
 
-	texPath = "Assets/Baker_house.png";
-	LoadTexture(texPath);
+	//texPath = "Assets/Baker_house.png";
+	//LoadTexture(texPath);
 
 	return true;
 }
@@ -77,20 +77,17 @@ bool ModuleTexture::CleanUp()
 	return true;
 }
 
-bool ModuleTexture::GenTexture(GLuint* imgData, GLuint width, GLuint height)
+GLuint ModuleTexture::GenTexture(GLuint* imgData, GLuint width, GLuint height)
 {
 	//Clean textures if there is another
-	FreeTexture();
-
-	textureWidth = width;
-	textureHeight = height;
+	GLuint TextID = 0;
 
 	glEnable(GL_TEXTURE_2D);
 
 	//Generate and bind a texture buffer
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
+	glGenTextures(1, &TextID);
+	glBindTexture(GL_TEXTURE_2D, TextID);
 
 	//Pick your texture settings with glTexParameter()
 
@@ -115,13 +112,13 @@ bool ModuleTexture::GenTexture(GLuint* imgData, GLuint width, GLuint height)
 	glDisable(GL_TEXTURE_2D);
 
 
-	return true;
+	return TextID;
 }
 
-bool ModuleTexture::LoadTexture(string path)
+GLuint ModuleTexture::LoadTexture(string path)
 {
 	//Texture loading success
-	bool textureLoaded = false;
+	GLuint TextID = 0;
 
 	//Generate and set current image ID
 	ILuint imgID = 0;
@@ -139,31 +136,27 @@ bool ModuleTexture::LoadTexture(string path)
 		if (success == IL_TRUE)
 		{
 			//Create texture from file pixels
-			textureLoaded = GenTexture((GLuint*)ilGetData(), (GLuint)ilGetInteger(IL_IMAGE_WIDTH), (GLuint)ilGetInteger(IL_IMAGE_HEIGHT));
+			TextID = GenTexture((GLuint*)ilGetData(), (GLuint)ilGetInteger(IL_IMAGE_WIDTH), (GLuint)ilGetInteger(IL_IMAGE_HEIGHT));
 		}
 
 		//Delete file from memory
 		ilDeleteImages(1, &imgID);
 
 		//Report error
-		if (!textureLoaded)
+		if (TextID == 0)
 		{
 			printf("Unable to load %s\n", path.c_str());
 		}
 	}
-	return textureLoaded;
+	return TextID;
 }
 
-void ModuleTexture::FreeTexture()
+void ModuleTexture::FreeTexture(GLuint ID)
 {
 	//Delete texture
-	if (textureID != 0)
+	if (ID != 0)
 	{
-		glDeleteTextures(1, &textureID);
-		textureID = 0;
+		glDeleteTextures(1, &ID);
+		ID = 0;
 	}
-
-	textureWidth = 0;
-	textureHeight = 0;
-
 }

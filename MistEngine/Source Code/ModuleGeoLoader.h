@@ -28,7 +28,7 @@ struct Mesh {
 	uint num_vertices = 0;
 	float* vertices = nullptr;
 
-	GLuint id_texture = 0, texture_width = 0, texture_height = 0;
+	GLuint id_texture = 0;
 
 	GameObject* Owner;
 
