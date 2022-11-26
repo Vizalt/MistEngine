@@ -72,6 +72,9 @@ void ModuleHierarchy::DrawHierarchy()
 {
 	if (ImGui::Begin("GameObjects Hierarchy")) {
 
+		if (ImGui::IsMouseReleased(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
+			TargetDropped = nullptr;
+		}
 		GameObjectTree(roots);
 		if (objSelected != nullptr) {// don't show the option of creating a gameobj if nothing it's selected :)
 			if (ImGui::BeginPopupContextWindow())
@@ -86,8 +89,6 @@ void ModuleHierarchy::DrawHierarchy()
 		}
 	}
 	ImGui::End();
-
-
 }
 
 void ModuleHierarchy::GameObjectTree(GameObject* obj)
@@ -123,6 +124,7 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 			ImGui::SetDragDropPayload("GameObject", obj, sizeof(GameObject*));
 
 			TargetDropped = obj;
+			ImGui::Text("New child of");
 			ImGui::EndDragDropSource();
 		}
 
@@ -132,9 +134,15 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 			if (objSelected != obj) {
 				SetGameObject(objSelected);
 			}	
-		}
+		}		
 	}
 
+	if (ImGui::BeginDragDropTarget()) {
+		if (const ImGuiPayload* PL = ImGui::AcceptDragDropPayload("GameObject")) {
+			TargetDropped->ChangeParent(obj);
+			TargetDropped = nullptr;
+		}
+	}
 	if (clown)
 	{
 		if (!obj->children.empty()) {

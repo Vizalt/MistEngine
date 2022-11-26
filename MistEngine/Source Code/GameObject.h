@@ -24,6 +24,7 @@ public:
 	void CreateComponent(ComponentType type);
 
 	GameObject* GetParent();
+	GameObject* ChangeParent(GameObject* newP);
 
 	Transform* transform;
 

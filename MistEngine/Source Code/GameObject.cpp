@@ -73,3 +73,10 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
+GameObject* GameObject::ChangeParent(GameObject* newP)
+{
+	parent = newP;
+	parent->children.push_back(this);
+	return nullptr;
+}
+
