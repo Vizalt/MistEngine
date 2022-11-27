@@ -60,6 +60,12 @@ void Transform::SetTransformMatrix(vec3 _position, vec3 _rotation, vec3 _scale)
 		glTransform = transpose(lTransform);
 	}
 
+	for(int i = 0; i < owner->children.size(); i++) 
+	{
+		Transform* childTransf = owner->children[i]->transform;
+		childTransf->SetTransformMatrix(childTransf->position, childTransf->rotation, childTransf->scale);
+	}
+
 }
 
 void Transform::Inspector()
