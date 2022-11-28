@@ -24,7 +24,6 @@ bool ModuleScene::Start()
 	bool ret = true;
 
 	file_path = "Assets/BakerHouse.fbx";
-	texture_path = "Assets/Baker_house.png";
 	objdebug = App->loader->LoadFile(file_path);
 	objdebug->name = "Baker House";
 

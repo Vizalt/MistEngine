@@ -17,7 +17,7 @@ public:
 	CTexture(GameObject* owner);
 	~CTexture();
 
-	GLuint textureID;
+	GLuint textureID = 0;
 
 	bool PrintLoaded = true;
 
