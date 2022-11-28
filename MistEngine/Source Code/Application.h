@@ -12,6 +12,7 @@
 #include "ModuleTexture.h"
 #include "ModuleScene.h"
 #include "ModuleHierarchy.h"
+#include "ModuleEditor.h"
 
 #include <vector>
 
@@ -27,6 +28,7 @@ public:
 	ModuleTexture* texture;
 	ModuleScene* scene;
 	ModuleHierarchy* hierarchy;
+	ModuleEditor* editor;
 
 private:
 
