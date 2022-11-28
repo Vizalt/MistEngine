@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "ModuleEditor.h"
 #include<string>
 #include "Globals.h"
 
@@ -85,6 +86,21 @@ void Application::PrepareUpdate()
 {
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
+
+	/*switch (App->editor->TimeStatus) {
+	case 1:
+		App->editor->Play();
+		break;
+	case 2:
+		App->editor->Stop();
+		break;
+	case 3:
+		App->editor->Pause();
+		break;
+	case 4:
+		App->editor->Step();
+		break;
+	}*/
 }
 
 // ---------------------------------------------

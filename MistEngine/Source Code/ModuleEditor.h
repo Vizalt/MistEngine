@@ -20,4 +20,14 @@ public:
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();
+
+	void Play();
+	void Stop();
+	void Pause();
+	void Step();
+
+	Timer GameTimer;
+
+	int TimeStatus = 0;
+	float deltaT = 0;
 };

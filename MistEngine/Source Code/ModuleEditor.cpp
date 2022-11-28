@@ -26,6 +26,7 @@ bool ModuleEditor::Start()
 
 update_status ModuleEditor::PreUpdate(float dt)
 {
+
 	return UPDATE_CONTINUE;
 }
 
@@ -42,4 +43,27 @@ update_status ModuleEditor::PostUpdate(float dt)
 bool ModuleEditor::CleanUp()
 {
 	return true;
+}
+
+void ModuleEditor::Play()
+{
+	GameTimer.Start();
+	LOG("Timer Starting...");
+	LOG("%f", GameTimer.Read() / 1000.0f);
+}
+
+void ModuleEditor::Stop()
+{
+	GameTimer.Stop();
+	LOG("Timer Stopped...");
+}
+
+void ModuleEditor::Pause()
+{
+
+}
+
+void ModuleEditor::Step()
+{
+
 }
