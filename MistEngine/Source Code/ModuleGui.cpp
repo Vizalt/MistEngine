@@ -76,6 +76,16 @@ update_status ModuleGui::Update(float dt)
 			ImGui::MenuItem("Report a bug", NULL, &issues);
 			ImGui::EndMenu();
 		}
+		if (ImGui::SmallButton("PLAY")) {
+			LOG("PLAYING SCENE");
+		}
+		if (ImGui::SmallButton("STOP")) {
+			LOG("STOP SCENE");
+			//dt = 0.0f;
+		}
+		if (ImGui::SmallButton("PAUSE")) {
+			LOG("PAUSE SCENE");
+		}
 		ImGui::EndMainMenuBar();
 	}
 	if (about) {
