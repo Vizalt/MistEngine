@@ -88,6 +88,9 @@
     <ClCompile Include="Source Code\Texture.cpp">
       <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\ModuleEditor.cpp">
+      <Filter>Source Code\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\External\imGui\imgui.h">
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="Source Code\Texture.h">
       <Filter>Source Code\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\ModuleEditor.h">
+      <Filter>Source Code\Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

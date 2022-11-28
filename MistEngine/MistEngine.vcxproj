@@ -28,6 +28,7 @@
     <ClCompile Include="Source Code\Main.cpp" />
     <ClCompile Include="Source Code\Mesh.cpp" />
     <ClCompile Include="Source Code\ModuleCamera3D.cpp" />
+    <ClCompile Include="Source Code\ModuleEditor.cpp" />
     <ClCompile Include="Source Code\ModuleGeoLoader.cpp" />
     <ClCompile Include="Source Code\ModuleGui.cpp" />
     <ClCompile Include="Source Code\ModuleHierarchy.cpp" />
@@ -62,6 +63,7 @@
     <ClInclude Include="Source Code\Mesh.h" />
     <ClInclude Include="Source Code\Module.h" />
     <ClInclude Include="Source Code\ModuleCamera3D.h" />
+    <ClInclude Include="Source Code\ModuleEditor.h" />
     <ClInclude Include="Source Code\ModuleGeoLoader.h" />
     <ClInclude Include="Source Code\ModuleGui.h" />
     <ClInclude Include="Source Code\ModuleHierarchy.h" />

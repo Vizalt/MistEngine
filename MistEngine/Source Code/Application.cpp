@@ -18,6 +18,7 @@ Application::Application()
 	texture = new ModuleTexture(this);
 	scene = new ModuleScene(this);
 	hierarchy = new ModuleHierarchy(this);
+	editor = new ModuleEditor(this);
 
 	LOG("...");
 
@@ -35,6 +36,7 @@ Application::Application()
 	AddModule(hierarchy);
 	AddModule(scene);
 	AddModule(gui);
+	AddModule(editor);
 
 	// Renderer last!
 	AddModule(renderer3D);
