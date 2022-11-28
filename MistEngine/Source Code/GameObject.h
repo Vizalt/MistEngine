@@ -2,9 +2,6 @@
 #include "Globals.h"
 #include "imgui.h"
 
-#include "Transform.h"
-#include "Mesh.h"
-
 #include <vector>
 #include <string>
 

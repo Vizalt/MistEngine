@@ -4,6 +4,7 @@
 #include "ModuleGeoLoader.h"
 #include "ModuleWindow.h"
 #include "ModuleTexture.h"
+#include "Transform.h"
 #include "Mesh.h"
 #include "Texture.h"
 #include "GameObject.h"

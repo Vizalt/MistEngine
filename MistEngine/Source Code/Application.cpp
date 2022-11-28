@@ -2,13 +2,19 @@
 #include<string>
 #include "Globals.h"
 
-extern Application* externalapp =nullptr;
+Application* Application::app = nullptr;
+
+Application* Application::GetApp()
+{
+	if (app == nullptr)
+	{
+		app = new Application();
+	}
+	return app;
+}
 
 Application::Application()
 {
-	externalapp = this;
-
-
 	window = new ModuleWindow(this);
 	input = new ModuleInput(this);
 	renderer3D = new ModuleRenderer3D(this);
@@ -40,15 +46,6 @@ Application::Application()
 
 	// Renderer last!
 	AddModule(renderer3D);
-}
-
-Application* Application::GetApp()
-{
-	if (externalapp == nullptr)
-	{
-		externalapp = new Application();
-	}
-	return externalapp;
 }
 
 Application::~Application()

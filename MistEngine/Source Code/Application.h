@@ -36,6 +36,8 @@ private:
 	float	dt;
 	std::vector<Module*> list_modules;
 
+	static Application* app;
+
 public:
 
 	int fps = 60;
@@ -44,8 +46,8 @@ public:
 	Application();
 	~Application();
 
+	
 	static Application* GetApp();
-	//static Application* app;
 
 	bool Init();
 	update_status Update();
@@ -58,4 +60,3 @@ private:
 	void FinishUpdate();
 };
 
-extern Application* externalapp;
