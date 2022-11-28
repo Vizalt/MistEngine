@@ -2,15 +2,15 @@
 #include<string>
 #include "Globals.h"
 
-Application* Application::app = nullptr;
+extern Application* externalapp = nullptr;
 
 Application* Application::GetApp()
 {
-	if (app == nullptr)
+	if (externalapp == nullptr)
 	{
-		app = new Application();
+		externalapp = new Application();
 	}
-	return app;
+	return externalapp;
 }
 
 Application::Application()

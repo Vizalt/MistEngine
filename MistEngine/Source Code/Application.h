@@ -46,7 +46,6 @@ public:
 	Application();
 	~Application();
 
-	
 	static Application* GetApp();
 
 	bool Init();
@@ -60,3 +59,4 @@ private:
 	void FinishUpdate();
 };
 
+extern Application* externalapp;
