@@ -24,10 +24,11 @@ public:
 	void Play();
 	void Stop();
 	void Pause();
-	void Step();
 
 	Timer GameTimer;
 
-	int TimeStatus = 0;
+	bool Paused = false;
+
+	int TimeStatus = 0; //default
 	float deltaT = 0;
 };

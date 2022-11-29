@@ -26,6 +26,17 @@ bool ModuleEditor::Start()
 
 update_status ModuleEditor::PreUpdate(float dt)
 {
+	switch (TimeStatus) {
+	case 1:
+		Play();
+		break;
+	case 2:
+		Stop();
+		break;
+	case 3:
+		Pause();
+		break;
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -60,10 +71,6 @@ void ModuleEditor::Stop()
 
 void ModuleEditor::Pause()
 {
-
-}
-
-void ModuleEditor::Step()
-{
-
+	Paused = true;
+	LOG("Paused Time");
 }
