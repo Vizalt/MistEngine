@@ -9,7 +9,7 @@
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	CalculateViewMatrix();
+	/*CalculateViewMatrix();
 
 	X = vec3(1.0f, 0.0f, 0.0f);
 	Y = vec3(0.0f, 1.0f, 0.0f);
@@ -17,7 +17,19 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 
 	Position = vec3(0.0f, 3.0f, -6.0f);
 	Reference = vec3(0.0f, 0.5f, 0.0f);
-	LookAt(Reference);
+	LookAt(Reference);*/
+
+	FrustumCam.type = FrustumType::PerspectiveFrustum;
+	FrustumCam.nearPlaneDistance = 0.1f;
+	FrustumCam.farPlaneDistance = 500.f;
+	FrustumCam.front = float3::unitZ;
+	FrustumCam.up = float3::unitY;
+
+	FrustumCam.verticalFov = 60.0f * DEGTORAD;
+	FrustumCam.horizontalFov = 2.0f * atanf(tanf(FrustumCam.verticalFov / 2.0f) * 1.7f);
+
+	FrustumCam.pos = float3(0, 0, -10);
+
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -43,12 +55,25 @@ bool ModuleCamera3D::CleanUp()
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update(float dt)
 {
+	float speed = 3.0f * dt;
 	
+	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
+		speed = 8.0f * dt;
+
+	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT) FrustumCam.pos.y += speed;
+	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT) FrustumCam.pos.y -= speed;
+
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) FrustumCam.pos -= FrustumCam.front * speed;
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) FrustumCam.pos += FrustumCam.front * speed;
+
+
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) FrustumCam.pos -= FrustumCam.WorldRight() * speed;
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) FrustumCam.pos += FrustumCam.WorldRight() * speed;
 	
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!
 
-	vec3 newPos(0, 0, 0);
+	/*vec3 newPos(0, 0, 0);
 	float speed = 3.0f * dt;
 		
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
@@ -109,7 +134,7 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 
 		Position = Reference + Z * length(Position);
-	}
+	}*/
 
 
 
@@ -150,61 +175,76 @@ update_status ModuleCamera3D::Update(float dt)
 	}*/
 
 	// Recalculate matrix -------------
-	CalculateViewMatrix();
+	//CalculateViewMatrix();
 
 	return UPDATE_CONTINUE;
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference)
-{
-	this->Position = Position;
-	this->Reference = Reference;
-
-	Z = normalize(Position - Reference);
-	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
-	Y = cross(Z, X);	
-
-	if(!RotateAroundReference)
-	{
-		this->Reference = this->Position;
-		this->Position += Z * 0.05f;
-	}
-
-	CalculateViewMatrix();
-}
-
-// -----------------------------------------------------------------
-void ModuleCamera3D::LookAt( const vec3 &Spot)
-{
-	Reference = Spot;
-
-	Z = normalize(Position - Reference);
-	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
-	Y = cross(Z, X);
-
-	CalculateViewMatrix();
-}
-
-
-// -----------------------------------------------------------------
-void ModuleCamera3D::Move(const vec3 &Movement)
-{
-	Position += Movement;
-	Reference += Movement;
-
-	CalculateViewMatrix();
-}
-
-// -----------------------------------------------------------------
+//void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference)
+//{
+//	this->Position = Position;
+//	this->Reference = Reference;
+//
+//	Z = normalize(Position - Reference);
+//	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
+//	Y = cross(Z, X);	
+//
+//	if(!RotateAroundReference)
+//	{
+//		this->Reference = this->Position;
+//		this->Position += Z * 0.05f;
+//	}
+//
+//	CalculateViewMatrix();
+//}
+//
+//// -----------------------------------------------------------------
+//void ModuleCamera3D::LookAt( const vec3 &Spot)
+//{
+//	Reference = Spot;
+//
+//	Z = normalize(Position - Reference);
+//	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
+//	Y = cross(Z, X);
+//
+//	CalculateViewMatrix();
+//}
+//
+//
+//// -----------------------------------------------------------------
+//void ModuleCamera3D::Move(const vec3 &Movement)
+//{
+//	Position += Movement;
+//	Reference += Movement;
+//
+//	CalculateViewMatrix();
+//}
+//
+//// -----------------------------------------------------------------
 float* ModuleCamera3D::GetViewMatrix()
 {
-	return &ViewMatrix;
+
+	viewMatrix = FrustumCam.ViewMatrix();
+
+	viewMatrix.Transpose();
+
+	return viewMatrix.ptr();
 }
 
-// -----------------------------------------------------------------
-void ModuleCamera3D::CalculateViewMatrix()
+float* ModuleCamera3D::GetProjectionMatrix()
 {
-	ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(X, Position), -dot(Y, Position), -dot(Z, Position), 1.0f);
-	ViewMatrixInverse = inverse(ViewMatrix);
+
+	projectionMatrix = FrustumCam.ProjectionMatrix();
+
+	projectionMatrix.Transpose();
+
+	return projectionMatrix.ptr();
 }
+//
+//// -----------------------------------------------------------------
+//void ModuleCamera3D::CalculateViewMatrix()
+//{
+//	ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(X, Position), -dot(Y, Position), -dot(Z, Position), 1.0f);
+//	ViewMatrixInverse = inverse(ViewMatrix);
+//}

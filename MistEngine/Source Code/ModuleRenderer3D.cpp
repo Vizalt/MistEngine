@@ -112,7 +112,7 @@ bool ModuleRenderer3D::Init()
 	}
 
 	// Projection matrix for
-	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	//OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	
 
@@ -148,24 +148,19 @@ bool ModuleRenderer3D::Init()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-
-	float uwu = rand() % 254;
-	float owo = rand() % 254;
-	float umu = rand() % 254;
-	//int uwu=0;
-	//GLfloat LightModelAmbient[] = { uwu/255, owo/255, umu/255, 1.0f };
-	//glClearColor(uwu / 255, owo / 255, umu / 255, 0.8f);
-	//glClearColor(37, 54, 69, 1.0f);
-	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	glLoadMatrixf(App->camera->GetProjectionMatrix());
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
 	// light 0 on cam pos
-	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
+	lights[0].SetPos(App->camera->FrustumCam.pos.x, App->camera->FrustumCam.pos.y, App->camera->FrustumCam.pos.z);
 	
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		
@@ -205,9 +200,10 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 
-	Plane plano(0, 1, 0, 0);
+	/*Plane plano(0, 1, 0, 0);
 	plano.axis = true;
-	plano.Render();
+	plano.Render();*/
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	App->loader->Draw();
 
@@ -242,8 +238,7 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	ProjectionMatrix = perspective(60.0f, (float)width / (float)height, 0.125f, 512.0f);
-	glLoadMatrixf(&ProjectionMatrix);
+	glLoadMatrixf(App->camera->FrustumCam.ProjectionMatrix().Transposed().ptr());
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

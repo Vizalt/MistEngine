@@ -2,8 +2,8 @@
 #define ModuleGeoLoader_HEADER
 #include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
 #include "SDL_opengl.h"
+#include "MathGeoLib.h"
 
 
 #include <vector>

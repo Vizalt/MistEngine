@@ -30,12 +30,12 @@ GameObject::~GameObject()
 
 	transform = nullptr;
 
-	for (size_t i = 0; i < components.size(); i++)
-	{
-		delete components[i];
-		components[i] = nullptr;
-	}
-	components.clear();	
+	//for (size_t i = 0; i < components.size(); i++)
+	//{
+	//	delete components[i];
+	//	components[i] = nullptr;
+	//}
+	//components.clear();	
 }
 
 void GameObject::InspectorWindow()
