@@ -24,11 +24,13 @@ public:
 	void Play();
 	void Stop();
 	void Pause();
+	void Step();
 
 	Timer GameTimer;
 
-	bool Paused = false;
+	bool paused = false;
+	bool playing = false;
 
-	int TimeStatus = 0; //default
-	float deltaT = 0;
+	int TimeStatus = 2; //default is paused
+	float deltaT = 0.f;
 };

@@ -78,15 +78,15 @@ update_status ModuleGui::Update(float dt)
 		}
 		if (ImGui::SmallButton("PLAY")) {
 			LOG("PLAYING SCENE");
-			App->editor->TimeStatus = 1;
+			App->editor->Play();
 		}
 		if (ImGui::SmallButton("STOP")) {
 			LOG("STOP SCENE");
-			App->editor->TimeStatus = 2;			
+			App->editor->Stop();
 		}
 		if (ImGui::SmallButton("PAUSE")) {
 			LOG("PAUSE SCENE");
-			App->editor->TimeStatus = 3;
+			App->editor->Pause();
 		}
 		ImGui::EndMainMenuBar();
 	}

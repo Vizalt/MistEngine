@@ -27,14 +27,18 @@ bool ModuleEditor::Start()
 update_status ModuleEditor::PreUpdate(float dt)
 {
 	switch (TimeStatus) {
-	case 1:
-		Play();
+	case 1: //playing
+		GameTimer.Start();
 		break;
-	case 2:
-		Stop();
+	case 2: //stop
+		GameTimer.Stop();
+		deltaT = 0;
 		break;
-	case 3:
-		Pause();
+	case 3: //pause	
+		GameTimer.Stop();
+		break;
+	case 4:
+		//Step();
 		break;
 	}
 
@@ -57,20 +61,40 @@ bool ModuleEditor::CleanUp()
 }
 
 void ModuleEditor::Play()
-{
-	GameTimer.Start();
-	LOG("Timer Starting...");
-	LOG("%f", GameTimer.Read() / 1000.0f);
+{	
+	if (playing == false) {
+		LOG("PLAYING");
+		playing = true;
+		TimeStatus = 1;
+		deltaT = (float)GameTimer.Read() / 1000.0f;
+	}
+	else if (playing == true) { //stopping the game if the game was already playing
+		LOG("NOT PLAYING");		
+		TimeStatus = 2;	
+		playing = false;
+	}	
 }
 
 void ModuleEditor::Stop()
-{
-	GameTimer.Stop();
-	LOG("Timer Stopped...");
+{	
+	TimeStatus = 2;
 }
 
 void ModuleEditor::Pause()
 {
-	Paused = true;
-	LOG("Paused Time");
+	if (paused == true) {		
+		TimeStatus = 1;
+		paused = false;
+		deltaT = (float)GameTimer.Read() / 1000.0f;
+	}
+	else {
+		TimeStatus = 3;
+		paused = true;
+	}
+}
+
+void ModuleEditor::Step()
+{
+	/*Play();
+	Stop();*/
 }
