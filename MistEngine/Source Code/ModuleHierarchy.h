@@ -26,8 +26,9 @@ public:
 	void GameObjectTree(GameObject* obj);
 	void SetGameObject(GameObject* obj);
 	
-	GameObject* TargetDropped;
+	GameObject* objPicked; //Obj we pick
 	GameObject* roots;
 	GameObject* objSelected;
+	GameObject* objDropped; //Obj where we drop objPicked
 
 };

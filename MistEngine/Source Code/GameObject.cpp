@@ -83,9 +83,6 @@ bool GameObject::checkChild(GameObject* obj)
 	else {
 		return checkChild(obj->parent);
 	}
-
-
-
 	return false;
 }
 
@@ -94,23 +91,14 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
-//GameObject* GameObject::ToParent(GameObject* newP)
-//{
-//	parent->DeleteChild(this); //deletes the actual parent
-//	
-//	NewChild(newP);
-//
-//	return nullptr;
-//}
-
-GameObject* GameObject::NewChild(GameObject* childObj)
+bool GameObject::NewChild(GameObject* childObj)
 {
 	if (parent != nullptr) {
+		if (childObj->checkChild(this)) {
+			return false;
+		}					
 		parent->DeleteChild(this);
 	}
-
-	if (checkChild(childObj))
-		return false;
 
 	parent = childObj;
 	if(childObj->parent != nullptr)

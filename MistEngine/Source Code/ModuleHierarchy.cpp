@@ -10,7 +10,7 @@
 ModuleHierarchy::ModuleHierarchy(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	roots = nullptr;
-	//TargetDropped = nullptr;
+	//objPicked = nullptr;
 	objSelected = nullptr;
 }
 
@@ -73,7 +73,7 @@ void ModuleHierarchy::DrawHierarchy()
 	if (ImGui::Begin("GameObjects Hierarchy")) {
 
 		if (ImGui::IsMouseReleased(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
-			TargetDropped = nullptr;
+			objPicked = nullptr;
 		}
 		GameObjectTree(roots);
 		if (objSelected != nullptr) {// don't show the option of creating a gameobj if nothing it's selected :)
@@ -123,24 +123,24 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj)
 		{
 			ImGui::SetDragDropPayload("GameObject", obj, sizeof(GameObject*));
 
-			TargetDropped = obj;
-			ImGui::Text("New child of");
+			objPicked = obj;//the obj we move
 			ImGui::EndDragDropSource();
 		}
 
 		if (ImGui::IsItemHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Left))
 		{
+			objDropped = obj;
 			SetGameObject(obj);
-			if (objSelected != obj) {
+			/*if (objSelected != obj) {
 				SetGameObject(objSelected);
-			}	
+			}	*/
 		}		
 	}
 
 	if (ImGui::BeginDragDropTarget()) {
 		if (const ImGuiPayload* PL = ImGui::AcceptDragDropPayload("GameObject")) {			
-			TargetDropped->NewChild(obj);
-			TargetDropped = nullptr;
+			objPicked->NewChild(objDropped);
+			//objPicked = nullptr;
 		}
 		ImGui::EndDragDropTarget();
 	}
