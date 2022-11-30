@@ -27,6 +27,8 @@ public:
 
 	GameObject* createObj(GameObject* parent);
 
+	void OnSave();
+
 private:
 	std::string file_path;
 	std::string texture_path;

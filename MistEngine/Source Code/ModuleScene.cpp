@@ -41,7 +41,9 @@ update_status ModuleScene::PreUpdate(float dt)
 // -----------------------------------------------------------------
 update_status ModuleScene::Update(float dt)
 {
+	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN) {
 
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -69,4 +71,11 @@ GameObject* ModuleScene::createObj(GameObject* parent)
 	GameObject* b = new GameObject(parent);
 
 	return b;
+}
+
+void ModuleScene::OnSave()
+{
+
+
+
 }

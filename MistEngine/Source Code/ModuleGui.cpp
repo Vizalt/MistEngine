@@ -76,15 +76,15 @@ update_status ModuleGui::Update(float dt)
 			ImGui::MenuItem("Report a bug", NULL, &issues);
 			ImGui::EndMenu();
 		}
-		if (ImGui::SmallButton("PLAY")) {
+		if (ImGui::Button("PLAY")) {
 			LOG("PLAYING SCENE");
 			App->editor->Play();
 		}
-		if (ImGui::SmallButton("STOP")) {
+		if (ImGui::Button("STOP")) {
 			LOG("STOP SCENE");
 			App->editor->Stop();
 		}
-		if (ImGui::SmallButton("PAUSE")) {
+		if (ImGui::Button("PAUSE")) {
 			LOG("PAUSE SCENE");
 			App->editor->Pause();
 		}
