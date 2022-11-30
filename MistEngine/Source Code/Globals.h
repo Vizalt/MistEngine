@@ -6,7 +6,7 @@
 
 #include <windows.h>
 #include <stdio.h>
-#include "MemoryLeaks.h"
+//#include "MemoryLeaks.h"
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
 

@@ -47,6 +47,7 @@ public:
 	update_status PostUpdate(float dt);
 	GameObject* LoadFile(string Path);
 	void BufferMesh(Mesh* mesh);
+	void RemoveMesh(Mesh* mesh);
 	bool CleanUp();
 	
 	void Draw();

@@ -9,16 +9,6 @@
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	/*CalculateViewMatrix();
-
-	X = vec3(1.0f, 0.0f, 0.0f);
-	Y = vec3(0.0f, 1.0f, 0.0f);
-	Z = vec3(0.0f, 0.0f, 1.0f);
-
-	Position = vec3(0.0f, 3.0f, -6.0f);
-	Reference = vec3(0.0f, 0.5f, 0.0f);
-	LookAt(Reference);*/
-
 	FrustumCam.type = FrustumType::PerspectiveFrustum;
 	FrustumCam.nearPlaneDistance = 0.1f;
 	FrustumCam.farPlaneDistance = 500.f;

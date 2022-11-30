@@ -72,6 +72,6 @@ private:
 	int mouse_z;
 	int mouse_x_motion;
 	int mouse_y_motion;
-	GameObject* objdebug2;
+	//GameObject* objdebug2;
 	//int mouse_z_motion;
 };

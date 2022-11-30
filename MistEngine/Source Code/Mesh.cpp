@@ -1,3 +1,4 @@
+#include "Application.h"
 #include "Mesh.h"
 #include "GameObject.h"
 #include "ModuleGeoLoader.h"
@@ -18,6 +19,7 @@ CMesh::CMesh(GameObject* owner) : Component(owner)
 
 CMesh::~CMesh()
 {
+	Application::GetApp()->loader->RemoveMesh(mesh);
 	mesh = nullptr;
 }
 

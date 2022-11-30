@@ -173,6 +173,20 @@ void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 	meshes.push_back(mesh);
 }
 
+void ModuleGeoLoader::RemoveMesh(Mesh* mesh)
+{
+	for (size_t i = 0; i < meshes.size(); i++)
+	{
+		if (meshes[i] == mesh) {
+			meshes.erase(meshes.begin() + i);
+			delete mesh;
+			mesh = nullptr;
+			return;
+		}
+	}
+
+}
+
 // -----------------------------------------------------------------
 bool ModuleGeoLoader::CleanUp()
 {
