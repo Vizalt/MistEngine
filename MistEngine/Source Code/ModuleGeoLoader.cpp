@@ -174,6 +174,20 @@ void ModuleGeoLoader::BufferMesh(Mesh* mesh)
 	meshes.push_back(mesh);
 }
 
+void ModuleGeoLoader::RemoveMesh(Mesh* mesh)
+{
+	for (size_t i = 0; i < meshes.size(); i++)
+	{
+		if (meshes[i] == mesh) {
+			meshes.erase(meshes.begin() + i);
+			delete mesh;
+			mesh = nullptr;
+			return;
+		}
+	}
+
+}
+
 // -----------------------------------------------------------------
 bool ModuleGeoLoader::CleanUp()
 {
@@ -215,7 +229,7 @@ void Mesh::Draw()
 	glPushMatrix();
 
 	if (Owner != nullptr) {
-		glMultMatrixf(&Owner->transform->glTransformT);
+		glMultMatrixf(Owner->transform->lTransform.ptr());
 	}
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);

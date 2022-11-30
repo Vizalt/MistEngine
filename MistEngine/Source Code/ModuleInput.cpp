@@ -113,12 +113,12 @@ update_status ModuleInput::PreUpdate(float dt)
 			quit = true;
 			break;
 
-			case SDL_WINDOWEVENT:
-			{
-				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
-					App->renderer3D->OnResize(e.window.data1, e.window.data2);
-			}
-			break;
+			//case SDL_WINDOWEVENT:
+			//{
+			//	if(e.window.event == SDL_WINDOWEVENT_RESIZED)
+			//		//App->renderer3D->OnResize(e.window.data1, e.window.data2);
+			//}
+			//break;
 
 			case SDL_DROPFILE:
 			{
@@ -138,7 +138,7 @@ bool ModuleInput::CleanUp()
 {
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
-	delete objdebug2;
+	//delete objdebug2;
 	return true;
 }
 
@@ -148,16 +148,16 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	if (extension == "fbx")
 	{
 		LOG("Loading FBX");
-		objdebug2 = App->loader->LoadFile(fileName);
+		//objdebug2 = App->loader->LoadFile(fileName);
 	}
 	if (extension == "png" || extension == "dds")
 	{
 		LOG("Loading Textures");
-		GameObject* obj = App->hierarchy->objSelected;
+		//GameObject* obj = App->hierarchy->objSelected;
 
-		CTexture* componentT = new CTexture(obj);
+		CTexture* componentT = new CTexture(App->hierarchy->objSelected);
 		componentT->LinkTexture(fileName);
-		obj->components.push_back(componentT);
+		App->hierarchy->objSelected->components.push_back(componentT);
 	}
 	else
 	{

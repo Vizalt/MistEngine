@@ -2,8 +2,8 @@
 #define ModuleGeoLoader_HEADER
 #include "Module.h"
 #include "Globals.h"
-#include "glmath.h"
 #include "SDL_opengl.h"
+#include "MathGeoLib.h"
 
 
 #include <vector>
@@ -47,6 +47,7 @@ public:
 	update_status PostUpdate(float dt);
 	GameObject* LoadFile(string Path);
 	void BufferMesh(Mesh* mesh);
+	void RemoveMesh(Mesh* mesh);
 	bool CleanUp();
 	
 	void Draw();

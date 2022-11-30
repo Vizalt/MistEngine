@@ -22,6 +22,8 @@ public:
 
 	void CreateComponent(ComponentType type);
 
+	//void DeleteChild(GameObject child);
+
 	GameObject* GetParent();
 	CMesh* GetComponentMesh();
 

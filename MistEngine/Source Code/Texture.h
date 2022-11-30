@@ -1,7 +1,6 @@
 #pragma once
 #include "Globals.h"
 #include "Component.h"
-#include "glmath.h"
 #include "imgui.h"
 
 #include<string>
