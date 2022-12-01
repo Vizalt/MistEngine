@@ -3,6 +3,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleGeoLoader.h"
 #include "Camera.h"
+#include "Transform.h"
 #include "SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -158,9 +159,10 @@ bool ModuleRenderer3D::Start()
 
 	//GameCamera->name = "Main Camera";
 	CCamera* cam = new CCamera(GameCamera);
-	cam->FrustumCam.pos = float3(0, 2, -10);
 	mainCam = cam;
 	GameCamera->components.push_back(cam);
+	GameCamera->transform->position = float3(0, 2, -10);
+	GameCamera->transform->RefreshTransformMatrix();
 
 	return ret;
 }

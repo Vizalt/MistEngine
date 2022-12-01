@@ -57,13 +57,13 @@ void Transform::SetTransformMatrix(float3 _position, float3 _rotation, float3 _s
 		//glTransformT = glTransformT.Transposed();
 	}
 	else {
-		//glTransformT = lTransform.Transposed();
+		glTransformT = lTransform;
 	}
 
 	for(int i = 0; i < owner->children.size(); i++) 
 	{
 		Transform* childTransf = owner->children[i]->transform;
-		childTransf->SetTransformMatrix(childTransf->position, childTransf->rotation, childTransf->scale);
+		childTransf->SetTransformMatrix(position, rotation, scale);
 	}
 
 }
@@ -83,6 +83,11 @@ void Transform::Inspector()
 	}
 	
 
+	SetTransformMatrix(position, rotation, scale);
+}
+
+void Transform::RefreshTransformMatrix()
+{
 	SetTransformMatrix(position, rotation, scale);
 }
 

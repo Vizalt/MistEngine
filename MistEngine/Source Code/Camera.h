@@ -21,6 +21,8 @@ public:
 	float* GetViewMatrix();
 	float* GetProjectionMatrix();
 
+	void TransformCam();
+
 	void Inspector();
 
 	Frustum FrustumCam;

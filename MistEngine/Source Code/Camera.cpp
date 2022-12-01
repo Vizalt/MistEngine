@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "Camera.h"
+#include "Transform.h"
 #include "GameObject.h"
 
 
@@ -91,6 +92,22 @@ float* CCamera::GetProjectionMatrix()
 	projectionMatrix.Transpose();
 
 	return projectionMatrix.ptr();
+}
+
+void CCamera::TransformCam()
+{
+	//if is the scene cam it will move with input controls (ModuleCamera3D)
+	if (owner == nullptr) return;
+
+	//if not, move with gameObj transform
+	FrustumCam.pos = owner->transform->position;
+
+	//owner's global transform matrix
+	float4x4 matrix = owner->transform->lTransform;
+
+	//Column 0 -> eix X -> worldRight || Column 1 -> eix Y -> up || Column 2  -> eix Z -> front || Column 3 -> pos
+	FrustumCam.up = matrix.RotatePart().Col(1).Normalized();
+	FrustumCam.front = matrix.RotatePart().Col(2).Normalized();
 }
 
 void CCamera::Inspector()

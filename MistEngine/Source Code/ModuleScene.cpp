@@ -42,6 +42,10 @@ update_status ModuleScene::PreUpdate(float dt)
 // -----------------------------------------------------------------
 update_status ModuleScene::Update(float dt)
 {
+	//if (App->renderer3D->mainCam != nullptr) {
+	App->renderer3D->GameCamera->GetComponentCamera()->TransformCam();
+	//}
+
 	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN) {
 
 	}
