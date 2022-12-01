@@ -55,6 +55,9 @@ GameObject::~GameObject()
 
 void GameObject::InspectorWindow()
 {
+
+	strcpy(string, name.c_str());
+
 	ImGui::SameLine;
 	ImGui::InputText("Name", string, IM_ARRAYSIZE(string), ImGuiInputTextFlags_EnterReturnsTrue);
 	
