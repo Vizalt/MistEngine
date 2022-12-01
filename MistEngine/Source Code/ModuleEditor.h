@@ -31,6 +31,6 @@ public:
 	bool paused = false;
 	bool playing = false;
 
-	int TimeStatus = 2; //default is paused
+	int TimeStatus = 0; //default is paused
 	float deltaT = 0.f;
 };

@@ -28,7 +28,7 @@ update_status ModuleEditor::PreUpdate(float dt)
 {
 	switch (TimeStatus) {
 	case 1: //playing
-		GameTimer.Start();
+		GameTimer.Start();		
 		break;
 	case 2: //stop
 		GameTimer.Stop();
@@ -77,6 +77,7 @@ void ModuleEditor::Play()
 
 void ModuleEditor::Stop()
 {	
+	ImGui::SetWindowFocus("Scene");
 	TimeStatus = 2;
 }
 

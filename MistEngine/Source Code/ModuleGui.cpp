@@ -79,10 +79,13 @@ update_status ModuleGui::Update(float dt)
 		if (ImGui::Button("PLAY")) {
 			LOG("PLAYING SCENE");
 			App->editor->Play();
+			if(!App->editor->playing)
+				ImGui::SetWindowFocus("Game");
 		}
 		if (ImGui::Button("STOP")) {
 			LOG("STOP SCENE");
 			App->editor->Stop();
+			ImGui::SetWindowFocus("Scene");
 		}
 		if (ImGui::Button("PAUSE")) {
 			LOG("PAUSE SCENE");
