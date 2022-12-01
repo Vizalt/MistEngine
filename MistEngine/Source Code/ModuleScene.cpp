@@ -72,6 +72,11 @@ void ModuleScene::SceneWindow()
 	ImGui::Begin("Scene");
 	WindowSize = ImGui::GetContentRegionAvail();
 
+	//Prevent image stretching by setting new aspect ratio
+	float aspectRatio = WindowSize.x / WindowSize.y;
+	App->camera->sceneCam->FrustumCam.verticalFov = 60 * DEGTORAD;
+	App->camera->sceneCam->FrustumCam.horizontalFov = 2.0f * atanf(tanf(App->camera->sceneCam->FrustumCam.verticalFov / 2.0f) * aspectRatio);
+
 	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
@@ -88,14 +93,11 @@ void ModuleScene::SceneWindow()
 		//for with all the meshes triangles
 		for (int i = 0; i < App->loader->meshes.size(); i++) 
 		{
-			if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
-				//selectObj = App->loader->meshes[i];
-			}
+			//if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
+			//	//selectObj = App->loader->meshes[i];
+			//}
 
 		};
-
-		
-
 		/*bool hit = my_ray.Intersects(game_object->aabb);
 		bool hit = ray_local_space.Intersects(tri, &distance, &hit_point);
 
@@ -115,7 +117,11 @@ void ModuleScene::GameWindow()
 	ImGui::Begin("Game");
 	WindowSize = ImGui::GetContentRegionAvail();
 
-	ImGui::Image((ImTextureID)App->camera->mainCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
+	float aspectRatio = WindowSize.x / WindowSize.y;
+	App->renderer3D->mainCam->FrustumCam.verticalFov = 60 * DEGTORAD;
+	App->renderer3D->mainCam->FrustumCam.horizontalFov = 2.0f * atanf(tanf(App->renderer3D->mainCam->FrustumCam.verticalFov / 2.0f) * aspectRatio);
+
+	ImGui::Image((ImTextureID)App->renderer3D->mainCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
 	if (ImGui::IsMouseClicked) {
@@ -124,7 +130,7 @@ void ModuleScene::GameWindow()
 
 		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
 
-		picking = App->camera->mainCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+		picking = App->renderer3D->mainCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
 
 		//for ();//for with all the meshes triangles
 		//bool hit = picking.Intersects(game_object->aabb);

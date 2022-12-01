@@ -147,6 +147,24 @@ bool ModuleRenderer3D::Init()
 	return ret;
 }
 
+bool ModuleRenderer3D::Start()
+{
+	LOG("Render Start");
+	bool ret = true;
+
+	GameCamera = new GameObject(App->hierarchy->roots);
+
+	GameCamera->name = "Main Camera";
+
+	//GameCamera->name = "Main Camera";
+	CCamera* cam = new CCamera(GameCamera);
+	cam->FrustumCam.pos = float3(0, 2, -10);
+	mainCam = cam;
+	GameCamera->components.push_back(cam);
+
+	return ret;
+}
+
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
@@ -215,18 +233,18 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	App->scene->SceneWindow();
 
-	if (App->camera->mainCam != nullptr) {
+	if (mainCam != nullptr) {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glLoadIdentity();
 
 		glMatrixMode(GL_PROJECTION);
-		glLoadMatrixf(App->camera->mainCam->GetProjectionMatrix());
+		glLoadMatrixf(mainCam->GetProjectionMatrix());
 
 		glMatrixMode(GL_MODELVIEW);
-		glLoadMatrixf(App->camera->mainCam->GetViewMatrix());
+		glLoadMatrixf(mainCam->GetViewMatrix());
 
-		glBindFramebuffer(GL_FRAMEBUFFER, App->camera->mainCam->frameBuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER, mainCam->frameBuffer);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
@@ -252,6 +270,8 @@ bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
 
+	delete GameCamera;
+	delete mainCam;
 
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
