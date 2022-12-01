@@ -73,13 +73,17 @@ void ModuleScene::SceneWindow()
 
 	ImGui::Image((ImTextureID)App->camera->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
-	ImVec2 mousePos = ImGui::GetMousePos();
-
-	ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
-
 
 	if (ImGui::IsMouseClicked) {
+
+		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
+
+		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
+
 		picking = App->camera->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+
+		//for ();//for with all the meshes triangles
+		//bool hit = picking.Intersects(game_object->aabb);
 	}
 
 
