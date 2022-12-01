@@ -75,13 +75,13 @@ void ModuleScene::SceneWindow()
 
 	ImVec2 mousePos = ImGui::GetMousePos();
 
-	//ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
+	ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
 
 	//normalized.x = (mousePos.x - ImGui::GetWindowPos().x);
 	//normalized.y = (mousePos.y - ImGui::GetWindowPos().y);
 
 	if (ImGui::IsMouseClicked) {
-		//picking = App->camera->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+		picking = App->camera->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
 	}
 
 
@@ -96,7 +96,7 @@ GameObject* ModuleScene::createObj(GameObject* parent)
 	return b;
 }
 
-void ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
+ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
 {
 	//	w = with of the viewport
 	//	h = height of the viewport
@@ -106,6 +106,10 @@ void ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
 	//GLfloat ndc_x = 2.0 * x / w - 1.0;
 	//GLfloat ndc_y = 1.0 - 2.0 * y / h; // invert Y axis
 
+	ImVec2 normalizedPos;
+
+	normalizedPos.x = 2.0 * x / w - 1.0;
+	normalizedPos.y = 1.0 - 2.0 * y / h;
 
 }
 
