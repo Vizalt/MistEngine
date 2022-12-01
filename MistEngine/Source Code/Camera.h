@@ -29,6 +29,8 @@ public:
 	float4x4 viewMatrix;
 	float4x4 projectionMatrix;
 
+	int FOV = 60.0f;
+
 	unsigned int cameraBuffer;
 	unsigned int frameBuffer;
 

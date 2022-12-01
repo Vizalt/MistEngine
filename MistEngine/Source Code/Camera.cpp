@@ -36,7 +36,7 @@ void CCamera::SetCam()
 	FrustumCam.front = float3::unitZ;
 	FrustumCam.up = float3::unitY;
 
-	FrustumCam.verticalFov = 60.0f * DEGTORAD;
+	FrustumCam.verticalFov = FOV * DEGTORAD;
 	FrustumCam.horizontalFov = 2.0f * atanf(tanf(FrustumCam.verticalFov / 2.0f) * 1.7f);
 
 	FrustumCam.pos = float3(0, 0, 0);
@@ -114,7 +114,27 @@ void CCamera::Inspector()
 {
 	if (ImGui::CollapsingHeader("Camera"))
 	{
-		
+		if (ImGui::SliderInt("FOV", &FOV, 5, 200)) {
+			FrustumCam.verticalFov = FOV * DEGTORAD;
+			FrustumCam.horizontalFov = 2.0f * atanf(tanf(FrustumCam.verticalFov / 2.0f) * 1.7f);
+		}
+		if (ImGui::Button("Reset")) {
+			FOV = 60.0f;
+
+			FrustumCam.verticalFov = FOV * DEGTORAD;
+			FrustumCam.horizontalFov = 2.0f * atanf(tanf(FrustumCam.verticalFov / 2.0f) * 1.7f);
+		}
+
+
+		ImGui::SliderFloat("Near Distance", &FrustumCam.nearPlaneDistance, 0.1f, 500.f);
+		if (ImGui::Button("Reset")) {
+			FrustumCam.nearPlaneDistance = 0.1f;
+		}
+
+		ImGui::SliderFloat("Far Distance", &FrustumCam.farPlaneDistance, 500.f, 1000.f);
+		if (ImGui::Button("Reset")) {
+			FrustumCam.farPlaneDistance = 500.f;
+		}
 	}
 }
 
