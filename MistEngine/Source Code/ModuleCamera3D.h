@@ -32,9 +32,13 @@ public:
 	Frustum FrustumCam;
 	float4x4 viewMatrix;
 	float4x4 projectionMatrix;
+	
+	unsigned int cameraBuffer;
+	unsigned int frameBuffer;
 
 private:
 
+	unsigned int renderObjBuffer;
 	//mat4x4 ViewMatrix, ViewMatrixInverse;
 	/*bool config = true, about = false;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;

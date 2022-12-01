@@ -149,13 +149,17 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 	
-	glMatrixMode(GL_PROJECTION);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+
+
+	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(App->camera->GetProjectionMatrix());
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
+	glBindFramebuffer(GL_FRAMEBUFFER, App->camera->frameBuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
@@ -203,9 +207,13 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	/*Plane plano(0, 1, 0, 0);
 	plano.axis = true;
 	plano.Render();*/
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	App->loader->Draw();
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+	App->scene->SceneWindow();
 
 	ImGui::Render();
 	glViewport(0, 0, (int)io->DisplaySize.x, (int)io->DisplaySize.y);

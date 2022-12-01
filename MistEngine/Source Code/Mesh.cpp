@@ -15,6 +15,7 @@ CMesh::CMesh(GameObject* owner) : Component(owner)
 	type = ComponentType::MESH;
 	this->owner = owner;
 	mesh = nullptr;
+
 }
 
 CMesh::~CMesh()

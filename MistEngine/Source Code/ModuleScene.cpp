@@ -3,8 +3,8 @@
 #include "ModuleGui.h"
 #include "ModuleWindow.h"
 
-#include "ModuleRenderer3D.h"
 #include "glew.h"
+#include "ModuleRenderer3D.h"
 #include "Primitive.h"
 #include "Texture.h"
 
@@ -64,6 +64,16 @@ bool ModuleScene::CleanUp()
 	delete objdebug;
 
 	return true;
+}
+
+void ModuleScene::SceneWindow()
+{
+	ImGui::Begin("Scene");
+	WindowSize = ImGui::GetContentRegionAvail();
+
+	ImGui::Image((ImTextureID)App->camera->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
+
+	ImGui::End();
 }
 
 GameObject* ModuleScene::createObj(GameObject* parent)

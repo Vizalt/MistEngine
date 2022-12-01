@@ -24,7 +24,11 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	void SceneWindow();
+
 	GameObject* createObj(GameObject* parent);
+
+	ImVec2 WindowSize;
 
 	void OnSave();
 
