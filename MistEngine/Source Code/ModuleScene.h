@@ -30,12 +30,15 @@ public:
 
 	ImVec2 WindowSize;
 
+	void NormalizeMouse(float x, float y, float w, float h, ImVec2 pos);
+
 	void OnSave();
 
 private:
 	std::string file_path;
 	std::string texture_path;
 	GameObject* objdebug;
+	LineSegment picking;
 };
 
 #endif
