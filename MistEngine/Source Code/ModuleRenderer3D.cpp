@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleGeoLoader.h"
+#include "Camera.h"
 #include "SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -154,17 +155,17 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 
 	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(App->camera->GetProjectionMatrix());
+	glLoadMatrixf(App->camera->sceneCam->GetProjectionMatrix());
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(App->camera->GetViewMatrix());
+	glLoadMatrixf(App->camera->sceneCam->GetViewMatrix());
 
-	glBindFramebuffer(GL_FRAMEBUFFER, App->camera->frameBuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, App->camera->sceneCam->frameBuffer);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 	// light 0 on cam pos
-	lights[0].SetPos(App->camera->FrustumCam.pos.x, App->camera->FrustumCam.pos.y, App->camera->FrustumCam.pos.z);
+	lights[0].SetPos(App->camera->sceneCam->FrustumCam.pos.x, App->camera->sceneCam->FrustumCam.pos.y, App->camera->sceneCam->FrustumCam.pos.z);
 	
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		
@@ -246,7 +247,7 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glLoadMatrixf(App->camera->FrustumCam.ProjectionMatrix().Transposed().ptr());
+	glLoadMatrixf(App->camera->sceneCam->FrustumCam.ProjectionMatrix().Transposed().ptr());
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

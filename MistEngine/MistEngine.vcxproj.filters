@@ -187,6 +187,9 @@
     <ClCompile Include="Source Code\Timer.cpp">
       <Filter>Source Code\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\Camera.cpp">
+      <Filter>Source Code\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\External\MathGeoLib\include\Geometry\AABB.h">
@@ -467,6 +470,9 @@
     </ClInclude>
     <ClInclude Include="Source Code\Timer.h">
       <Filter>Source Code\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Camera.h">
+      <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

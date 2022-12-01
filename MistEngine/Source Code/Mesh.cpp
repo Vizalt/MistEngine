@@ -6,6 +6,7 @@
 
 CMesh::CMesh() : Component(nullptr)
 {
+	type = ComponentType::MESH;
 	owner = nullptr;
 	mesh = nullptr;
 }

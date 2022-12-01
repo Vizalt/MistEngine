@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleGui.h"
 #include "ModuleWindow.h"
+#include "Camera.h"
 
 #include "glew.h"
 #include "ModuleRenderer3D.h"
@@ -71,7 +72,7 @@ void ModuleScene::SceneWindow()
 	ImGui::Begin("Scene");
 	WindowSize = ImGui::GetContentRegionAvail();
 
-	ImGui::Image((ImTextureID)App->camera->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
+	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
 	if (ImGui::IsMouseClicked) {
@@ -80,7 +81,7 @@ void ModuleScene::SceneWindow()
 
 		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
 
-		picking = App->camera->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+		picking = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
 
 		//for ();//for with all the meshes triangles
 		//bool hit = picking.Intersects(game_object->aabb);
