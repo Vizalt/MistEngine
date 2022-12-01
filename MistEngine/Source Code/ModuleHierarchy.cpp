@@ -56,8 +56,12 @@ update_status ModuleHierarchy::Update(float dt)
 		objSelected = nullptr;
 	}
 
+	ImGui::Begin("Inspector");
+
 	if(objSelected != nullptr)
-		objSelected->InspectorWindow();	
+		objSelected->InspectorWindow();
+
+	ImGui::End();
 
 	return UPDATE_CONTINUE;
 }

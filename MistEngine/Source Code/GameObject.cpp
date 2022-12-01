@@ -55,7 +55,6 @@ GameObject::~GameObject()
 
 void GameObject::InspectorWindow()
 {
-	ImGui::Begin("Inspector");
 	ImGui::SameLine;
 	ImGui::InputText("Name", string, IM_ARRAYSIZE(string), ImGuiInputTextFlags_EnterReturnsTrue);
 	
@@ -70,7 +69,6 @@ void GameObject::InspectorWindow()
 
 		components[i]->Inspector();
 	}
-	ImGui::End();
 }
 
 void GameObject::CreateComponent(ComponentType type)
