@@ -92,6 +92,31 @@ void ModuleScene::SceneWindow()
 	ImGui::End();
 }
 
+void ModuleScene::GameWindow()
+{
+	ImGui::Begin("Game");
+	WindowSize = ImGui::GetContentRegionAvail();
+
+	ImGui::Image((ImTextureID)App->camera->mainCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
+
+
+	if (ImGui::IsMouseClicked) {
+
+		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
+
+		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
+
+		picking = App->camera->mainCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+
+		//for ();//for with all the meshes triangles
+		//bool hit = picking.Intersects(game_object->aabb);
+	}
+
+
+
+	ImGui::End();
+}
+
 GameObject* ModuleScene::createObj(GameObject* parent)
 {
 	GameObject* b = new GameObject(parent);

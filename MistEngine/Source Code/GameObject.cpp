@@ -100,3 +100,14 @@ CMesh* GameObject::GetComponentMesh()
 		}
 	}
 }
+
+CCamera* GameObject::GetComponentCamera()
+{
+	for (int i = 0; i < components.size(); i++) {
+
+		if (components[i]->type == ComponentType::CAMERA)
+		{
+			return (CCamera*)components[i];
+		}
+	}
+}

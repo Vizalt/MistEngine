@@ -25,6 +25,7 @@ public:
 	bool CleanUp();
 
 	void SceneWindow();
+	void GameWindow();
 
 	GameObject* createObj(GameObject* parent);
 

@@ -118,7 +118,8 @@ bool ModuleRenderer3D::Init()
 	
 
 	//srand(time(NULL));
-	
+
+
 	//
 	//IMGUI
 
@@ -152,7 +153,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(App->camera->sceneCam->GetProjectionMatrix());
@@ -213,8 +213,30 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-
 	App->scene->SceneWindow();
+
+	if (App->camera->mainCam != nullptr) {
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glLoadIdentity();
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadMatrixf(App->camera->mainCam->GetProjectionMatrix());
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadMatrixf(App->camera->mainCam->GetViewMatrix());
+
+		glBindFramebuffer(GL_FRAMEBUFFER, App->camera->mainCam->frameBuffer);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
+		App->loader->Draw();
+
+		App->scene->GameWindow();
+
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	ImGui::Render();
 	glViewport(0, 0, (int)io->DisplaySize.x, (int)io->DisplaySize.y);
@@ -229,6 +251,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
+
 
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();

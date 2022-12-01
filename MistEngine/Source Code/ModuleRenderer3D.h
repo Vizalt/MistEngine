@@ -12,6 +12,9 @@
 
 #define MAX_LIGHTS 8
 
+class GameObject;
+class CCamera;
+
 class ModuleRenderer3D : public Module
 {
 public:

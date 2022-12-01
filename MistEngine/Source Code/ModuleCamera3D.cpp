@@ -25,6 +25,14 @@ bool ModuleCamera3D::Start()
 	sceneCam = new CCamera();
 	sceneCam->FrustumCam.pos = float3(0, 2, -10);
 
+	GameCamera = new GameObject(App->hierarchy->roots);
+
+	//GameCamera->name = "Main Camera";
+	CCamera* cam = new CCamera(GameCamera);
+	cam->FrustumCam.pos = float3(0, 2, -10);
+	mainCam = cam;
+	GameCamera->components.push_back(cam);
+
 	return ret;
 }
 
@@ -34,6 +42,9 @@ bool ModuleCamera3D::CleanUp()
 	LOG("Cleaning camera");
 
 	delete sceneCam;
+
+	delete GameCamera;
+	delete mainCam;
 
 	return true;
 }

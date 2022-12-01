@@ -9,6 +9,7 @@ enum class ComponentType;
 class Component;
 class Transform;
 class CMesh;
+class CCamera;
 
 class GameObject
 {
@@ -26,6 +27,7 @@ public:
 
 	GameObject* GetParent();
 	CMesh* GetComponentMesh();
+	CCamera* GetComponentCamera();
 
 	Transform* transform;
 
