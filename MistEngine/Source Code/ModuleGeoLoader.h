@@ -32,6 +32,8 @@ struct Mesh {
 
 	GameObject* Owner;
 
+	AABB aabb;
+
 	void Draw();
 };
 
@@ -58,6 +60,7 @@ public:
 	vector<Mesh*> meshes;
 	string file_path = "";
 	
+
 
 private:
 	
