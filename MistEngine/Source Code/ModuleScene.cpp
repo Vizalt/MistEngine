@@ -77,8 +77,6 @@ void ModuleScene::SceneWindow()
 
 	ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
 
-	//normalized.x = (mousePos.x - ImGui::GetWindowPos().x);
-	//normalized.y = (mousePos.y - ImGui::GetWindowPos().y);
 
 	if (ImGui::IsMouseClicked) {
 		picking = App->camera->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
@@ -111,6 +109,7 @@ ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 po
 	normalizedPos.x = 2.0 * x / w - 1.0;
 	normalizedPos.y = 1.0 - 2.0 * y / h;
 
+	return normalizedPos;
 }
 
 void ModuleScene::OnSave() {}
