@@ -33,6 +33,7 @@ struct Mesh {
 	GameObject* Owner;
 
 	AABB aabb;
+	OBB obb;
 
 	void Draw();
 };

@@ -84,28 +84,20 @@ void ModuleScene::SceneWindow()
 
 		LineSegment my_ray = picking;
 
-		GameObject* selectObj;
+		GameObject* objOnMouse;
 		//for with all the meshes triangles
 		for (int i = 0; i < App->loader->meshes.size(); i++) 
 		{
 			if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
-				//selectObj = App->loader->meshes[i];
+				//objOnMouse = App->loader->meshes[i];
 			}
 
-		};
+		};		
 
-		
-
-		/*bool hit = my_ray.Intersects(game_object->aabb);
-		bool hit = ray_local_space.Intersects(tri, &distance, &hit_point);
-
-		if (hit == true) 
-		{
-			 
-		}*/
+		//if (uint j = 0; i < obj ) {
+		//	float3 t1;
+		//}	
 	}
-
-
 
 	ImGui::End();
 }
