@@ -94,6 +94,13 @@ float* CCamera::GetProjectionMatrix()
 	return projectionMatrix.ptr();
 }
 
+void CCamera::LookAt(const float3& target)
+{
+	FrustumCam.front = (target - FrustumCam.pos).Normalized();
+	float3 X = float3(0, 1, 0).Cross(FrustumCam.front).Normalized();
+	FrustumCam.up = FrustumCam.front.Cross(X);
+}
+
 void CCamera::TransformCam()
 {
 	//if is the scene cam it will move with input controls (ModuleCamera3D)
