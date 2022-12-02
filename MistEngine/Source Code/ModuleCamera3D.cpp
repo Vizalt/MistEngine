@@ -204,7 +204,7 @@ void ModuleCamera3D::Rotation()
 		Quat X = Quat::identity;
 		X.SetFromAxisAngle(float3(0.0f, 1.0f, 0.0f), DeltaX * DEGTORAD);
 
-		dir = dir * X;
+		dir = X * dir;
 	}
 
 	float4x4 matrix = sceneCam->FrustumCam.WorldMatrix();
