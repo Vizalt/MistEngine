@@ -3,6 +3,7 @@
 #include "ModuleGui.h"
 #include "ModuleWindow.h"
 #include "Camera.h"
+#include "Mesh.h"
 
 #include "glew.h"
 #include "ModuleRenderer3D.h"
@@ -147,6 +148,13 @@ GameObject* ModuleScene::createObj(GameObject* parent)
 	GameObject* b = new GameObject(parent);
 
 	return b;
+}
+
+GameObject* ModuleScene::createObj(GameObject* parent, MeshType type)
+{
+
+
+	return nullptr;
 }
 
 ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)

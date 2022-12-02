@@ -9,6 +9,9 @@
 Primitive::Primitive() : transform(float4x4::identity), color(White), wire(false), axis(false), type(PrimitiveTypes::Primitive_Point)
 {}
 
+Primitive::Primitive(float4x4 _transform) : transform(_transform), color(White), wire(false), axis(false), type(PrimitiveTypes::Primitive_Point)
+{}
+
 // ------------------------------------------------------------
 PrimitiveTypes Primitive::GetType() const
 {

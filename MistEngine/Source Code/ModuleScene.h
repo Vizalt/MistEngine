@@ -11,6 +11,7 @@
 using namespace std;
 
 class GameObject;
+enum class MeshType;
 
 class ModuleScene : public Module
 {
@@ -28,6 +29,8 @@ public:
 	void GameWindow();
 
 	GameObject* createObj(GameObject* parent);
+
+	GameObject* createObj(GameObject* parent, MeshType type);
 
 	ImVec2 WindowSize;
 

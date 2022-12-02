@@ -4,11 +4,11 @@
 #include "GameObject.h"
 #include "MathGeoLib.h"
 #include "imgui.h"
-#include "Mesh.h"
+//#include "Mesh.h"
 
 class GameObject;
 class Component;
-struct Mesh;
+//struct Mesh;
 
 class Transform : public Component
 {
@@ -30,5 +30,5 @@ public:
 
 	void RefreshTransformMatrix();
 
-	Mesh* mesh;
+	//Mesh* mesh;
 };

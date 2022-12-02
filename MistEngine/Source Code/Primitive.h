@@ -17,6 +17,7 @@ class Primitive
 public:
 
 	Primitive();
+	Primitive(float4x4 _transform);
 
 	virtual void	Render() const;
 	virtual void	InnerRender() const;
