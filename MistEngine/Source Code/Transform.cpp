@@ -23,6 +23,10 @@ Transform::~Transform()
 
 void Transform::SetTransformMatrix(float3 _position, float3 _rotation, float3 _scale)
 {
+	position = _position;
+	rotation = _rotation;
+	scale = _scale;
+
 	float x = _rotation.x * DEGTORAD;
 	float y = _rotation.y * DEGTORAD;
 	float z = _rotation.z * DEGTORAD;

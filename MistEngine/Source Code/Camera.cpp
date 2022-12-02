@@ -121,7 +121,7 @@ void CCamera::Inspector()
 {
 	if (ImGui::CollapsingHeader("Camera"))
 	{
-		if (ImGui::SliderInt("FOV", &FOV, 5, 200)) {
+		if (ImGui::SliderInt("FOV", &FOV, 5, 180)) {
 			FrustumCam.verticalFov = FOV * DEGTORAD;
 			FrustumCam.horizontalFov = 2.0f * atanf(tanf(FrustumCam.verticalFov / 2.0f) * 1.7f);
 		}

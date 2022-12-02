@@ -201,7 +201,7 @@ update_status ModuleGui::Update(float dt)
 			}
 			if (ImGui::CollapsingHeader("Camera"))
 			{
-				if (ImGui::SliderInt("FOV", &App->camera->sceneCam->FOV, 5, 200)) {
+				if (ImGui::SliderInt("FOV", &App->camera->sceneCam->FOV, 5, 180)) {
 					App->camera->sceneCam->FrustumCam.verticalFov = App->camera->sceneCam->FOV * DEGTORAD;
 					App->camera->sceneCam->FrustumCam.horizontalFov = 2.0f * atanf(tanf(App->camera->sceneCam->FrustumCam.verticalFov / 2.0f) * 1.7f);
 				}

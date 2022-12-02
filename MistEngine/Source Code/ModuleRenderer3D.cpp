@@ -224,10 +224,25 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	
+	//Plane plano(float3(0, 1, 0), 0);
+	//plano.axis = true;
+	//plano.Render();
 
-	/*Plane plano(0, 1, 0, 0);
-	plano.axis = true;
-	plano.Render();*/
+	/*CubeC cube;
+	cube.Render();*/
+
+	//SphereC sphere;
+	//sphere.Render();
+
+	//CylinderC cylinder;
+	//cylinder.Render();
+
+	//LineC line(float3(5, 1, 0));
+	//line.Render();
+
+	PlaneC plane(float3(0, 1, 0), 0);
+	plane.Render();
 
 	App->loader->Draw();
 	

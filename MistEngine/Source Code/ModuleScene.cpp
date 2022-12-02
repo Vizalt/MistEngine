@@ -24,9 +24,9 @@ bool ModuleScene::Start()
 	LOG("Setting up the Scene");
 	bool ret = true;
 
-	file_path = "Assets/BakerHouse.fbx";
-	objdebug = App->loader->LoadFile(file_path);
-	objdebug->name = "Baker House";
+	//file_path = "Assets/BakerHouse.fbx";
+	//objdebug = App->loader->LoadFile(file_path);
+	//objdebug->name = "Baker House";
 
 	return ret;
 }
