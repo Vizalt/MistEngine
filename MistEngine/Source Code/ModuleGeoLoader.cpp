@@ -211,6 +211,8 @@ void ModuleGeoLoader::BoundingBox(Mesh* mesh)
 	
 	if (mesh == nullptr)return;
 
+	mesh->obb = mesh->localAABB;
+	mesh->obb.Transform(mesh->Owner->transform->glTransformT);
 
 	mesh->aabb.SetNegativeInfinity();
 	mesh->aabb.Enclose(mesh->obb);
