@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "ModuleGui.h"
 #include "ModuleWindow.h"
+#include "ModuleCamera3D.h"
+#include "Camera.h"
 
 #include "ModuleRenderer3D.h"
 #include "glew.h"
@@ -196,6 +198,30 @@ update_status ModuleGui::Update(float dt)
 				ImGui::SliderInt("Height", &height, 480, 1080);
 				SDL_SetWindowSize(App->window->window, width, height);
 				SDL_SetWindowBrightness(App->window->window, brightness);
+			}
+			if (ImGui::CollapsingHeader("Camera"))
+			{
+				if (ImGui::SliderInt("FOV", &App->camera->sceneCam->FOV, 5, 200)) {
+					App->camera->sceneCam->FrustumCam.verticalFov = App->camera->sceneCam->FOV * DEGTORAD;
+					App->camera->sceneCam->FrustumCam.horizontalFov = 2.0f * atanf(tanf(App->camera->sceneCam->FrustumCam.verticalFov / 2.0f) * 1.7f);
+				}
+				if (ImGui::Button("Reset FOV")) {
+					App->camera->sceneCam->FOV = 60.0f;
+
+					App->camera->sceneCam->FrustumCam.verticalFov = App->camera->sceneCam->FOV * DEGTORAD;
+					App->camera->sceneCam->FrustumCam.horizontalFov = 2.0f * atanf(tanf(App->camera->sceneCam->FrustumCam.verticalFov / 2.0f) * 1.7f);
+				}
+
+
+				ImGui::SliderFloat("Near Distance", &App->camera->sceneCam->FrustumCam.nearPlaneDistance, 0.1f, App->camera->sceneCam->FrustumCam.farPlaneDistance);
+				if (ImGui::Button("Reset Near Distance")) {
+					App->camera->sceneCam->FrustumCam.nearPlaneDistance = 0.1f;
+				}
+
+				ImGui::InputFloat("Far Distance", &App->camera->sceneCam->FrustumCam.farPlaneDistance);
+				if (ImGui::Button("Reset Far Distance")) {
+					App->camera->sceneCam->FrustumCam.farPlaneDistance = 500.f;
+				}
 			}
 			if (ImGui::CollapsingHeader("File System")) {
 				/*if(ImGui::Checkbox("Active\t")){}*/
