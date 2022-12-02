@@ -4,9 +4,11 @@
 #include "GameObject.h"
 #include "MathGeoLib.h"
 #include "imgui.h"
+#include "Mesh.h"
 
 class GameObject;
 class Component;
+struct Mesh;
 
 class Transform : public Component
 {
@@ -24,5 +26,9 @@ public:
 	void SetTransformMatrix(float3 _position, float3 _rotation, float3 _scale);
 	void Inspector();
 
+	void BoxMesh();
+
 	void RefreshTransformMatrix();
+
+	Mesh* mesh;
 };

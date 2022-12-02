@@ -8,6 +8,7 @@
 #include "Mesh.h"
 #include "Texture.h"
 #include "GameObject.h"
+#include "Component.h"
 
 
 #include "ModuleHierarchy.h"
@@ -203,6 +204,20 @@ bool ModuleGeoLoader::CleanUp()
 	aiDetachAllLogStreams();
 
 	return true;
+}
+
+void ModuleGeoLoader::BoundingBox(Mesh* mesh)
+{
+	
+	if (mesh == nullptr)return;
+
+
+	mesh->aabb.SetNegativeInfinity();
+	mesh->aabb.Enclose(mesh->obb);
+
+	//// Generate AABB
+	//aabb.SetNegativeInfinity();
+	//aabb.Enclose((float3*)mesh->vertices, mesh->num_vertices);
 }
 
 void ModuleGeoLoader::Draw()

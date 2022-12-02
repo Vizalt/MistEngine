@@ -1,6 +1,7 @@
 #include "Transform.h"
 
 
+
 Transform::Transform() : Component(nullptr)
 {
 	
@@ -84,6 +85,14 @@ void Transform::Inspector()
 	
 
 	SetTransformMatrix(position, rotation, scale);
+}
+
+void Transform::BoxMesh()
+{
+	if (mesh == nullptr)return;
+
+	//mesh->obb = mesh->localAABB;
+	//mesh->obb.Transform(owner);
 }
 
 void Transform::RefreshTransformMatrix()

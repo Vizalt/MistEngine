@@ -97,7 +97,7 @@ void ModuleScene::SceneWindow()
 		//for with all the meshes triangles
 		for (int i = 0; i < App->loader->meshes.size(); i++) 
 		{
-			//if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
+			//if (my_ray.Intersects(App->loader->meshes[i].)) {
 			//	//selectObj = App->loader->meshes[i];
 			//}
 

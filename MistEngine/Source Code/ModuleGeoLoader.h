@@ -32,7 +32,9 @@ struct Mesh {
 
 	GameObject* Owner;
 
+	AABB localAABB;
 	AABB aabb;
+	OBB obb;
 
 	void Draw();
 };
@@ -51,6 +53,8 @@ public:
 	void BufferMesh(Mesh* mesh);
 	void RemoveMesh(Mesh* mesh);
 	bool CleanUp();
+
+	void BoundingBox(Mesh* mesh);
 	
 	void Draw();
 
