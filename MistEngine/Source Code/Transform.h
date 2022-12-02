@@ -26,7 +26,7 @@ public:
 	void SetTransformMatrix(float3 _position, float3 _rotation, float3 _scale);
 	void Inspector();
 
-	void BoxMesh();
+	//void BoxMesh();
 
 	void RefreshTransformMatrix();
 

@@ -87,13 +87,13 @@ void Transform::Inspector()
 	SetTransformMatrix(position, rotation, scale);
 }
 
-void Transform::BoxMesh()
-{
-	if (mesh == nullptr)return;
-
-	//mesh->obb = mesh->localAABB;
-	//mesh->obb.Transform(owner);
-}
+//void Transform::BoxMesh()
+//{
+//	if (mesh == nullptr)return;
+//
+//	//mesh->obb = mesh->localAABB;
+//	//mesh->obb.Transform(owner);
+//}
 
 void Transform::RefreshTransformMatrix()
 {
