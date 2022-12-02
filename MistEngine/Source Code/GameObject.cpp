@@ -7,6 +7,7 @@ GameObject::GameObject()
 {
 	name = "gameObject";
 	parent = nullptr;
+	fixed = false;
 
 	transform = new Transform(this);
 	components.push_back(transform);
@@ -16,6 +17,7 @@ GameObject::GameObject(GameObject* parent)
 {
 	name = "gameObject";
 	this->parent = parent;
+	fixed = false;
 
 	if(parent!= nullptr){
 		parent->children.push_back(this);
@@ -86,6 +88,42 @@ void GameObject::CreateComponent(ComponentType type)
 	delete newComponent;
 }
 
+void GameObject::DeleteChild(GameObject* child)
+{
+	for (int i = 0; i < children.size(); i++) {
+		if (children[i] == child) {
+			children.erase(children.begin() + i);
+			child->parent = nullptr;
+		}
+	}
+}
+
+bool GameObject::ChangeParent(GameObject* NewParent)
+{
+	if (parent != nullptr) {
+		if (NewParent->CheckChildOf(this)) return false;
+
+		parent->DeleteChild(this);
+	}
+
+	parent = NewParent;
+	NewParent->children.push_back(this);
+
+	return true;
+}
+
+bool GameObject::CheckChildOf(GameObject* parent)
+{
+	if (parent->children.empty()) return false;
+
+	for (int i = 0; i < parent->children.size(); i++) {
+
+		if (children[i] == this) return true;
+
+	}
+	return false;
+}
+
 GameObject* GameObject::GetParent()
 {
 	return parent;
@@ -100,6 +138,8 @@ CMesh* GameObject::GetComponentMesh()
 			return (CMesh*)components[i]; 
 		}
 	}
+
+	return nullptr;
 }
 
 CCamera* GameObject::GetComponentCamera()
@@ -111,4 +151,6 @@ CCamera* GameObject::GetComponentCamera()
 			return (CCamera*)components[i];
 		}
 	}
+
+	return nullptr;
 }

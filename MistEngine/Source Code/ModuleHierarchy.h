@@ -22,11 +22,11 @@ public:
 	bool CleanUp();
 
 	void DrawHierarchy();
-	void GameObjectTree(GameObject* obj);
+	void GameObjectTree(GameObject* obj, int index);
 	void SetGameObject(GameObject* obj);
 	
 	GameObject* TargetDropped;
 	GameObject* roots;
 	GameObject* objSelected;
-
+	GameObject* objHovered;
 };

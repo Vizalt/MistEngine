@@ -122,6 +122,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 				component->mesh = mesh;
 				meshObj->components.push_back(component);
 				meshObj->name = "Mesh " + to_string(i + 1);
+				meshObj->fixed = true;
 
 				meshObj->transform->SetTransformMatrix(meshObj->transform->position, meshObj->transform->rotation, meshObj->transform->scale);
 

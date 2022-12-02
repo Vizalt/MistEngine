@@ -30,7 +30,7 @@ public:
 
 	GameObject* createObj(GameObject* parent);
 
-	GameObject* createObj(GameObject* parent, MeshType type);
+	GameObject* createObjPrim(GameObject* parent, MeshType type);
 
 	ImVec2 WindowSize;
 

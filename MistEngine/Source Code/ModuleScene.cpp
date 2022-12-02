@@ -150,11 +150,15 @@ GameObject* ModuleScene::createObj(GameObject* parent)
 	return b;
 }
 
-GameObject* ModuleScene::createObj(GameObject* parent, MeshType type)
+GameObject* ModuleScene::createObjPrim(GameObject* parent, MeshType type)
 {
+	GameObject* b = new GameObject(parent);
 
+	CMesh* prim = new CMesh(b, type);
 
-	return nullptr;
+	b->components.push_back(prim);
+
+	return b;
 }
 
 ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
