@@ -63,6 +63,7 @@ private:
 
 	Mesh* ImportMesh(aiMesh* aiMesh);
 	string ImportTexture(const aiScene* scene, int index, string path);
+	GameObject* ProcessNode(const aiScene* scene, aiNode* node, GameObject* parent, string Path);
 
 public:
 	vector<Mesh*> meshes;

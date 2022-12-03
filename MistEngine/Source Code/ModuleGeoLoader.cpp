@@ -74,41 +74,11 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 	{
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 
-		GameObject* gObj = new GameObject(App->hierarchy->roots);
-
-		CMesh* component = new CMesh(gObj);
-
-		CTexture* componentT = new CTexture(gObj);
-		string texture_path = "";
-			
-
-		for (int i = 0; i < scene->mNumMeshes; i++)
-		{
-			Mesh* mesh = ImportMesh(scene->mMeshes[i]);
-
-			if(mesh == nullptr) {
-				LOG("Error loading scene %s", Path);
-				continue;
-			}
-			
-			mesh->Owner = gObj;
-			component->meshes.push_back(mesh);
-
-			if (texture_path == "") texture_path = ImportTexture(scene, i, Path);
-
-		}
-
-		gObj->components.push_back(component);
-		gObj->fixed = true;
-
-		gObj->transform->SetTransformMatrix();
-
-		gObj->components.push_back(componentT);
-		componentT->LinkTexture(texture_path);
+		GameObject* finalObj = ProcessNode(scene, scene->mRootNode, App->hierarchy->roots, Path);
 
 		aiReleaseImport(scene);
 
-		return gObj;
+		return finalObj;
 	}
 	else {
 		LOG("Error loading scene %s", Path);
@@ -263,6 +233,60 @@ string ModuleGeoLoader::ImportTexture(const aiScene* scene, int index, string pa
 	}
 
 	return "";
+}
+
+GameObject* ModuleGeoLoader::ProcessNode(const aiScene* scene, aiNode* node, GameObject* parent, string Path)
+{
+
+	if (node->mNumMeshes == 0 && node->mNumChildren == 0) return nullptr;
+
+	GameObject* gObj = new GameObject(parent);
+
+	gObj->name = node->mName.C_Str();
+
+	//node->mTransformation
+
+	if (node->mNumMeshes != 0) {
+
+		CMesh* component = new CMesh(gObj);
+
+		
+		string texture_path = "";
+
+
+		for (int i = 0; i < node->mNumMeshes; i++)
+		{
+			Mesh* mesh = ImportMesh(scene->mMeshes[node->mMeshes[i]]);
+
+			if (mesh == nullptr) {
+				LOG("Error loading scene %s", Path);
+				continue;
+			}
+
+			mesh->Owner = gObj;
+			component->meshes.push_back(mesh);
+
+			if (texture_path == "") texture_path = ImportTexture(scene, node->mMeshes[i], Path);
+
+		}
+
+		gObj->components.push_back(component);
+		gObj->fixed = true;
+
+		gObj->transform->SetTransformMatrix();
+
+		if (texture_path != "") {
+		CTexture* componentT = new CTexture(gObj);
+		gObj->components.push_back(componentT);
+		componentT->LinkTexture(texture_path);
+		}
+	}
+
+	for (int i = 0; i < node->mNumChildren; i++) {
+		ProcessNode(scene, node->mChildren[i], gObj, Path);
+	}
+
+	return gObj;
 }
 
 void Mesh::Draw()
