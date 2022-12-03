@@ -4,6 +4,8 @@
 #include "imgui.h"
 #include "Primitive.h"
 
+#include <vector>
+
 class GameObject;
 class Component;
 struct Mesh;
@@ -29,7 +31,9 @@ public:
 
 	MeshType meshType;
 
-	Mesh* mesh;
+	//Mesh* mesh;
+
+	std::vector<Mesh*> meshes;
 
 	Primitive* GObjPrim;
 	

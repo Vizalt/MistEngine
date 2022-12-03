@@ -9,7 +9,7 @@ CMesh::CMesh() : Component(nullptr)
 	type = ComponentType::MESH;
 	meshType = MeshType::FBX;
 	owner = nullptr;
-	mesh = nullptr;
+	//mesh = nullptr;
 }
 
 CMesh::CMesh(GameObject* owner) : Component(owner)
@@ -18,7 +18,7 @@ CMesh::CMesh(GameObject* owner) : Component(owner)
 	meshType = MeshType::FBX;
 	this->owner = owner;
 	CreatePrimitive();
-	mesh = nullptr;
+	//mesh = nullptr;
 }
 
 CMesh::CMesh(GameObject* owner, MeshType _meshType) : Component(owner)
@@ -27,13 +27,20 @@ CMesh::CMesh(GameObject* owner, MeshType _meshType) : Component(owner)
 	meshType = _meshType;
 	this->owner = owner;
 	CreatePrimitive();
-	mesh = nullptr;
+	//mesh = nullptr;
 }
 
 CMesh::~CMesh()
 {
-	Application::GetApp()->loader->RemoveMesh(mesh);
-	mesh = nullptr;
+	//Delete Meshes array
+	for (int i = 0; i < meshes.size(); i++) {
+		Application::GetApp()->loader->RemoveMesh(meshes[i]);
+		delete meshes[i];
+		meshes[i] = nullptr;
+	}
+	meshes.clear();
+	
+	//mesh = nullptr;
 	delete GObjPrim;
 }
 
@@ -46,66 +53,67 @@ void CMesh::Inspector()
 	case(MeshType::FBX):
 		if (ImGui::CollapsingHeader("Mesh"))
 		{
-			ImGui::LabelText("##%f", "Number of vertex:");
+			for (int i = 0; i < meshes.size(); i++) {
+			ImGui::LabelText("##%f", "Mesh %i - Vertex num:", i+1);
 			ImGui::SameLine();
-			if (mesh == nullptr) return;
-			ImGui::Text("%d", mesh->num_vertices);
+			ImGui::Text("%d", meshes[i]->num_vertices);
+			}
 		}
-
 		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
 		break;
+
 	case(MeshType::CUBE):
 		if (ImGui::CollapsingHeader("Cube"))
 		{
 			GObjPrim->Inspector();
 		}
-
 		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
 		break;
+
 	case(MeshType::SPHERE):
 		if (ImGui::CollapsingHeader("Sphere"))
 		{
 			GObjPrim->Inspector();
 		}
-
 		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
 		break;
+
 	case(MeshType::CYLINDER):
 		if (ImGui::CollapsingHeader("Cylinder"))
 		{
 			GObjPrim->Inspector();
 		}
-
 		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
 		break;
+
 	case(MeshType::LINE):
 		if (ImGui::CollapsingHeader("Line"))
 		{
 			GObjPrim->Inspector();
 		}
-
 		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
 		break;
+
 	case(MeshType::PLANE):
 		if (ImGui::CollapsingHeader("Plane"))
 		{
 			GObjPrim->Inspector();
 		}
-
 		ImGui::NewLine();
 		ImGui::Separator();
 		ImGui::NewLine();
 		break;
+
 	default:
 		break;
 	}

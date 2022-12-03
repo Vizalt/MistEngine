@@ -36,14 +36,22 @@ void CTexture::LinkTexture(std::string path)
 void CTexture::RefreshTexture()
 {
 	CMesh* rt = owner->GetComponentMesh();
+	if (rt == nullptr) return;
 
-	if (PrintLoaded)
-	{
-		rt->mesh->id_texture = textureID;
-		return;
+	//for(int i = 0; i < rt->meshes)
+	uint text = 0;
+
+	if (PrintLoaded) {
+		text = textureID;
 	}
-	
-	rt->mesh->id_texture = Application::GetApp()->texture->checkerID;
+	else {
+		text = Application::GetApp()->texture->checkerID;
+	}
+
+	for (int i = 0; i < rt->meshes.size(); i++)
+	{
+		rt->meshes[i]->id_texture = text;
+	}
 
 }
 

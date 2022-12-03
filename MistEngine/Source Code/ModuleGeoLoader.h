@@ -61,6 +61,9 @@ public:
 
 private:
 
+	Mesh* ImportMesh(aiMesh* aiMesh);
+	string ImportTexture(const aiScene* scene, int index, string path);
+
 public:
 	vector<Mesh*> meshes;
 	string file_path = "";

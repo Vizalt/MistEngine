@@ -76,81 +76,36 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 
 		GameObject* gObj = new GameObject(App->hierarchy->roots);
 
+		CMesh* component = new CMesh(gObj);
+
+		CTexture* componentT = new CTexture(gObj);
+		string texture_path = "";
+			
+
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
-			GameObject* meshObj = new GameObject(gObj);
-			Mesh* mesh = new Mesh();
-			// copy vertices
-			mesh->num_vertices = scene->mMeshes[i]->mNumVertices;
-			mesh->vertices = new float[mesh->num_vertices * VERTICES];
-			//memcpy(mesh->vertices, scene->mMeshes[i]->mVertices, sizeof(float) * mesh->num_vertices * 3);
+			Mesh* mesh = ImportMesh(scene->mMeshes[i]);
+
+			if(mesh == nullptr) {
+				LOG("Error loading scene %s", Path);
+				continue;
+			}
 			
-			for (int k = 0; k < mesh->num_vertices; k++) {
+			mesh->Owner = gObj;
+			component->meshes.push_back(mesh);
 
-				mesh->vertices[k * VERTICES] = scene->mMeshes[i]->mVertices[k].x;
-				mesh->vertices[k * VERTICES + 1] = scene->mMeshes[i]->mVertices[k].y;
-				mesh->vertices[k * VERTICES + 2] = scene->mMeshes[i]->mVertices[k].z;
+			if (texture_path == "") texture_path = ImportTexture(scene, i, Path);
 
-				mesh->vertices[k * VERTICES + 3] = scene->mMeshes[i]->mTextureCoords[0][k].x;
-				mesh->vertices[k * VERTICES + 4] = 1 - scene->mMeshes[i]->mTextureCoords[0][k].y;
-
-			}
-
-			LOG("New mesh with %d vertices", mesh->num_vertices);
-
-			// copy faces
-			if (scene->mMeshes[i]->HasFaces())
-			{
-				mesh->num_indices = scene->mMeshes[i]->mNumFaces * 3;
-				mesh->indices = new uint[mesh->num_indices]; // assume each face is a triangle
-
-				for (uint j = 0; j < scene->mMeshes[i]->mNumFaces; j++)
-				{
-					if (scene->mMeshes[i]->mFaces[j].mNumIndices != 3) {
-						LOG("WARNING, geometry face with != 3 indices!");
-					}	
-					else 
-					{
-						memcpy(&mesh->indices[j * 3], scene->mMeshes[i]->mFaces[j].mIndices, 3 * sizeof(uint));
-					}
-						
-				}
-
-				//meshes.push_back(mesh);
-				BufferMesh(mesh);
-				CMesh* component = new CMesh(meshObj);
-				mesh->Owner = meshObj;
-				component->mesh = mesh;
-				meshObj->components.push_back(component);
-				meshObj->name = "Mesh " + to_string(i + 1);
-				meshObj->fixed = true;
-
-				meshObj->transform->SetTransformMatrix();
-
-				if (scene->HasMaterials())
-				{
-					aiMaterial* MaterialIndex = scene->mMaterials[scene->mMeshes[i]->mMaterialIndex];
-					if (MaterialIndex->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
-						aiString TextPath;
-						aiString AssetsPath;
-						AssetsPath.Set("Assets/");
-						MaterialIndex->GetTexture(aiTextureType_DIFFUSE, 0, &TextPath);
-
-						AssetsPath.Append(TextPath.C_Str());
-
-						CTexture* componentT = new CTexture(meshObj);
-						componentT->LinkTexture(AssetsPath.C_Str());
-						meshObj->components.push_back(componentT);
-						
-					}
-				}
-
-			}
-			else {
-				
-				delete mesh;
-			}
 		}
+
+		gObj->components.push_back(component);
+		gObj->fixed = true;
+
+		gObj->transform->SetTransformMatrix();
+
+		gObj->components.push_back(componentT);
+		componentT->LinkTexture(texture_path);
+
 		aiReleaseImport(scene);
 
 		return gObj;
@@ -234,6 +189,80 @@ void ModuleGeoLoader::Draw()
 		gObjPrimList[i]->Render();
 	}
 
+}
+
+Mesh* ModuleGeoLoader::ImportMesh(aiMesh* aiMesh)
+{
+	Mesh* mesh = new Mesh();
+	// copy vertices
+	mesh->num_vertices = aiMesh->mNumVertices;
+	mesh->vertices = new float[mesh->num_vertices * VERTICES];
+	//memcpy(mesh->vertices, scene->mMeshes[i]->mVertices, sizeof(float) * mesh->num_vertices * 3);
+
+	for (int k = 0; k < mesh->num_vertices; k++) {
+
+		mesh->vertices[k * VERTICES] = aiMesh->mVertices[k].x;
+		mesh->vertices[k * VERTICES + 1] = aiMesh->mVertices[k].y;
+		mesh->vertices[k * VERTICES + 2] = aiMesh->mVertices[k].z;
+
+		mesh->vertices[k * VERTICES + 3] = aiMesh->mTextureCoords[0][k].x;
+		mesh->vertices[k * VERTICES + 4] = 1 - aiMesh->mTextureCoords[0][k].y;
+
+	}
+
+	LOG("New mesh with %d vertices", mesh->num_vertices);
+
+	// copy faces
+	if (aiMesh->HasFaces())
+	{
+		mesh->num_indices = aiMesh->mNumFaces * 3;
+		mesh->indices = new uint[mesh->num_indices]; // assume each face is a triangle
+
+		for (uint j = 0; j < aiMesh->mNumFaces; j++)
+		{
+			if (aiMesh->mFaces[j].mNumIndices != 3) {
+				LOG("WARNING, geometry face with != 3 indices!");
+			}
+			else
+			{
+				memcpy(&mesh->indices[j * 3], aiMesh->mFaces[j].mIndices, 3 * sizeof(uint));
+			}
+
+		}
+
+		//meshes.push_back(mesh);
+		BufferMesh(mesh);
+
+		return mesh;
+	}
+	else {
+
+		delete mesh;
+
+		return nullptr;
+	}
+
+}
+
+string ModuleGeoLoader::ImportTexture(const aiScene* scene, int index, string path)
+{
+
+	if (scene->HasMaterials())
+	{
+		aiMaterial* MaterialIndex = scene->mMaterials[scene->mMeshes[index]->mMaterialIndex];
+		if (MaterialIndex->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
+			aiString TextPath;
+			aiString AssetsPath;
+			AssetsPath.Set("Assets/");
+			MaterialIndex->GetTexture(aiTextureType_DIFFUSE, 0, &TextPath);
+
+			AssetsPath.Append(TextPath.C_Str());
+
+			return AssetsPath.C_Str();
+		}
+	}
+
+	return "";
 }
 
 void Mesh::Draw()
