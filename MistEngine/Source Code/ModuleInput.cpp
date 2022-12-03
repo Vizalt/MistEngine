@@ -145,13 +145,13 @@ bool ModuleInput::CleanUp()
 void ModuleInput::CheckFileExtension(std::string fileName)
 {
 	std::string extension = fileName.substr(fileName.find_last_of(".") + 1);
-	if (extension == "fbx")
+	if (extension == "fbx" || extension == "FBX")
 	{
 		LOG("Loading FBX");
 		GameObject* newFBX;
 		newFBX = App->loader->LoadFile(fileName);
 	}
-	if (extension == "png" || extension == "dds")
+	if (extension == "png" || extension == "dds" || extension == "PNG" || extension == "DDS")
 	{
 		LOG("Loading Textures");
 		//GameObject* obj = App->hierarchy->objSelected;

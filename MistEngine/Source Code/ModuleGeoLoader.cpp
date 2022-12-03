@@ -175,6 +175,7 @@ Mesh* ModuleGeoLoader::ImportMesh(aiMesh* aiMesh)
 		mesh->vertices[k * VERTICES + 1] = aiMesh->mVertices[k].y;
 		mesh->vertices[k * VERTICES + 2] = aiMesh->mVertices[k].z;
 
+		if (aiMesh->mTextureCoords[0] == nullptr) continue;
 		mesh->vertices[k * VERTICES + 3] = aiMesh->mTextureCoords[0][k].x;
 		mesh->vertices[k * VERTICES + 4] = 1 - aiMesh->mTextureCoords[0][k].y;
 
@@ -244,7 +245,16 @@ GameObject* ModuleGeoLoader::ProcessNode(const aiScene* scene, aiNode* node, Gam
 
 	gObj->name = node->mName.C_Str();
 
-	//node->mTransformation
+	aiVector3D scale, position, rotation;
+	aiQuaternion QuatRotation;
+
+	node->mTransformation.Decompose(scale, QuatRotation, position);
+	rotation = QuatRotation.GetEuler();
+
+	gObj->transform->scale = float3(scale.x, scale.y, scale.z);
+	gObj->transform->position = float3(position.x, position.y, position.z);
+	gObj->transform->rotation = float3(rotation.x, rotation.y, rotation.z);
+	gObj->transform->SetTransformMatrix();
 
 	if (node->mNumMeshes != 0) {
 
@@ -273,7 +283,7 @@ GameObject* ModuleGeoLoader::ProcessNode(const aiScene* scene, aiNode* node, Gam
 		gObj->components.push_back(component);
 		gObj->fixed = true;
 
-		gObj->transform->SetTransformMatrix();
+		
 
 		if (texture_path != "") {
 		CTexture* componentT = new CTexture(gObj);

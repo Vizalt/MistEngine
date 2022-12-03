@@ -29,6 +29,10 @@ bool ModuleScene::Start()
 	file_path = "Assets/BakerHouse.fbx";
 	objdebug = App->loader->LoadFile(file_path);
 	objdebug->name = "Baker House";
+	for (int i = 0; i < objdebug->children.size(); i++) {
+		objdebug->children[i]->transform->scale = float3::one;
+		objdebug->children[i]->transform->SetTransformMatrix();
+	}
 
 	return ret;
 }
@@ -86,55 +90,55 @@ void ModuleScene::SceneWindow()
 	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
-	if (ImGui::IsMouseClicked) {
+	//if (ImGui::IsMouseClicked) {
 
-		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
-		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
+	//	ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
+	//	ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
 
-		LineSegment my_ray = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+	//	LineSegment my_ray = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
 
-		std::vector<GameObject*> interVec;
+	//	std::vector<GameObject*> interVec;
 
-		//for with all the meshes triangles
-		for (size_t i = 0; i < App->loader->meshes.size(); i++)
-		{
-			if (my_ray.Intersects(App->loader->meshes[i]->obb)) {
-				if (App->loader->meshes[i]->Owner != nullptr) 
-				{
-					interVec.push_back(App->loader->meshes[i]->Owner);
-					LOG("AAAAAAAAAAAAAAAAAAAA");
-				}
-				
-			}
-		};
+	//	//for with all the meshes triangles
+	//	for (size_t i = 0; i < App->loader->meshes.size(); i++)
+	//	{
+	//		if (my_ray.Intersects(App->loader->meshes[i]->obb)) {
+	//			if (App->loader->meshes[i]->Owner != nullptr) 
+	//			{
+	//				interVec.push_back(App->loader->meshes[i]->Owner);
+	//				LOG("AAAAAAAAAAAAAAAAAAAA");
+	//			}
+	//			
+	//		}
+	//	};
 
-		for (size_t j = 0; j < interVec.size(); j++) {
-			Mesh* mesh /*= interVec[j]->GetComponentMesh()->mesh*/;
-			Triangle triangle;
-			uint indexCount = 0;
-			for (int b = 0; b < mesh->num_indices; b++) {
+	//	for (size_t j = 0; j < interVec.size(); j++) {
+	//		Mesh* mesh /*= interVec[j]->GetComponentMesh()->mesh*/;
+	//		Triangle triangle;
+	//		uint indexCount = 0;
+	//		for (int b = 0; b < mesh->num_indices; b++) {
 
-				triangle.a.x = mesh->vertices[mesh->indices[indexCount] * 3];
-				triangle.a.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-				triangle.a.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+	//			triangle.a.x = mesh->vertices[mesh->indices[indexCount] * 3];
+	//			triangle.a.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+	//			triangle.a.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
 
-				triangle.b.x = mesh->vertices[mesh->indices[indexCount] * 3];
-				triangle.b.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-				triangle.b.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+	//			triangle.b.x = mesh->vertices[mesh->indices[indexCount] * 3];
+	//			triangle.b.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+	//			triangle.b.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
 
-				triangle.c.x = mesh->vertices[mesh->indices[indexCount] * 3];
-				triangle.c.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-				triangle.c.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+	//			triangle.c.x = mesh->vertices[mesh->indices[indexCount] * 3];
+	//			triangle.c.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+	//			triangle.c.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
 
-				float dist;
-				
-				LOG("%d", triangle);
-				if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);				
-			}
+	//			float dist;
+	//			
+	//			LOG("%d", triangle);
+	//			if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);				
+	//		}
 
 
-		}
-	}
+	//	}
+	//}
 
 	ImGui::End();
 }
