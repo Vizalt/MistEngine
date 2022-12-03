@@ -139,7 +139,7 @@ void ModuleGeoLoader::BoundingBox(Mesh* mesh)
 	if (mesh == nullptr)return;
 
 	mesh->obb = mesh->localAABB;
-	mesh->obb.Transform(mesh->Owner->transform->GetTransformMatrix());
+	mesh->obb.Transform(mesh->Owner->transform->GetTransformMatrix().Transposed());
 
 	mesh->aabb.SetNegativeInfinity();
 	mesh->aabb.Enclose(mesh->obb);
