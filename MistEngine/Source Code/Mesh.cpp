@@ -2,7 +2,6 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "ModuleGeoLoader.h"
-//#include "Transform.h"
 
 
 CMesh::CMesh() : Component(nullptr)
@@ -100,35 +99,30 @@ void CMesh::CreatePrimitive()
 
 	case(MeshType::CUBE):
 		GObjPrim = new CubeC();
-		//GObjPrim->transform = owner->transform->lTransform;
 		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
 		owner->name = "Cube";
 		break;
 
 	case(MeshType::SPHERE):
 		GObjPrim = new SphereC();
-		//GObjPrim->transform = owner->transform->lTransform;
 		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
 		owner->name = "Sphere";
 		break;
 
 	case(MeshType::CYLINDER):
 		GObjPrim = new CylinderC();
-		//GObjPrim->transform = owner->transform->lTransform;
 		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
 		owner->name = "Cylinder";
 		break;
 
 	case(MeshType::LINE):
 		GObjPrim = new LineC();
-		////GObjPrim->transform = owner->transform->lTransform;
 		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
 		owner->name = "Line";
 		break;
 
 	case(MeshType::PLANE):
 		GObjPrim = new PlaneC();
-		//GObjPrim->transform = owner->transform->lTransform;
 		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
 		owner->name = "Plane";
 		break;

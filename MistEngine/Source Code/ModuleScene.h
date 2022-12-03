@@ -32,6 +32,8 @@ public:
 
 	GameObject* createObjPrim(GameObject* parent, MeshType type);
 
+	GameObject* createCamera(GameObject* parent);
+
 	ImVec2 WindowSize;
 
 	ImVec2 NormalizeMouse(float x, float y, float w, float h, ImVec2 pos);

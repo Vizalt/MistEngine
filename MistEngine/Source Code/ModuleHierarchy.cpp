@@ -107,11 +107,11 @@ void ModuleHierarchy::DrawHierarchy()
 					App->scene->createObjPrim(parent, MeshType::LINE);
 					ImGui::CloseCurrentPopup();
 				}
-				/*if (ImGui::Selectable("Create Plane")) {
+				if (ImGui::Selectable("Create Camera")) {
 					GameObject* parent = objSelected;
-					App->scene->createObjPrim(parent, MeshType::PLANE);
+					App->scene->createCamera(parent);
 					ImGui::CloseCurrentPopup();
-				}*/
+				}
 				ImGui::EndPopup();
 			}		
 		}

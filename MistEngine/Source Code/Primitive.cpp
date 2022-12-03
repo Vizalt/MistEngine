@@ -88,12 +88,12 @@ void Primitive::Inspector()
 
 
 // CUBE ============================================
-CubeC::CubeC() : Primitive(), size(1.0f, 1.0f, 1.0f), pos(0, 1, 0)
+CubeC::CubeC() : Primitive(), size(1.0f, 1.0f, 1.0f), pos(0, 0, 0)
 {
 	type = PrimitiveTypes::Primitive_Cube;
 }
 
-CubeC::CubeC(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ), pos(0, 1, 0)
+CubeC::CubeC(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ), pos(0, 0, 0)
 {
 	type = PrimitiveTypes::Primitive_Cube;
 }

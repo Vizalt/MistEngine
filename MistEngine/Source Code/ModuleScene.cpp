@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 #include "Camera.h"
 #include "Mesh.h"
+#include "Transform.h"
 
 #include "glew.h"
 #include "ModuleRenderer3D.h"
@@ -43,9 +44,9 @@ update_status ModuleScene::PreUpdate(float dt)
 // -----------------------------------------------------------------
 update_status ModuleScene::Update(float dt)
 {
-	//if (App->renderer3D->mainCam != nullptr) {
-	App->renderer3D->GameCamera->GetComponentCamera()->TransformCam();
-	//}
+	if (App->renderer3D->mainCam != nullptr) {
+		App->renderer3D->mainCam->TransformCam();
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN) {
 
@@ -157,6 +158,18 @@ GameObject* ModuleScene::createObjPrim(GameObject* parent, MeshType type)
 	CMesh* prim = new CMesh(b, type);
 
 	b->components.push_back(prim);
+
+	return b;
+}
+
+GameObject* ModuleScene::createCamera(GameObject* parent)
+{
+	GameObject* b = new GameObject(parent);
+
+	CCamera* cam = new CCamera(b);
+	b->components.push_back(cam);
+	b->name = "Camera";
+	b->transform->RefreshTransformMatrix();
 
 	return b;
 }
