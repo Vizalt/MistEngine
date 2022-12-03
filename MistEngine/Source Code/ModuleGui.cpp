@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 #include "ModuleCamera3D.h"
 #include "Camera.h"
+#include "Mesh.h"
 
 #include "ModuleRenderer3D.h"
 #include "glew.h"
@@ -69,6 +70,64 @@ update_status ModuleGui::Update(float dt)
 			ImGui::MenuItem("Configuration", NULL, &config);
 			ImGui::MenuItem("Console", NULL, &console);
 			ImGui::MenuItem("Hierarchy", NULL, &hierarchy);
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Game Objects")) {
+
+			if (ImGui::MenuItem("Create Empty Object")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createObj(parent);
+				}
+				else {
+					App->scene->createObj(App->hierarchy->roots);
+				}
+			}
+			if (ImGui::MenuItem("Create Cube")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createObjPrim(parent, MeshType::CUBE);
+				}
+				else {
+					App->scene->createObjPrim(App->hierarchy->roots, MeshType::CUBE);
+				}
+			}
+			if (ImGui::MenuItem("Create Sphere")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createObjPrim(parent, MeshType::SPHERE);
+				}
+				else {
+					App->scene->createObjPrim(App->hierarchy->roots, MeshType::SPHERE);
+				}
+			}
+			if (ImGui::MenuItem("Create Cylinder")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createObjPrim(parent, MeshType::CYLINDER);
+				}
+				else {
+					App->scene->createObjPrim(App->hierarchy->roots, MeshType::CYLINDER);
+				}
+			}
+			if (ImGui::MenuItem("Create Line")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createObjPrim(parent, MeshType::LINE);
+				}
+				else {
+					App->scene->createObjPrim(App->hierarchy->roots, MeshType::LINE);
+				}
+			}
+			if (ImGui::MenuItem("Create Camera")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createCamera(parent);
+				}
+				else {
+					App->scene->createCamera(App->hierarchy->roots);
+				}
+			}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Help")) {
