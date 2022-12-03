@@ -1,6 +1,7 @@
 #pragma once
 #include "Color.h"
 #include "MathGeoLib.h"
+#include "imgui.h"
 
 enum PrimitiveTypes
 {
@@ -21,6 +22,7 @@ public:
 
 	virtual void	Render() const;
 	virtual void	InnerRender() const;
+	virtual void	Inspector();
 	PrimitiveTypes	GetType() const;
 
 public:
@@ -40,8 +42,10 @@ public :
 	CubeC();
 	CubeC(float sizeX, float sizeY, float sizeZ);
 	void InnerRender() const;
+	void Inspector();
 public:
 	float3 size;
+	float3 pos;
 };
 
 class SphereC : public Primitive
@@ -50,6 +54,7 @@ public:
 	SphereC();
 	SphereC(float3 _pos, float _radius);
 	void InnerRender() const;
+	void Inspector();
 public:
 	float3 pos;
 	float radius;
@@ -62,6 +67,7 @@ public:
 	CylinderC();
 	CylinderC(float3 _pos, float _radius, float _height);
 	void InnerRender() const;
+	void Inspector();
 public:
 	float3 pos;
 	float radius;
@@ -75,6 +81,7 @@ public:
 	LineC(float3 _destination);
 	LineC(float3 _origin, float3 _destination);
 	void InnerRender() const;
+	void Inspector();
 public:
 	float3 origin, destination;
 };
@@ -85,7 +92,9 @@ public:
 	PlaneC();
 	PlaneC(float3 _normal, float d);
 	void InnerRender() const;
+	void Inspector();
 public:
+	float3 pos;
 	float3 normal;
 	float constant;
 };

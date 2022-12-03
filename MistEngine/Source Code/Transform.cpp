@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "Mesh.h"
 
 
 
@@ -75,20 +76,42 @@ void Transform::SetTransformMatrix(float3 _position, float3 _rotation, float3 _s
 
 void Transform::Inspector()
 {
-	if (ImGui::CollapsingHeader("Transform"))
-	{
-		ImGui::Text("X\t\t Y\t\t Z");
-		ImGui::InputFloat3("Position", position.ptr());
+	if (owner->parent != nullptr) {
 
-		ImGui::Text("X\t\t Y\t\t Z");
-		ImGui::InputFloat3("Rotation", rotation.ptr());
+		if (owner->GetComponentMesh() != nullptr) {
+			if (owner->GetComponentMesh()->meshType == MeshType::FBX) 
+			{
+				if (ImGui::CollapsingHeader("Transform"))
+				{
+					ImGui::Text("X\t\t Y\t\t Z");
+					ImGui::InputFloat3("Position", position.ptr());
 
-		ImGui::Text("X\t\t Y\t\t Z");
-		ImGui::InputFloat3("Scale", scale.ptr());
+					ImGui::Text("X\t\t Y\t\t Z");
+					ImGui::InputFloat3("Rotation", rotation.ptr());
+
+					ImGui::Text("X\t\t Y\t\t Z");
+					ImGui::InputFloat3("Scale", scale.ptr());
+				}
+				SetTransformMatrix(position, rotation, scale);
+			}
+			else {
+				return;
+			}
+		}
+		if (ImGui::CollapsingHeader("Transform"))
+		{
+			ImGui::Text("X\t\t Y\t\t Z");
+			ImGui::InputFloat3("Position", position.ptr());
+
+			ImGui::Text("X\t\t Y\t\t Z");
+			ImGui::InputFloat3("Rotation", rotation.ptr());
+
+			ImGui::Text("X\t\t Y\t\t Z");
+			ImGui::InputFloat3("Scale", scale.ptr());
+		}
+		SetTransformMatrix(position, rotation, scale);
 	}
-	
-
-	SetTransformMatrix(position, rotation, scale);
+		
 }
 
 //void Transform::BoxMesh()

@@ -19,6 +19,7 @@ using namespace std;
 #define VERTICES 5
 
 class GameObject;
+class Primitive;
 
 struct Mesh {
 	uint id_indices = 0; // index in VRAM
@@ -63,7 +64,7 @@ private:
 public:
 	vector<Mesh*> meshes;
 	string file_path = "";
-	
+	vector<Primitive*> gObjPrimList;
 
 
 private:

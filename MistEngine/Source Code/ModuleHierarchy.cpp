@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleGui.h"
 #include "ModuleWindow.h"
+#include "Mesh.h"
 
 #include "ModuleRenderer3D.h"
 #include "glew.h"
@@ -81,11 +82,36 @@ void ModuleHierarchy::DrawHierarchy()
 		if (objSelected != nullptr) {// don't show the option of creating a gameobj if nothing it's selected :)
 			if (ImGui::BeginPopupContextWindow())
 			{
-				if (ImGui::Selectable("Create Object")) {
-				GameObject* parent = objSelected;
-				App->scene->createObj(parent);
-				ImGui::CloseCurrentPopup();
+				if (ImGui::Selectable("Create Empty Object")) {
+					GameObject* parent = objSelected;
+					App->scene->createObj(parent);
+					ImGui::CloseCurrentPopup();
 				}
+				if (ImGui::Selectable("Create Cube")) {
+					GameObject* parent = objSelected;
+					App->scene->createObjPrim(parent, MeshType::CUBE);
+					ImGui::CloseCurrentPopup();
+				}
+				if (ImGui::Selectable("Create Sphere")) {
+					GameObject* parent = objSelected;
+					App->scene->createObjPrim(parent, MeshType::SPHERE);
+					ImGui::CloseCurrentPopup();
+				}
+				if (ImGui::Selectable("Create Cylinder")) {
+					GameObject* parent = objSelected;
+					App->scene->createObjPrim(parent, MeshType::CYLINDER);
+					ImGui::CloseCurrentPopup();
+				}
+				if (ImGui::Selectable("Create Line")) {
+					GameObject* parent = objSelected;
+					App->scene->createObjPrim(parent, MeshType::LINE);
+					ImGui::CloseCurrentPopup();
+				}
+				/*if (ImGui::Selectable("Create Plane")) {
+					GameObject* parent = objSelected;
+					App->scene->createObjPrim(parent, MeshType::PLANE);
+					ImGui::CloseCurrentPopup();
+				}*/
 				ImGui::EndPopup();
 			}		
 		}

@@ -9,6 +9,7 @@
 #include "Texture.h"
 #include "GameObject.h"
 #include "Component.h"
+#include "Primitive.h"
 
 
 #include "ModuleHierarchy.h"
@@ -228,6 +229,11 @@ void ModuleGeoLoader::Draw()
 	for (int i = 0; i< meshes.size(); i++) {
 		meshes[i]->Draw();
 	}
+
+	for (int i = 0; i < gObjPrimList.size(); i++) {
+		gObjPrimList[i]->Render();
+	}
+
 }
 
 void Mesh::Draw()

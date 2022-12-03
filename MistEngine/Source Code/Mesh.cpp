@@ -2,7 +2,7 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "ModuleGeoLoader.h"
-#include "Transform.h"
+//#include "Transform.h"
 
 
 CMesh::CMesh() : Component(nullptr)
@@ -41,13 +41,53 @@ CMesh::~CMesh()
 
 void CMesh::Inspector()
 {
-	if (ImGui::CollapsingHeader("Mesh"))
+	
+	switch (meshType)
 	{
-		ImGui::LabelText("##%f", "Number of vertex:");
-		ImGui::SameLine();
-		if (mesh == nullptr) return;
-		ImGui::Text("%d", mesh->num_vertices);
+	case(MeshType::FBX):
+		if (ImGui::CollapsingHeader("Mesh"))
+		{
+			ImGui::LabelText("##%f", "Number of vertex:");
+			ImGui::SameLine();
+			if (mesh == nullptr) return;
+			ImGui::Text("%d", mesh->num_vertices);
+		}
+		break;
+	case(MeshType::CUBE):
+		if (ImGui::CollapsingHeader("Cube"))
+		{
+			GObjPrim->Inspector();
+		}
+		break;
+	case(MeshType::SPHERE):
+		if (ImGui::CollapsingHeader("Sphere"))
+		{
+			GObjPrim->Inspector();
+		}
+		break;
+	case(MeshType::CYLINDER):
+		if (ImGui::CollapsingHeader("Cylinder"))
+		{
+			GObjPrim->Inspector();
+		}
+		break;
+	case(MeshType::LINE):
+		if (ImGui::CollapsingHeader("Line"))
+		{
+			GObjPrim->Inspector();
+		}
+		break;
+	case(MeshType::PLANE):
+		if (ImGui::CollapsingHeader("Plane"))
+		{
+			GObjPrim->Inspector();
+		}
+		break;
+	default:
+		break;
 	}
+		
+	
 }
 
 void CMesh::CreatePrimitive()
@@ -60,27 +100,37 @@ void CMesh::CreatePrimitive()
 
 	case(MeshType::CUBE):
 		GObjPrim = new CubeC();
-		GObjPrim->transform = owner->transform->lTransform;
+		//GObjPrim->transform = owner->transform->lTransform;
+		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
+		owner->name = "Cube";
 		break;
 
 	case(MeshType::SPHERE):
 		GObjPrim = new SphereC();
-		GObjPrim->transform = owner->transform->lTransform;
+		//GObjPrim->transform = owner->transform->lTransform;
+		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
+		owner->name = "Sphere";
 		break;
 
 	case(MeshType::CYLINDER):
 		GObjPrim = new CylinderC();
-		GObjPrim->transform = owner->transform->lTransform;
+		//GObjPrim->transform = owner->transform->lTransform;
+		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
+		owner->name = "Cylinder";
 		break;
 
 	case(MeshType::LINE):
 		GObjPrim = new LineC();
-		GObjPrim->transform = owner->transform->lTransform;
+		////GObjPrim->transform = owner->transform->lTransform;
+		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
+		owner->name = "Line";
 		break;
 
 	case(MeshType::PLANE):
 		GObjPrim = new PlaneC();
-		GObjPrim->transform = owner->transform->lTransform;
+		//GObjPrim->transform = owner->transform->lTransform;
+		Application::GetApp()->loader->gObjPrimList.push_back(GObjPrim);
+		owner->name = "Plane";
 		break;
 
 	default:

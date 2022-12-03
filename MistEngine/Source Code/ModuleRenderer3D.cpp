@@ -225,7 +225,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	
-	PlaneC plane(float3(0, 1, 0), 0);
+	PlaneC plane(float3(0, 0, 0), 0);
 	plane.Render();
 
 	App->loader->Draw();

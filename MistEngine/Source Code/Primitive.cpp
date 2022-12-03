@@ -82,14 +82,18 @@ void Primitive::InnerRender() const
 	glPointSize(1.0f);
 }
 
+void Primitive::Inspector()
+{
+}
+
 
 // CUBE ============================================
-CubeC::CubeC() : Primitive(), size(1.0f, 1.0f, 1.0f)
+CubeC::CubeC() : Primitive(), size(1.0f, 1.0f, 1.0f), pos(0, 1, 0)
 {
 	type = PrimitiveTypes::Primitive_Cube;
 }
 
-CubeC::CubeC(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ)
+CubeC::CubeC(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ), pos(0, 1, 0)
 {
 	type = PrimitiveTypes::Primitive_Cube;
 }
@@ -100,45 +104,55 @@ void CubeC::InnerRender() const
 	float sy = size.y * 0.5f;
 	float sz = size.z * 0.5f;
 
+	glTranslatef(pos[0], pos[1], pos[2]);
 	glBegin(GL_QUADS);
 
-	glNormal3f(0.0f, 0.0f, 1.0f);
+	//glNormal3f(0.0f, 0.0f, 1.0f);
 	glVertex3f(-sx, -sy, sz);
 	glVertex3f( sx, -sy, sz);
 	glVertex3f( sx,  sy, sz);
 	glVertex3f(-sx,  sy, sz);
 
-	glNormal3f(0.0f, 0.0f, -1.0f);
+	//glNormal3f(0.0f, 0.0f, -1.0f);
 	glVertex3f( sx, -sy, -sz);
 	glVertex3f(-sx, -sy, -sz);
 	glVertex3f(-sx,  sy, -sz);
 	glVertex3f( sx,  sy, -sz);
 
-	glNormal3f(1.0f, 0.0f, 0.0f);
+	//glNormal3f(1.0f, 0.0f, 0.0f);
 	glVertex3f(sx, -sy,  sz);
 	glVertex3f(sx, -sy, -sz);
 	glVertex3f(sx,  sy, -sz);
 	glVertex3f(sx,  sy,  sz);
 
-	glNormal3f(-1.0f, 0.0f, 0.0f);
+	//glNormal3f(-1.0f, 0.0f, 0.0f);
 	glVertex3f(-sx, -sy, -sz);
 	glVertex3f(-sx, -sy,  sz);
 	glVertex3f(-sx,  sy,  sz);
 	glVertex3f(-sx,  sy, -sz);
 
-	glNormal3f(0.0f, 1.0f, 0.0f);
+	//glNormal3f(0.0f, 1.0f, 0.0f);
 	glVertex3f(-sx, sy,  sz);
 	glVertex3f( sx, sy,  sz);
 	glVertex3f( sx, sy, -sz);
 	glVertex3f(-sx, sy, -sz);
 
-	glNormal3f(0.0f, -1.0f, 0.0f);
+	//glNormal3f(0.0f, -1.0f, 0.0f);
 	glVertex3f(-sx, -sy, -sz);
 	glVertex3f( sx, -sy, -sz);
 	glVertex3f( sx, -sy,  sz);
 	glVertex3f(-sx, -sy,  sz);
 
+
 	glEnd();
+}
+
+void CubeC::Inspector()
+{
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Position", pos.ptr());
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Size", size.ptr());
 }
 
 // SPHERE ============================================
@@ -155,8 +169,18 @@ SphereC::SphereC(float3 _pos, float _radius) : Primitive(), radius(_radius), pos
 void SphereC::InnerRender() const
 {
 	GLUquadric* glQ = gluNewQuadric();
+	glPushMatrix();
+	glTranslatef(pos[0], pos[1], pos[2]);
 	gluSphere(glQ, radius, 25, 25);
 	gluDeleteQuadric(glQ);
+}
+
+void SphereC::Inspector()
+{
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Position", pos.ptr());
+	ImGui::Text("");
+	ImGui::InputFloat("Radius", &radius);
 }
 
 // CYLINDER ============================================
@@ -184,6 +208,16 @@ void CylinderC::InnerRender() const
 	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 	gluDisk(glQ, 0.0f, radius, 30, 1);
 	gluDeleteQuadric(glQ);
+}
+
+void CylinderC::Inspector()
+{
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Position", pos.ptr());
+	ImGui::Text("");
+	ImGui::InputFloat("Radius", &radius);
+	ImGui::Text("");
+	ImGui::InputFloat("Height", &height);
 }
 
 // LINE ==================================================
@@ -216,13 +250,21 @@ void LineC::InnerRender() const
 	glLineWidth(1.0f);
 }
 
+void LineC::Inspector()
+{
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Origin", origin.ptr());
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Destination", destination.ptr());
+}
+
 // PLANE ==================================================
-PlaneC::PlaneC() : Primitive(), normal(0, 1, 0), constant(1)
+PlaneC::PlaneC() : Primitive(), normal(0, 1, 0), constant(1), pos(0, 0, 0)
 {
 	type = PrimitiveTypes::Primitive_Plane;
 }
 
-PlaneC::PlaneC(float3 _normal, float d) : Primitive(), normal(_normal), constant(d)
+PlaneC::PlaneC(float3 _normal, float d) : Primitive(), normal(_normal), constant(d), pos(0, 0, 0)
 {
 	type = PrimitiveTypes::Primitive_Plane;
 }
@@ -232,6 +274,8 @@ void PlaneC::InnerRender() const
 	glLineWidth(1.0f);
 	
 	glBegin(GL_LINES);
+
+	glTranslatef(pos[0], pos[1], pos[2]);
 
 	float d = 200.0f;
 
@@ -244,4 +288,15 @@ void PlaneC::InnerRender() const
 	}
 
 	glEnd();
+}
+
+void PlaneC::Inspector()
+{
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Position", pos.ptr());
+	ImGui::Text("X\t\t Y\t\t Z");
+	ImGui::InputFloat3("Normal", normal.ptr());
+	ImGui::Text("");
+	ImGui::InputFloat("Constant", &constant);
+
 }
