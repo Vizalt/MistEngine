@@ -89,25 +89,27 @@ void ModuleScene::SceneWindow()
 	if (ImGui::IsMouseClicked) {
 
 		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
-		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
+		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
 
-		picking = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
-
-		LineSegment my_ray = picking;
+		LineSegment my_ray = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
 
 		std::vector<GameObject*> interVec;
 
 		//for with all the meshes triangles
-		for (int i = 0; i < App->loader->meshes.size(); i++)
+		for (size_t i = 0; i < App->loader->meshes.size(); i++)
 		{
-			if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
-				interVec.push_back(App->loader->meshes[i]->Owner);
-				LOG("AAAAAAAAAAAAAAAAAAAA");
+			if (my_ray.Intersects(App->loader->meshes[i]->obb)) {
+				if (App->loader->meshes[i]->Owner != nullptr) 
+				{
+					interVec.push_back(App->loader->meshes[i]->Owner);
+					LOG("AAAAAAAAAAAAAAAAAAAA");
+				}
+				
 			}
 		};
 
-		for (int j = 0; j < interVec.size(); j++) {
-			Mesh* mesh{} /*= interVec[j]->GetComponentMesh<CMesh>()->mesh*/;
+		for (size_t j = 0; j < interVec.size(); j++) {
+			Mesh* mesh /*= interVec[j]->GetComponentMesh()->mesh*/;
 			Triangle triangle;
 			uint indexCount = 0;
 			for (int b = 0; b < mesh->num_indices; b++) {
@@ -126,7 +128,7 @@ void ModuleScene::SceneWindow()
 
 				float dist;
 				
-
+				LOG("%d", triangle);
 				if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);				
 			}
 
