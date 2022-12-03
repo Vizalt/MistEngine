@@ -109,7 +109,7 @@ void ModuleScene::SceneWindow()
 		};
 
 		for (size_t j = 0; j < interVec.size(); j++) {
-			Mesh* mesh /*= interVec[j]->GetComponentMesh()->mesh*/;
+			Mesh* mesh /*= interVec[j]->GetComponentMesh()->meshes*/;
 			Triangle triangle;
 			uint indexCount = 0;
 			for (int b = 0; b < mesh->num_indices; b++) {
