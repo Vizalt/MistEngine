@@ -95,16 +95,19 @@ void ModuleScene::SceneWindow()
 
 		LineSegment my_ray = picking;
 
-		GameObject* selectObj;
+		std::vector<GameObject*> interVec;
 
 		//for with all the meshes triangles
 		for (int i = 0; i < App->loader->meshes.size(); i++) 
 		{
 			if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
-				//selectObj = App->loader->meshes[i];
+				interVec.push_back(App->loader->meshes[i]->Owner);
 			}
-
 		};
+
+		for (int j = 0; j < interVec.size(); j++) {
+
+		}
 
 		/*bool hit = my_ray.Intersects(game_object->aabb);
 		bool hit = ray_local_space.Intersects(tri, &distance, &hit_point);*/
