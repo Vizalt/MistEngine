@@ -54,4 +54,8 @@ void CTexture::Inspector()
 		if (ImGui::Checkbox("Loaded Texture\t", &PrintLoaded));
 	}
 	RefreshTexture();
+
+	ImGui::NewLine();
+	ImGui::Separator();
+	ImGui::NewLine();
 }

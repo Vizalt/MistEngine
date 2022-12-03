@@ -125,7 +125,7 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 				meshObj->name = "Mesh " + to_string(i + 1);
 				meshObj->fixed = true;
 
-				meshObj->transform->SetTransformMatrix(meshObj->transform->position, meshObj->transform->rotation, meshObj->transform->scale);
+				meshObj->transform->SetTransformMatrix();
 
 				if (scene->HasMaterials())
 				{
@@ -214,7 +214,7 @@ void ModuleGeoLoader::BoundingBox(Mesh* mesh)
 	if (mesh == nullptr)return;
 
 	mesh->obb = mesh->localAABB;
-	mesh->obb.Transform(mesh->Owner->transform->glTransformT);
+	mesh->obb.Transform(mesh->Owner->transform->GetTransformMatrix());
 
 	mesh->aabb.SetNegativeInfinity();
 	mesh->aabb.Enclose(mesh->obb);
@@ -255,7 +255,7 @@ void Mesh::Draw()
 	glPushMatrix();
 
 	if (Owner != nullptr) {
-		glMultMatrixf(Owner->transform->lTransform.ptr());
+		glMultMatrixf(Owner->transform->GetTransformMatrix().ptr());
 	}
 
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);

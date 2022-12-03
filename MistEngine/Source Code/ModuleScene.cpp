@@ -169,7 +169,7 @@ GameObject* ModuleScene::createCamera(GameObject* parent)
 	CCamera* cam = new CCamera(b);
 	b->components.push_back(cam);
 	b->name = "Camera";
-	b->transform->RefreshTransformMatrix();
+	b->transform->SetTransformMatrix();
 
 	return b;
 }

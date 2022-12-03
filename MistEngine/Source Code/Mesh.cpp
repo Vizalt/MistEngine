@@ -51,36 +51,60 @@ void CMesh::Inspector()
 			if (mesh == nullptr) return;
 			ImGui::Text("%d", mesh->num_vertices);
 		}
+
+		ImGui::NewLine();
+		ImGui::Separator();
+		ImGui::NewLine();
 		break;
 	case(MeshType::CUBE):
 		if (ImGui::CollapsingHeader("Cube"))
 		{
 			GObjPrim->Inspector();
 		}
+
+		ImGui::NewLine();
+		ImGui::Separator();
+		ImGui::NewLine();
 		break;
 	case(MeshType::SPHERE):
 		if (ImGui::CollapsingHeader("Sphere"))
 		{
 			GObjPrim->Inspector();
 		}
+
+		ImGui::NewLine();
+		ImGui::Separator();
+		ImGui::NewLine();
 		break;
 	case(MeshType::CYLINDER):
 		if (ImGui::CollapsingHeader("Cylinder"))
 		{
 			GObjPrim->Inspector();
 		}
+
+		ImGui::NewLine();
+		ImGui::Separator();
+		ImGui::NewLine();
 		break;
 	case(MeshType::LINE):
 		if (ImGui::CollapsingHeader("Line"))
 		{
 			GObjPrim->Inspector();
 		}
+
+		ImGui::NewLine();
+		ImGui::Separator();
+		ImGui::NewLine();
 		break;
 	case(MeshType::PLANE):
 		if (ImGui::CollapsingHeader("Plane"))
 		{
 			GObjPrim->Inspector();
 		}
+
+		ImGui::NewLine();
+		ImGui::Separator();
+		ImGui::NewLine();
 		break;
 	default:
 		break;

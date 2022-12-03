@@ -162,7 +162,7 @@ bool ModuleRenderer3D::Start()
 	mainCam = cam;
 	GameCamera->components.push_back(cam);
 	GameCamera->transform->position = float3(0, 2, -10);
-	GameCamera->transform->RefreshTransformMatrix();
+	GameCamera->transform->SetTransformMatrix();
 
 	return ret;
 }

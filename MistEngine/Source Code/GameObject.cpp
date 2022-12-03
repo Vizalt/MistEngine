@@ -66,12 +66,12 @@ void GameObject::InspectorWindow()
 	if(ImGui::IsKeyDown(ImGuiKey_Enter))
 		name = string;
 
+	ImGui::NewLine();
+	ImGui::Separator();
+	ImGui::NewLine();
+
 	for (size_t i = 0; i < components.size(); i++)
 	{
-		ImGui::NewLine();
-		ImGui::Separator();
-		ImGui::NewLine();
-
 		components[i]->Inspector();
 	}
 }
