@@ -98,22 +98,41 @@ void ModuleScene::SceneWindow()
 		std::vector<GameObject*> interVec;
 
 		//for with all the meshes triangles
-		for (int i = 0; i < App->loader->meshes.size(); i++) 
+		for (int i = 0; i < App->loader->meshes.size(); i++)
 		{
 			if (my_ray.Intersects(App->loader->meshes[i]->aabb)) {
 				interVec.push_back(App->loader->meshes[i]->Owner);
+				LOG("AAAAAAAAAAAAAAAAAAAA");
 			}
 		};
 
 		for (int j = 0; j < interVec.size(); j++) {
+			Mesh* mesh{} /*= interVec[j]->GetComponentMesh<CMesh>()->mesh*/;
+			Triangle triangle;
+			uint indexCount = 0;
+			for (int b = 0; b < mesh->num_indices; b++) {
+
+				triangle.a.x = mesh->vertices[mesh->indices[indexCount] * 3];
+				triangle.a.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+				triangle.a.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+
+				triangle.b.x = mesh->vertices[mesh->indices[indexCount] * 3];
+				triangle.b.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+				triangle.b.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+
+				triangle.c.x = mesh->vertices[mesh->indices[indexCount] * 3];
+				triangle.c.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+				triangle.c.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+
+				float dist;
+				
+
+				if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);				
+			}
+
 
 		}
-
-		/*bool hit = my_ray.Intersects(game_object->aabb);
-		bool hit = ray_local_space.Intersects(tri, &distance, &hit_point);*/
 	}
-
-
 
 	ImGui::End();
 }

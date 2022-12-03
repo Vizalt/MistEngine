@@ -142,6 +142,19 @@ CMesh* GameObject::GetComponentMesh()
 	return nullptr;
 }
 
+GameObject* GameObject::GetCompMesh()
+{
+	for (int i = 0; i < components.size(); i++) {
+
+		if (components[i]->type == ComponentType::MESH)
+		{
+			return (GameObject*)components[i];
+		}
+	}
+
+	return nullptr;
+}
+
 CCamera* GameObject::GetComponentCamera()
 {
 	for (int i = 0; i < components.size(); i++) {

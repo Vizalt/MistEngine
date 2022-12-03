@@ -31,6 +31,7 @@ public:
 
 	GameObject* GetParent();
 	CMesh* GetComponentMesh();
+	GameObject* GetCompMesh();
 	CCamera* GetComponentCamera();
 
 	Transform* transform;
