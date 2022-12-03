@@ -86,7 +86,7 @@ void ModuleScene::SceneWindow()
 	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
-	if (ImGui::IsMouseClicked) {
+	if (ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
 
 		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
 		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
@@ -102,38 +102,44 @@ void ModuleScene::SceneWindow()
 				if (App->loader->meshes[i]->Owner != nullptr) 
 				{
 					interVec.push_back(App->loader->meshes[i]->Owner);
-					LOG("AAAAAAAAAAAAAAAAAAAA");
+					LOG("Mouse Clicked");
 				}
 				
 			}
 		};
 
-		for (size_t j = 0; j < interVec.size(); j++) {
-			Mesh* mesh /*= interVec[j]->GetComponentMesh()->meshes*/;
-			Triangle triangle;
-			uint indexCount = 0;
-			for (int b = 0; b < mesh->num_indices; b++) {
+		//for (size_t j = 0; j < interVec.size(); j++) {
+		//	for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
+		//		Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];
+		//		
+		//		uint indexCount = 0;
+		//		for (size_t b = 0; b < mesh->num_indices; b++) {
 
-				triangle.a.x = mesh->vertices[mesh->indices[indexCount] * 3];
-				triangle.a.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-				triangle.a.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+		//			/*triangle.a.x = mesh->vertices[mesh->indices[indexCount] * 3];
+		//			triangle.a.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+		//			triangle.a.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
 
-				triangle.b.x = mesh->vertices[mesh->indices[indexCount] * 3];
-				triangle.b.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-				triangle.b.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+		//			triangle.b.x = mesh->vertices[mesh->indices[indexCount] * 3];
+		//			triangle.b.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+		//			triangle.b.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
 
-				triangle.c.x = mesh->vertices[mesh->indices[indexCount] * 3];
-				triangle.c.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-				triangle.c.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
+		//			triangle.c.x = mesh->vertices[mesh->indices[indexCount] * 3];
+		//			triangle.c.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
+		//			triangle.c.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];*/
 
-				float dist;
-				
-				LOG("%d", triangle);
-				if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);				
-			}
+		//			float3 tri1(&mesh->vertices[mesh->indices[b] * VERTICES]);
+		//			float3 tri2(&mesh->vertices[mesh->indices[b + 1] * VERTICES]);
+		//			float3 tri3(&mesh->vertices[mesh->indices[b + 2] * VERTICES]);
 
+		//			Triangle triangle(tri1, tri2, tri3);
+		//			float dist;
 
-		}
+		//			//LOG("%d", triangle);
+		//			if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);
+		//		}
+		//	}
+
+		//}
 	}
 
 	ImGui::End();
