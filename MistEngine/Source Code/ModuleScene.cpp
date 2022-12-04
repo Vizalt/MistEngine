@@ -121,11 +121,13 @@ void ModuleScene::SceneWindow()
 		float minDistLenght = 0;
 		for (size_t j = 0; j < interVec.size(); j++) {
 			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
-
+				if (interVec[j]->name == "City_building_017" || interVec[j]->name == "City_building_016" || interVec[j]->name == "City_building_010") {
+					continue;
+				}
 				Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];	
 				float4x4 matTrans = interVec[j]->transform->GetTransformMatrix().Transposed();
 				
-				if (mesh->num_indices > 8) {
+				if (mesh->num_indices > 6) {
 					for (size_t b = 0; b < mesh->num_indices; b+=3) {				
 
 						float* t1 = &mesh->vertices[mesh->indices[b] * VERTICES];
