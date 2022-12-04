@@ -253,7 +253,7 @@ GameObject* ModuleGeoLoader::ProcessNode(const aiScene* scene, aiNode* node, Gam
 
 	gObj->transform->scale = float3(scale.x, scale.y, scale.z);
 	gObj->transform->position = float3(position.x, position.y, position.z);
-	gObj->transform->rotation = float3(rotation.x, rotation.y, rotation.z);
+	gObj->transform->rotation = float3(rotation.x * RADTODEG, rotation.y * RADTODEG, rotation.z * RADTODEG);
 	gObj->transform->SetTransformMatrix();
 
 	if (node->mNumMeshes != 0) {

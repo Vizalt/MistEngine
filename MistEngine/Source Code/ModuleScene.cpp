@@ -30,6 +30,11 @@ bool ModuleScene::Start()
 	objdebug = App->loader->LoadFile(file_path);
 	objdebug->name = "Baker House";
 
+	for (int i = 0; i < objdebug->children.size(); i++) {
+		objdebug->children[i]->transform->scale = float3::one;
+		objdebug->children[i]->transform->SetTransformMatrix();
+	}
+
 	return ret;
 }
 
