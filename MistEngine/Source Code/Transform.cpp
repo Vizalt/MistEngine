@@ -29,7 +29,7 @@ void Transform::SetTransformMatrix()
 	float y = rotation.y * DEGTORAD;
 	float z = rotation.z * DEGTORAD;
 
-	Quat q = Quat::FromEulerXYX(x, y, z);
+	Quat q = Quat::FromEulerXYZ(x, y, z);
 
 	lTransform = float4x4::FromTRS(position, q, scale).Transposed();
 
