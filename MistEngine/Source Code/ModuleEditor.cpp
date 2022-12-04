@@ -109,13 +109,13 @@ void ModuleEditor::Stop()
 
 void ModuleEditor::Pause()
 {
-	if (paused == true) {		
-		TimeStatus = 1;
-		paused = false;
+	if (playing == true) {		
+		TimeStatus = 3;
+		playing = false;
 	}
 	else {
-		TimeStatus = 3;
-		paused = true;
+		TimeStatus = 1;
+		playing = true;
 	}
 }
 
