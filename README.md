@@ -21,7 +21,7 @@ Click [here](https://github.com/Vizalt/MistEngine) to see our project:
 - **Q** - Move Up
 - **E** - Move Down
 - **Mouse Wheel** - Zoom in/Zoom out
-- **Left Click** - Orbit around
+- **Right Click** - Free rotation
 - **Holding Shift + 'WASD'** - Duplicates movement speed
 
 
