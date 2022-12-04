@@ -96,7 +96,7 @@ void ModuleScene::SceneWindow()
 	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
-	if (ImGui::IsMouseClicked( 0 /*ImGuiMouseButton_::ImGuiMouseButton_Left*/)) {
+	if (ImGui::IsMouseClicked( 0 /*ImGuiMouseButton_::ImGuiMouseButton_Left*/) && ImGui::IsWindowHovered()) {
 
 		ImVec2 mousePos = ImGui::GetMousePos();
 		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
@@ -122,10 +122,10 @@ void ModuleScene::SceneWindow()
 		for (size_t j = 0; j < interVec.size(); j++) {
 			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
 
-				Mesh* mesh = interVec[i]->GetComponentMesh()->meshes[i];	
-				float4x4 matTrans = interVec[i]->transform->GetTransformMatrix().Transposed();
+				Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];	
+				float4x4 matTrans = interVec[j]->transform->GetTransformMatrix().Transposed();
 				
-				if (mesh->num_indices > 6) {
+				if (mesh->num_indices > 8) {
 					for (size_t b = 0; b < mesh->num_indices; b+=3) {				
 
 						float* t1 = &mesh->vertices[mesh->indices[b] * VERTICES];
