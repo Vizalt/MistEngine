@@ -62,10 +62,10 @@ update_status ModuleHierarchy::Update(float dt)
 	if (objSelected != nullptr) {
 		if (objSelected->parent != nullptr) objSelected->InspectorWindow();
 	}
-
+	
 	ImGui::End();
 
-
+	roots->UpdateRecu();
 
 	return UPDATE_CONTINUE;
 }

@@ -36,6 +36,8 @@ public:
 
 	void FixRotationYZ();
 
+	void UpdateRecu();
+
 	Transform* transform;
 	
 	bool fixed;

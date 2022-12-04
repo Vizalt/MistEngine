@@ -182,3 +182,13 @@ void GameObject::FixRotationYZ() {
 		children[i]->FixRotationYZ();
 	}
 }
+
+void GameObject::UpdateRecu()
+{
+	if (GetComponentMesh() != nullptr)
+		GetComponentMesh()->UpdateAABB();
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->UpdateRecu();
+	}
+
+}

@@ -46,7 +46,7 @@ CMesh::~CMesh()
 }
 
 
-void CMesh::Update()
+void CMesh::UpdateAABB()
 {
 	for (int i = 0; i < meshes.size(); i++) {
 		if (meshes[i] == nullptr)return;

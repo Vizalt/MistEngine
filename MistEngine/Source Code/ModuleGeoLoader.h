@@ -37,6 +37,8 @@ struct Mesh {
 	AABB aabb;
 	OBB obb;
 
+	void InnitAABB();
+
 	void Draw();
 };
 

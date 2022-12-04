@@ -498,7 +498,7 @@ void ImDrawList::_TryMergeDrawCmds()
 }
 
 // Our scheme may appears a bit unusual, basically we want the most-common calls AddLine AddRect etc. to not have to perform any check so we always have a command ready in the stack.
-// The cost of figuring out if a new command has to be added or if we can merge is paid in those Update** functions only.
+// The cost of figuring out if a new command has to be added or if we can merge is paid in those UpdateAABB** functions only.
 void ImDrawList::_OnChangedClipRect()
 {
     // If current command is used with different settings we need to add a new command

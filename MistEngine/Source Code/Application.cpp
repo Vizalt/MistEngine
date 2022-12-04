@@ -30,7 +30,7 @@ Application::Application()
 	LOG("...");
 
 	// The order of calls is very important!
-	// Modules will Init() Start() and Update in this order
+	// Modules will Init() Start() and UpdateAABB in this order
 	// They will CleanUp() in reverse order
 
 	// Main Modules
@@ -108,7 +108,7 @@ void Application::FinishUpdate()
 	SDL_Delay(static_cast<Uint32>(fabs(FrameWait)));
 }
 
-// Call PreUpdate, Update and PostUpdate on all modules
+// Call PreUpdate, UpdateAABB and PostUpdate on all modules
 update_status Application::Update()
 {
 	update_status ret = UPDATE_CONTINUE;

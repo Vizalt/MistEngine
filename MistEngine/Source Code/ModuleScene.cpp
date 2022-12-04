@@ -60,9 +60,7 @@ update_status ModuleScene::Update(float dt)
 		App->renderer3D->mainCam->TransformCam();
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_M) == KEY_DOWN) {
-
-	}
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -113,13 +111,14 @@ void ModuleScene::SceneWindow()
 				if (App->loader->meshes[i]->Owner != nullptr) 
 				{
 					interVec.push_back(App->loader->meshes[i]->Owner);
-					LOG("Mouse Clicked");
+					//LOG("Mouse Clicked");
 				}
 				
 			}
 		};
 
 		float distLength;
+		float minDistLenght = 0;
 		for (size_t j = 0; j < interVec.size(); j++) {
 			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
 
@@ -142,27 +141,27 @@ void ModuleScene::SceneWindow()
 						float3 tri3 = float3(tr3.x, tr3.y, tr3.z);
 
 						Triangle triangle(tri1, tri2, tri3);	
-
-						float minDistLenght = 0;
+						
 						if (my_ray.Intersects(triangle, &distLength, nullptr)) 
 						{	
 							if (minDistLenght == 0) {
 								minDistLenght = distLength;
 								App->hierarchy->SetGameObject(interVec[i]);
+								LOG("%s", interVec[i]->name);
 								continue;
 							}
 							if (distLength < minDistLenght) {
 								minDistLenght = distLength;
 								App->hierarchy->SetGameObject(interVec[i]);
 								LOG("%s", interVec[i]->name);
-							}
-								
+							}					
 							
 						} 				
 					}
 				}				
 			}
 		}
+		interVec.clear();
 	}
 
 	ImGui::End();

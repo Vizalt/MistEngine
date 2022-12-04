@@ -37,7 +37,7 @@ public:
 
 	Primitive* GObjPrim;
 	
-	void Update();
+	void UpdateAABB();
 	void Inspector();
 	void CreatePrimitive();
 	void RenderPrimitive();

@@ -29,6 +29,21 @@ ModuleGeoLoader::~ModuleGeoLoader()
 
 }
 
+
+void Mesh::InnitAABB() {
+	float* vertices_positions = new float[num_vertices * 3];
+	for (size_t i = 0; i < num_vertices; i++)
+	{
+		vertices_positions[i * 3] = vertices[i * VERTICES];
+		vertices_positions[i * 3 + 1] = vertices[i * VERTICES + 1];
+		vertices_positions[i * 3 + 2] = vertices[i * VERTICES + 2];
+	}
+
+	localAABB.SetNegativeInfinity();
+	localAABB.Enclose((float3*)vertices_positions, num_vertices);
+	delete[] vertices_positions;
+}
+
 // -----------------------------------------------------------------
 bool ModuleGeoLoader::Start()
 {
@@ -188,6 +203,8 @@ Mesh* ModuleGeoLoader::ImportMesh(aiMesh* aiMesh)
 			}
 
 		}
+
+		mesh->InnitAABB();
 
 		//meshes.push_back(mesh);
 		BufferMesh(mesh);
