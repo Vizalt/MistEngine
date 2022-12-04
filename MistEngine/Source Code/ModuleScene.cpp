@@ -96,7 +96,7 @@ void ModuleScene::SceneWindow()
 	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
-	if (ImGui::IsMouseClicked( 0 /*ImGuiMouseButton_::ImGuiMouseButton_Left*/) && ImGui::IsWindowHovered()) {
+	if (ImGui::IsMouseClicked(0) && ImGui::IsWindowHovered()) {
 
 		ImVec2 mousePos = ImGui::GetMousePos();
 		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
@@ -110,7 +110,8 @@ void ModuleScene::SceneWindow()
 			if (my_ray.Intersects(App->loader->meshes[i]->obb)) {
 				if (App->loader->meshes[i]->Owner != nullptr) 
 				{
-					interVec.push_back(App->loader->meshes[i]->Owner);
+					if (App->loader->meshes[i]->Owner != nullptr)
+						interVec.push_back(App->loader->meshes[i]->Owner);
 					//LOG("Mouse Clicked");
 				}
 				
@@ -119,46 +120,54 @@ void ModuleScene::SceneWindow()
 
 		float distLength;
 		float minDistLenght = 0;
+
 		for (size_t j = 0; j < interVec.size(); j++) {
-			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
-				Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];	
-				float4x4 matTrans = interVec[j]->transform->GetTransformMatrix().Transposed();
-				
-				if (mesh->num_indices > 6) {
-					for (size_t b = 0; b < mesh->num_indices; b+=3) {				
 
-						float* t1 = &mesh->vertices[mesh->indices[b] * VERTICES];
-						float* t2 = &mesh->vertices[mesh->indices[b + 1] * VERTICES];
-						float* t3 = &mesh->vertices[mesh->indices[b + 2] * VERTICES];
+			////En Release pete en aquestes cases nomes a vegades
+			//if (interVec[j]->name == "");
+			CMesh* gObjMesh = interVec[j]->GetComponentMesh();
+			if (gObjMesh != nullptr) {
 
-						float4 tr1 = matTrans * float4(*t1, *(t1 + 1), *(t1 + 2), 1);
-						float4 tr2 = matTrans * float4(*t2, *(t2 + 1), *(t2 + 2), 1);
-						float4 tr3 = matTrans * float4(*t3, *(t3 + 1), *(t3 + 2), 1);
+				for (size_t i = 0; i < gObjMesh->meshes.size(); i++) {
 
-						float3 tri1 = float3(tr1.x, tr1.y, tr1.z);
-						float3 tri2 = float3(tr2.x, tr2.y, tr2.z);
-						float3 tri3 = float3(tr3.x, tr3.y, tr3.z);
+					Mesh* mesh = gObjMesh->meshes[i];
+					float4x4 matTrans = interVec[j]->transform->GetTransformMatrix().Transposed();
 
-						Triangle triangle(tri1, tri2, tri3);	
-						
-						if (my_ray.Intersects(triangle, &distLength, nullptr)) 
-						{	
-							if (minDistLenght == 0) {
-								minDistLenght = distLength;
-								App->hierarchy->SetGameObject(interVec[j]);
-								LOG("%s", interVec[j]->name);
-								continue;
+					if (mesh->num_indices > 9) {
+						for (size_t b = 0; b < mesh->num_indices; b += 3) {
+
+							float* t1 = &mesh->vertices[mesh->indices[b] * VERTICES];
+							float* t2 = &mesh->vertices[mesh->indices[b + 1] * VERTICES];
+							float* t3 = &mesh->vertices[mesh->indices[b + 2] * VERTICES];
+
+							float4 tr1 = matTrans * float4(*t1, *(t1 + 1), *(t1 + 2), 1);
+							float4 tr2 = matTrans * float4(*t2, *(t2 + 1), *(t2 + 2), 1);
+							float4 tr3 = matTrans * float4(*t3, *(t3 + 1), *(t3 + 2), 1);
+
+							float3 tri1 = float3(tr1.x, tr1.y, tr1.z);
+							float3 tri2 = float3(tr2.x, tr2.y, tr2.z);
+							float3 tri3 = float3(tr3.x, tr3.y, tr3.z);
+
+							Triangle triangle(tri1, tri2, tri3);
+
+							if (my_ray.Intersects(triangle, &distLength, nullptr))
+							{
+								if (minDistLenght == 0) {
+									minDistLenght = distLength;
+									App->hierarchy->SetGameObject(interVec[j]);
+									continue;
+								}
+								if (distLength < minDistLenght) {
+									minDistLenght = distLength;
+									App->hierarchy->SetGameObject(interVec[j]);
+								}
+
 							}
-							if (distLength < minDistLenght) {
-								minDistLenght = distLength;
-								App->hierarchy->SetGameObject(interVec[j]);
-								LOG("%s", interVec[j]->name);
-							}					
-							
-						} 				
+						}
 					}
-				}				
+				}
 			}
+			
 		}
 		interVec.clear();
 	}
