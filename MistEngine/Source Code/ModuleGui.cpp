@@ -138,18 +138,17 @@ update_status ModuleGui::Update(float dt)
 			ImGui::EndMenu();
 		}
 		if (ImGui::Button("PLAY")) {
-			LOG("PLAYING SCENE");
-			App->editor->Play();
-			if(!App->editor->playing)
-				ImGui::SetWindowFocus("Game");
+			//LOG("PLAYING SCENE");
+			App->editor->Play();			
+			ImGui::SetWindowFocus("Game");
 		}
 		if (ImGui::Button("STOP")) {
-			LOG("STOP SCENE");
+			//LOG("STOP SCENE");
 			App->editor->Stop();
 			ImGui::SetWindowFocus("Scene");
 		}
 		if (ImGui::Button("PAUSE")) {
-			LOG("PAUSE SCENE");
+			//LOG("PAUSE SCENE");
 			App->editor->Pause();
 		}
 		ImGui::EndMainMenuBar();
