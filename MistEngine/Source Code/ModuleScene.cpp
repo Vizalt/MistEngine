@@ -89,7 +89,7 @@ void ModuleScene::SceneWindow()
 	if (ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
 
 		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
-		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
+		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight());
 
 		LineSegment my_ray = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
 
@@ -108,24 +108,13 @@ void ModuleScene::SceneWindow()
 			}
 		};
 
+		//uint indexCount = 0;
+
 		//for (size_t j = 0; j < interVec.size(); j++) {
 		//	for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
-		//		Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];
+		//		Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];				
 		//		
-		//		uint indexCount = 0;
-		//		for (size_t b = 0; b < mesh->num_indices; b++) {
-
-		//			/*triangle.a.x = mesh->vertices[mesh->indices[indexCount] * 3];
-		//			triangle.a.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-		//			triangle.a.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
-
-		//			triangle.b.x = mesh->vertices[mesh->indices[indexCount] * 3];
-		//			triangle.b.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-		//			triangle.b.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];
-
-		//			triangle.c.x = mesh->vertices[mesh->indices[indexCount] * 3];
-		//			triangle.c.y = mesh->vertices[mesh->indices[indexCount] * 3 + 1];
-		//			triangle.c.z = mesh->vertices[mesh->indices[indexCount++] * 3 + 2];*/
+		//		for (size_t b = 0; b < mesh->num_indices; b++) {				
 
 		//			float3 tri1(&mesh->vertices[mesh->indices[b] * VERTICES]);
 		//			float3 tri2(&mesh->vertices[mesh->indices[b + 1] * VERTICES]);
@@ -157,17 +146,14 @@ void ModuleScene::GameWindow()
 	ImGui::Image((ImTextureID)App->renderer3D->mainCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
-	if (ImGui::IsMouseClicked) {
+	//if (ImGui::IsMouseClicked) {
 
-		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
+	//	ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
 
-		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, mousePos);
+	//	ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
 
-		picking = App->renderer3D->mainCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
-
-		//for ();//for with all the meshes triangles
-		//bool hit = picking.Intersects(game_object->aabb);
-	}
+	//	picking = App->renderer3D->mainCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
+	//}
 
 
 
@@ -204,7 +190,7 @@ GameObject* ModuleScene::createCamera(GameObject* parent)
 	return b;
 }
 
-ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
+ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h)
 {
 	//	w = with of the viewport
 	//	h = height of the viewport
