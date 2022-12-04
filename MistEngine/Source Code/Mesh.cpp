@@ -2,6 +2,7 @@
 #include "Mesh.h"
 #include "GameObject.h"
 #include "ModuleGeoLoader.h"
+#include "Transform.h"
 
 
 CMesh::CMesh() : Component(nullptr)
@@ -44,6 +45,19 @@ CMesh::~CMesh()
 	delete GObjPrim;
 }
 
+
+void CMesh::Update()
+{
+	for (int i = 0; i < meshes.size(); i++) {
+		if (meshes[i] == nullptr)return;
+
+		meshes[i]->obb = meshes[i]->localAABB;
+		meshes[i]->obb.Transform(owner->transform->GetTransformMatrix());
+
+		meshes[i]->aabb.SetNegativeInfinity();
+		meshes[i]->aabb.Enclose(meshes[i]->obb);
+	}
+}
 
 void CMesh::Inspector()
 {

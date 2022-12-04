@@ -98,13 +98,12 @@ void ModuleScene::SceneWindow()
 	ImGui::Image((ImTextureID)App->camera->sceneCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
 
 
-	if (ImGui::IsMouseClicked(ImGuiMouseButton_::ImGuiMouseButton_Left)) {
+	if (ImGui::IsMouseClicked( 0 /*ImGuiMouseButton_::ImGuiMouseButton_Left*/)) {
 
-		ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
-		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight());
+		ImVec2 mousePos = ImGui::GetMousePos();
+		ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y + ImGui::GetFrameHeight(), ImGui::GetWindowSize().x, ImGui::GetWindowSize().y - ImGui::GetFrameHeight(), mousePos);
 
 		LineSegment my_ray = App->camera->sceneCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
-
 		std::vector<GameObject*> interVec;
 
 		//for with all the meshes triangles
@@ -114,35 +113,33 @@ void ModuleScene::SceneWindow()
 				if (App->loader->meshes[i]->Owner != nullptr) 
 				{
 					interVec.push_back(App->loader->meshes[i]->Owner);
-					//LOG("Mouse Clicked");
+					LOG("Mouse Clicked");
 				}
 				
 			}
 		};
 
-		uint indexCount = 0;
-
+		float distLength=0;
+		float minDistLenght = 0;
 		for (size_t j = 0; j < interVec.size(); j++) {
 			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
-				Mesh* mesh = interVec[i]->GetComponentMesh()->meshes[i];				
-				
+				Mesh* mesh = interVec[i]->GetComponentMesh()->meshes[i];	
+				float4x4 mat = interVec[i]->transform->GetTransformMatrix().Transposed();
 				for (size_t b = 0; b < mesh->num_indices; b+=3) {				
 
-					//PETA
 					float3 tri1(&mesh->vertices[mesh->indices[b] * VERTICES]);
 					float3 tri2(&mesh->vertices[mesh->indices[b + 1] * VERTICES]);
 					float3 tri3(&mesh->vertices[mesh->indices[b + 2] * VERTICES]);
 
-					Triangle triangle(tri1, tri2, tri3);
-					float dist;
-
-					LOG("thissssssssssssss");
+					Triangle triangle(tri1, tri2, tri3);					
 
 					//LOG("%d", triangle);
-					if (my_ray.Intersects(triangle, &dist, nullptr)) 
+					if (my_ray.Intersects(triangle, &distLength, nullptr)) 
 					{
-						App->hierarchy->SetGameObject(interVec[j]);
-						LOG("BBBBBBBBBBBBBBBBBBBBB");
+						if (minDistLenght > distLength) {
+							minDistLenght = distLength;
+							App->hierarchy->SetGameObject(interVec[j]);
+						}
 					} 
 				
 				}
@@ -156,7 +153,9 @@ void ModuleScene::SceneWindow()
 
 void ModuleScene::GameWindow()
 {
+	//ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(1.0f, 0.0f, 0.0f, 1.0f));
 	ImGui::Begin("Game");
+	//ImGui::PopStyleColor();
 	WindowSize = ImGui::GetContentRegionAvail();
 
 	float aspectRatio = WindowSize.x / WindowSize.y;
@@ -164,18 +163,6 @@ void ModuleScene::GameWindow()
 	App->renderer3D->mainCam->FrustumCam.horizontalFov = 2.0f * atanf(tanf(App->renderer3D->mainCam->FrustumCam.verticalFov / 2.0f) * aspectRatio);
 
 	ImGui::Image((ImTextureID)App->renderer3D->mainCam->cameraBuffer, WindowSize, ImVec2(0, 1), ImVec2(1, 0));
-
-
-	//if (ImGui::IsMouseClicked) {
-
-	//	ImVec2 mousePos = ImGui::GetMousePos(); //Get pos when clicking
-
-	//	ImVec2 normalized = NormalizeMouse(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
-
-	//	picking = App->renderer3D->mainCam->FrustumCam.UnProjectLineSegment(normalized.x, normalized.y);
-	//}
-
-
 
 	ImGui::End();
 }
@@ -210,20 +197,15 @@ GameObject* ModuleScene::createCamera(GameObject* parent)
 	return b;
 }
 
-ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h)
+ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
 {
-	//	w = with of the viewport
-	//	h = height of the viewport
-	//	x = X position of the mouse
-	//	y = Y position ot the mouse
-
 	//GLfloat ndc_x = 2.0 * x / w - 1.0;
 	//GLfloat ndc_y = 1.0 - 2.0 * y / h; // invert Y axis
 
 	ImVec2 normalizedPos;
 
-	normalizedPos.x = 2.0 * x / w - 1.0;
-	normalizedPos.y = 1.0 - 2.0 * y / h;
+	normalizedPos.x = -1.0 + 2.0 * ((pos.x - x) / w);
+	normalizedPos.y = 1.0 - 2.0 * ((pos.y - y) / h);
 
 	return normalizedPos;
 }

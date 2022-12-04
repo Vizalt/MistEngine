@@ -36,7 +36,7 @@ public:
 
 	ImVec2 WindowSize;
 
-	ImVec2 NormalizeMouse(float x, float y, float w, float h);
+	ImVec2 NormalizeMouse(float x, float y, float w, float h, ImVec2 pos);
 
 	void OnSave();
 
