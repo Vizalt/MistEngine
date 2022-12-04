@@ -27,9 +27,13 @@ public:
 
 	void Inspector();
 
+	bool ContainsAaBox(Mesh* refBox);
+
 	Frustum FrustumCam;
 	float4x4 viewMatrix;
 	float4x4 projectionMatrix;
+
+	int printCount;
 
 	int FOV = 60.0f;
 

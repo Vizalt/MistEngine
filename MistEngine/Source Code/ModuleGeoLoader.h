@@ -58,6 +58,7 @@ public:
 	bool CleanUp();
 	
 	void Draw();
+	void DrawGame();
 
 private:
 

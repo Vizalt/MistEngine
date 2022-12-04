@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "Primitive.h"
+#include "Camera.h"
 
 
 #include "ModuleHierarchy.h"
@@ -154,8 +155,32 @@ bool ModuleGeoLoader::CleanUp()
 
 void ModuleGeoLoader::Draw()
 {
+	App->camera->sceneCam->printCount = 0;
+
 	for (int i = 0; i< meshes.size(); i++) {
+
+		if (!App->camera->sceneCam->ContainsAaBox(meshes[i])) continue;
+
 		meshes[i]->Draw();
+		App->camera->sceneCam->printCount ++;
+	}
+
+	for (int i = 0; i < gObjPrimList.size(); i++) {
+		gObjPrimList[i]->Render();
+	}
+
+}
+
+void ModuleGeoLoader::DrawGame()
+{
+	App->renderer3D->mainCam->printCount = 0;
+
+	for (int i = 0; i < meshes.size(); i++) {
+
+		if (!App->renderer3D->mainCam->ContainsAaBox(meshes[i])) continue;
+
+		meshes[i]->Draw();
+		App->renderer3D->mainCam->printCount++;
 	}
 
 	for (int i = 0; i < gObjPrimList.size(); i++) {
