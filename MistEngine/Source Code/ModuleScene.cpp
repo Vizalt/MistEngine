@@ -108,33 +108,41 @@ void ModuleScene::SceneWindow()
 				if (App->loader->meshes[i]->Owner != nullptr) 
 				{
 					interVec.push_back(App->loader->meshes[i]->Owner);
-					LOG("Mouse Clicked");
+					//LOG("Mouse Clicked");
 				}
 				
 			}
 		};
 
-		//uint indexCount = 0;
+		uint indexCount = 0;
 
-		//for (size_t j = 0; j < interVec.size(); j++) {
-		//	for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
-		//		Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];				
-		//		
-		//		for (size_t b = 0; b < mesh->num_indices; b++) {				
+		for (size_t j = 0; j < interVec.size(); j++) {
+			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
+				Mesh* mesh = interVec[i]->GetComponentMesh()->meshes[i];				
+				
+				for (size_t b = 0; b < mesh->num_indices; b+=3) {				
 
-		//			float3 tri1(&mesh->vertices[mesh->indices[b] * VERTICES]);
-		//			float3 tri2(&mesh->vertices[mesh->indices[b + 1] * VERTICES]);
-		//			float3 tri3(&mesh->vertices[mesh->indices[b + 2] * VERTICES]);
+					//PETA
+					float3 tri1(&mesh->vertices[mesh->indices[b] * VERTICES]);
+					float3 tri2(&mesh->vertices[mesh->indices[b + 1] * VERTICES]);
+					float3 tri3(&mesh->vertices[mesh->indices[b + 2] * VERTICES]);
 
-		//			Triangle triangle(tri1, tri2, tri3);
-		//			float dist;
+					Triangle triangle(tri1, tri2, tri3);
+					float dist;
 
-		//			//LOG("%d", triangle);
-		//			if (my_ray.Intersects(triangle, &dist, nullptr)) App->hierarchy->SetGameObject(interVec[j]);
-		//		}
-		//	}
+					LOG("thissssssssssssss");
 
-		//}
+					//LOG("%d", triangle);
+					if (my_ray.Intersects(triangle, &dist, nullptr)) 
+					{
+						App->hierarchy->SetGameObject(interVec[j]);
+						LOG("BBBBBBBBBBBBBBBBBBBBB");
+					} 
+				
+				}
+			}
+
+		}
 	}
 
 	ImGui::End();
