@@ -36,7 +36,7 @@ public:
 
 private:
 
-	bool config = true, about = false, github=false, console=true, releases = false, issues=false, hierarchy=true;
+	bool config = false, about = false, github=false, console=true, releases = false, issues=false, hierarchy=true;
 	int width = SCREEN_WIDTH * SCREEN_SIZE;
 	int height = SCREEN_HEIGHT * SCREEN_SIZE;
 	float brightness = 1.0f;
