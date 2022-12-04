@@ -112,9 +112,7 @@ void ModuleScene::SceneWindow()
 				{
 					if (App->loader->meshes[i]->Owner != nullptr)
 						interVec.push_back(App->loader->meshes[i]->Owner);
-					//LOG("Mouse Clicked");
 				}
-				
 			}
 		};
 
@@ -123,8 +121,6 @@ void ModuleScene::SceneWindow()
 
 		for (size_t j = 0; j < interVec.size(); j++) {
 
-			////En Release pete en aquestes cases nomes a vegades
-			//if (interVec[j]->name == "");
 			CMesh* gObjMesh = interVec[j]->GetComponentMesh();
 			if (gObjMesh != nullptr) {
 
