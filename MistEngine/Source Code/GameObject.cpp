@@ -174,11 +174,11 @@ CCamera* GameObject::GetComponentCamera()
 	return nullptr;
 }
 
-void GameObject::SetAllRotationZero() {
+void GameObject::FixRotationYZ() {
 
-	for (int i = 0; i < children.size(); i++) {
-		children[i]->transform->rotation = float3::zero;
-		children[i]->transform->SetTransformMatrix();
-		children[i]->SetAllRotationZero();
+	transform->rotation = float3(transform->rotation.x, transform->rotation.z, transform->rotation.y);
+	transform->SetTransformMatrix();
+	for (int i = 0; i < children.size(); i++) {	
+		children[i]->FixRotationYZ();
 	}
 }

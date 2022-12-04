@@ -78,6 +78,9 @@ GameObject* ModuleGeoLoader::LoadFile(std::string Path)
 
 		aiReleaseImport(scene);
 
+
+		finalObj->FixRotationYZ();
+
 		return finalObj;
 	}
 	else {

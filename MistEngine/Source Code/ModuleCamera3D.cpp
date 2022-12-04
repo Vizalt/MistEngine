@@ -42,10 +42,10 @@ bool ModuleCamera3D::CleanUp()
 update_status ModuleCamera3D::Update(float dt)
 {
 	int wheel = -App->input->GetMouseZ();
-	float speed = 3.0f * dt;
+	float speed = 8.0f * dt;
 	
 	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-		speed = 8.0f * dt;
+		speed = 8.0f * 2 * dt;
 
 	if (App->input->GetKey(SDL_SCANCODE_Q) == KEY_REPEAT) sceneCam->FrustumCam.pos.y += speed;
 	if (App->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT) sceneCam->FrustumCam.pos.y -= speed;
@@ -82,7 +82,7 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 	}
 
-	if (wheel != 0) sceneCam->FrustumCam.pos += sceneCam->FrustumCam.front * speed * -wheel;
+	if (wheel != 0) sceneCam->FrustumCam.pos += sceneCam->FrustumCam.front * 10 * -wheel;
 	
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!

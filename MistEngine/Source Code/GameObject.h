@@ -34,7 +34,7 @@ public:
 	GameObject* GetCompMesh();
 	CCamera* GetComponentCamera();
 
-	void SetAllRotationZero();
+	void FixRotationYZ();
 
 	Transform* transform;
 	
