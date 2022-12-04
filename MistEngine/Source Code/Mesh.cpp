@@ -52,7 +52,7 @@ void CMesh::Update()
 		if (meshes[i] == nullptr)return;
 
 		meshes[i]->obb = meshes[i]->localAABB;
-		meshes[i]->obb.Transform(owner->transform->GetTransformMatrix());
+		meshes[i]->obb.Transform(owner->transform->GetTransformMatrix().Transposed());
 
 		meshes[i]->aabb.SetNegativeInfinity();
 		meshes[i]->aabb.Enclose(meshes[i]->obb);

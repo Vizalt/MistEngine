@@ -28,9 +28,9 @@ bool ModuleScene::Start()
 
 	/*file_path = "Assets/BakerHouse.fbx";
 	objdebug = App->loader->LoadFile(file_path);
-	objdebug->name = "Baker House";*/
+	objdebug->name = "Baker House";
 
-	/*for (int i = 0; i < objdebug->children.size(); i++) {
+	for (int i = 0; i < objdebug->children.size(); i++) {
 		objdebug->children[i]->transform->rotation = float3::zero;
 		objdebug->children[i]->transform->scale = float3::one;
 		objdebug->children[i]->transform->SetTransformMatrix();
@@ -38,9 +38,9 @@ bool ModuleScene::Start()
 
 	file_path = "Assets/street/scene.DAE";
 	objdebug = App->loader->LoadFile(file_path);
-	objdebug->transform->rotation[0] = -90;
+	objdebug->transform->rotation.z = -90;
 	objdebug->transform->SetTransformMatrix();
-	objdebug->SetAllRotationZero();
+	
 
 	return ret;
 }
@@ -119,32 +119,49 @@ void ModuleScene::SceneWindow()
 			}
 		};
 
-		float distLength=0;
-		float minDistLenght = 0;
+		float distLength;
 		for (size_t j = 0; j < interVec.size(); j++) {
 			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
+
 				Mesh* mesh = interVec[i]->GetComponentMesh()->meshes[i];	
-				float4x4 mat = interVec[i]->transform->GetTransformMatrix().Transposed();
-				for (size_t b = 0; b < mesh->num_indices; b+=3) {				
-
-					float3 tri1(&mesh->vertices[mesh->indices[b] * VERTICES]);
-					float3 tri2(&mesh->vertices[mesh->indices[b + 1] * VERTICES]);
-					float3 tri3(&mesh->vertices[mesh->indices[b + 2] * VERTICES]);
-
-					Triangle triangle(tri1, tri2, tri3);					
-
-					//LOG("%d", triangle);
-					if (my_ray.Intersects(triangle, &distLength, nullptr)) 
-					{
-						if (minDistLenght > distLength) {
-							minDistLenght = distLength;
-							App->hierarchy->SetGameObject(interVec[j]);
-						}
-					} 
+				float4x4 matTrans = interVec[i]->transform->GetTransformMatrix().Transposed();
 				
-				}
-			}
+				if (mesh->num_indices > 6) {
+					for (size_t b = 0; b < mesh->num_indices; b+=3) {				
 
+						float* t1 = &mesh->vertices[mesh->indices[b] * VERTICES];
+						float* t2 = &mesh->vertices[mesh->indices[b + 1] * VERTICES];
+						float* t3 = &mesh->vertices[mesh->indices[b + 2] * VERTICES];
+
+						float4 tr1 = matTrans * float4(*t1, *(t1 + 1), *(t1 + 2), 1);
+						float4 tr2 = matTrans * float4(*t2, *(t2 + 1), *(t2 + 2), 1);
+						float4 tr3 = matTrans * float4(*t3, *(t3 + 1), *(t3 + 2), 1);
+
+						float3 tri1 = float3(tr1.x, tr1.y, tr1.z);
+						float3 tri2 = float3(tr2.x, tr2.y, tr2.z);
+						float3 tri3 = float3(tr3.x, tr3.y, tr3.z);
+
+						Triangle triangle(tri1, tri2, tri3);	
+
+						float minDistLenght = 0;
+						if (my_ray.Intersects(triangle, &distLength, nullptr)) 
+						{	
+							if (minDistLenght == 0) {
+								minDistLenght = distLength;
+								App->hierarchy->SetGameObject(interVec[i]);
+								continue;
+							}
+							if (distLength < minDistLenght) {
+								minDistLenght = distLength;
+								App->hierarchy->SetGameObject(interVec[i]);
+								LOG("%s", interVec[i]->name);
+							}
+								
+							
+						} 				
+					}
+				}				
+			}
 		}
 	}
 
