@@ -133,21 +133,6 @@ bool ModuleGeoLoader::CleanUp()
 	return true;
 }
 
-void ModuleGeoLoader::BoundingBox(Mesh* mesh)
-{
-	
-	if (mesh == nullptr)return;
-
-	mesh->obb = mesh->localAABB;
-	mesh->obb.Transform(mesh->Owner->transform->GetTransformMatrix().Transposed());
-
-	mesh->aabb.SetNegativeInfinity();
-	mesh->aabb.Enclose(mesh->obb);
-
-	//// Generate AABB
-	//aabb.SetNegativeInfinity();
-	//aabb.Enclose((float3*)mesh->vertices, mesh->num_vertices);
-}
 
 void ModuleGeoLoader::Draw()
 {

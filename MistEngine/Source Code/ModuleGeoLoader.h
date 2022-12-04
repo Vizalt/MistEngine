@@ -54,8 +54,6 @@ public:
 	void BufferMesh(Mesh* mesh);
 	void RemoveMesh(Mesh* mesh);
 	bool CleanUp();
-
-	void BoundingBox(Mesh* mesh);
 	
 	void Draw();
 
