@@ -178,8 +178,11 @@ void ModuleHierarchy::GameObjectTree(GameObject* obj, int index)
 
 	if (ImGui::BeginDragDropTarget())
 	{
-		if (!TargetDropped->fixed || !objHovered->fixed) {
-			TargetDropped->ChangeParent(objHovered);
+		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("GameObject")) {
+
+			if (!TargetDropped->fixed || !objHovered->fixed) {
+				TargetDropped->ChangeParent(objHovered);
+			}
 		}
 		ImGui::EndDragDropTarget();
 	}
