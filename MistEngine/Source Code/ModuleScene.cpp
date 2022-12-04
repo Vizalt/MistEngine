@@ -31,6 +31,7 @@ bool ModuleScene::Start()
 	objdebug->name = "Baker House";
 
 	for (int i = 0; i < objdebug->children.size(); i++) {
+		objdebug->children[i]->transform->rotation = float3::zero;
 		objdebug->children[i]->transform->scale = float3::one;
 		objdebug->children[i]->transform->SetTransformMatrix();
 	}
