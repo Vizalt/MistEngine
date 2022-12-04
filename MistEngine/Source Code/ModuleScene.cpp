@@ -26,15 +26,21 @@ bool ModuleScene::Start()
 	LOG("Setting up the Scene");
 	bool ret = true;
 
-	file_path = "Assets/BakerHouse.fbx";
+	/*file_path = "Assets/BakerHouse.fbx";
 	objdebug = App->loader->LoadFile(file_path);
-	objdebug->name = "Baker House";
+	objdebug->name = "Baker House";*/
 
-	for (int i = 0; i < objdebug->children.size(); i++) {
+	/*for (int i = 0; i < objdebug->children.size(); i++) {
 		objdebug->children[i]->transform->rotation = float3::zero;
 		objdebug->children[i]->transform->scale = float3::one;
 		objdebug->children[i]->transform->SetTransformMatrix();
-	}
+	}*/
+
+	file_path = "Assets/street/scene.DAE";
+	objdebug = App->loader->LoadFile(file_path);
+	objdebug->transform->rotation[0] = -90;
+	objdebug->transform->SetTransformMatrix();
+	objdebug->SetAllRotationZero();
 
 	return ret;
 }
