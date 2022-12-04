@@ -272,7 +272,7 @@ bool ModuleRenderer3D::CleanUp()
 	LOG("Destroying 3D Renderer");
 
 	delete GameCamera;
-	delete mainCam;
+	//delete mainCam;
 
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
