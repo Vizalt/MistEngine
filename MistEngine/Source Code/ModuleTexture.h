@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "ModuleRenderer3D.h"
 #include "il.h"
+#include "ilu.h"
 #include "backends/imgui_impl_opengl3.h"
 
 using namespace std;

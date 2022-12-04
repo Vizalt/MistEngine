@@ -177,7 +177,7 @@ Mesh* ModuleGeoLoader::ImportMesh(aiMesh* aiMesh)
 
 		if (aiMesh->mTextureCoords[0] == nullptr) continue;
 		mesh->vertices[k * VERTICES + 3] = aiMesh->mTextureCoords[0][k].x;
-		mesh->vertices[k * VERTICES + 4] = 1 - aiMesh->mTextureCoords[0][k].y;
+		mesh->vertices[k * VERTICES + 4] = aiMesh->mTextureCoords[0][k].y;
 
 	}
 
@@ -222,14 +222,35 @@ string ModuleGeoLoader::ImportTexture(const aiScene* scene, int index, string pa
 	{
 		aiMaterial* MaterialIndex = scene->mMaterials[scene->mMeshes[index]->mMaterialIndex];
 		if (MaterialIndex->GetTextureCount(aiTextureType_DIFFUSE) > 0) {
+
 			aiString TextPath;
-			aiString AssetsPath;
-			AssetsPath.Set("Assets/");
 			MaterialIndex->GetTexture(aiTextureType_DIFFUSE, 0, &TextPath);
 
-			AssetsPath.Append(TextPath.C_Str());
+			for (int i = 0; i < path.size(); i++)
+			{
+				if (path[i] == '\\')
+				{
+					path[i] = '/';
+				}
+			}
 
-			return AssetsPath.C_Str();
+			string NormTextPath = TextPath.C_Str();
+
+			for (int i = 0; i < NormTextPath.size(); i++)
+			{
+				if (NormTextPath[i] == '\\')
+				{
+					NormTextPath[i] = '/';
+				}
+			}
+
+			string AssetsPath = path;
+			uint AssetsPos = AssetsPath.find("Assets/");
+
+			AssetsPath = AssetsPath.substr(AssetsPos, AssetsPath.find_last_of("/") - AssetsPos);
+			AssetsPath.append("/").append(TextPath.C_Str());
+
+			return AssetsPath;
 		}
 	}
 
@@ -245,10 +266,13 @@ GameObject* ModuleGeoLoader::ProcessNode(const aiScene* scene, aiNode* node, Gam
 
 	gObj->name = node->mName.C_Str();
 
+
+	aiMatrix4x4 TransformMat = node->mTransformation;
+
 	aiVector3D scale, position, rotation;
 	aiQuaternion QuatRotation;
 
-	node->mTransformation.Decompose(scale, QuatRotation, position);
+	TransformMat.Decompose(scale, QuatRotation, position);
 	rotation = QuatRotation.GetEuler();
 
 	gObj->transform->scale = float3(scale.x, scale.y, scale.z);

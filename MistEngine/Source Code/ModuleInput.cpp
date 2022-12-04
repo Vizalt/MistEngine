@@ -148,8 +148,7 @@ void ModuleInput::CheckFileExtension(std::string fileName)
 	if (extension == "fbx" || extension == "FBX")
 	{
 		LOG("Loading FBX");
-		GameObject* newFBX;
-		newFBX = App->loader->LoadFile(fileName);
+		App->loader->LoadFile(fileName);
 	}
 	if (extension == "png" || extension == "dds" || extension == "PNG" || extension == "DDS")
 	{

@@ -25,6 +25,8 @@ public:
 	void SetTransformMatrix();
 	void Inspector();
 
+	
+
 	float4x4 GetTransformMatrix();
 
 	//void BoxMesh();

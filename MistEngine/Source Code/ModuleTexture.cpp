@@ -128,6 +128,11 @@ GLuint ModuleTexture::LoadTexture(string path)
 	//Load image
 	ILboolean success = ilLoadImage(path.c_str());
 
+	if (path.substr(path.find_last_of(".") + 1) == "png") 
+	{
+		iluFlipImage();
+	}
+
 	//Image loaded successfully
 	if (success == IL_TRUE)
 	{

@@ -30,25 +30,29 @@ void Transform::SetTransformMatrix()
 	float y = rotation.y * DEGTORAD;
 	float z = rotation.z * DEGTORAD;
 
-	lTransform[0][0] = cos(y) * cos(z) * scale.x;
-	lTransform[1][0] = -cos(x) * sin(z) + sin(y) * cos(z) * sin(x);
-	lTransform[2][0] = sin(x) * sin(z) + sin(y) * cos(z) * cos(x);
-	lTransform[3][0] = position.x;
+	Quat q = Quat::FromEulerXYX(x, y, z);
 
-	lTransform[0][1] = cos(y) * sin(z);
-	lTransform[1][1] = cos(x) * cos(z) + sin(y) * sin(z) * sin(z) * scale.y;
-	lTransform[2][1] = -sin(x) * cos(z) + sin(y) * sin(z) * cos(x);
-	lTransform[3][1] = position.y;
+	lTransform = float4x4::FromTRS(position, q, scale).Transposed();
 
-	lTransform[0][2] = -sin(y);
-	lTransform[1][2] = cos(y) * sin(x);
-	lTransform[2][2] = cos(x) * cos(y) * scale.z;
-	lTransform[3][2] = position.z;
+	//lTransform[0][0] = cos(y) * cos(z) * scale.x;
+	//lTransform[1][0] = -cos(x) * sin(z) + sin(y) * cos(z) * sin(x);
+	//lTransform[2][0] = sin(x) * sin(z) + sin(y) * cos(z) * cos(x);
+	//lTransform[3][0] = position.x;
 
-	lTransform[0][3] = 0;
-	lTransform[1][3] = 0;
-	lTransform[2][3] = 0;
-	lTransform[3][3] = 1;
+	//lTransform[0][1] = cos(y) * sin(z);
+	//lTransform[1][1] = cos(x) * cos(z) + sin(y) * sin(z) * sin(z) * scale.y;
+	//lTransform[2][1] = -sin(x) * cos(z) + sin(y) * sin(z) * cos(x);
+	//lTransform[3][1] = position.y;
+
+	//lTransform[0][2] = -sin(y);
+	//lTransform[1][2] = cos(y) * sin(x);
+	//lTransform[2][2] = cos(x) * cos(y) * scale.z;
+	//lTransform[3][2] = position.z;
+
+	//lTransform[0][3] = 0;
+	//lTransform[1][3] = 0;
+	//lTransform[2][3] = 0;
+	//lTransform[3][3] = 1;
 }
 
 void Transform::Inspector()
@@ -103,9 +107,11 @@ float4x4 Transform::GetTransformMatrix()
 		return lTransform;
 	}
 	else {
-		return owner->parent->transform->GetTransformMatrix() * lTransform;
+		return lTransform * owner->parent->transform->GetTransformMatrix();
 	}
 }
+
+
 
 //void Transform::BoxMesh()
 //{
