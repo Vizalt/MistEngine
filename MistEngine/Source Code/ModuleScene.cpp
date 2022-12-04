@@ -121,9 +121,6 @@ void ModuleScene::SceneWindow()
 		float minDistLenght = 0;
 		for (size_t j = 0; j < interVec.size(); j++) {
 			for (size_t i = 0; i < interVec[j]->GetComponentMesh()->meshes.size(); i++) {
-				if (interVec[j]->name == "City_building_017" || interVec[j]->name == "City_building_016" || interVec[j]->name == "City_building_010") {
-					continue;
-				}
 				Mesh* mesh = interVec[j]->GetComponentMesh()->meshes[i];	
 				float4x4 matTrans = interVec[j]->transform->GetTransformMatrix().Transposed();
 				
@@ -148,14 +145,14 @@ void ModuleScene::SceneWindow()
 						{	
 							if (minDistLenght == 0) {
 								minDistLenght = distLength;
-								App->hierarchy->SetGameObject(interVec[i]);
-								LOG("%s", interVec[i]->name);
+								App->hierarchy->SetGameObject(interVec[j]);
+								LOG("%s", interVec[j]->name);
 								continue;
 							}
 							if (distLength < minDistLenght) {
 								minDistLenght = distLength;
-								App->hierarchy->SetGameObject(interVec[i]);
-								LOG("%s", interVec[i]->name);
+								App->hierarchy->SetGameObject(interVec[j]);
+								LOG("%s", interVec[j]->name);
 							}					
 							
 						} 				
