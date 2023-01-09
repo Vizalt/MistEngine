@@ -190,11 +190,11 @@
     <ClCompile Include="Source Code\Camera.cpp">
       <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Source Code\ParticleSystem.cpp">
-      <Filter>Source Code\Particle System</Filter>
+    <ClCompile Include="Source Code\Emitter.cpp">
+      <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Source Code\ParticleModule.cpp">
-      <Filter>Source Code\Particle System</Filter>
+    <ClCompile Include="Source Code\Particle.cpp">
+      <Filter>Source Code\ParticleSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -480,11 +480,11 @@
     <ClInclude Include="Source Code\Camera.h">
       <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\ParticlesSystem.h">
-      <Filter>Source Code\Particle System</Filter>
+    <ClInclude Include="Source Code\Emitter.h">
+      <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\ParticleModule.h">
-      <Filter>Source Code\Particle System</Filter>
+    <ClInclude Include="Source Code\Particle.h">
+      <Filter>Source Code\ParticleSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -550,8 +550,8 @@
     <Filter Include="Source Code\Tools">
       <UniqueIdentifier>{01768aa4-64c5-42a8-8ec2-eb777ed29f2f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Code\Particle System">
-      <UniqueIdentifier>{e46b28ff-2f38-4c85-8d82-b044de31fee5}</UniqueIdentifier>
+    <Filter Include="Source Code\ParticleSystem">
+      <UniqueIdentifier>{6c843202-08c7-4bc3-8207-d6bb6a6a883d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

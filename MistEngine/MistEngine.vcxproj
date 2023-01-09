@@ -15,6 +15,7 @@
     <ClCompile Include="Source Code\Camera.cpp" />
     <ClCompile Include="Source Code\Color.cpp" />
     <ClCompile Include="Source Code\Component.cpp" />
+    <ClCompile Include="Source Code\Emitter.cpp" />
     <ClCompile Include="Source Code\External\imGui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Source Code\External\imGui\backends\imgui_impl_sdl.cpp" />
     <ClCompile Include="Source Code\External\imGui\imgui.cpp" />
@@ -70,8 +71,7 @@
     <ClCompile Include="Source Code\ModuleScene.cpp" />
     <ClCompile Include="Source Code\ModuleTexture.cpp" />
     <ClCompile Include="Source Code\ModuleWindow.cpp" />
-    <ClCompile Include="Source Code\ParticleModule.cpp" />
-    <ClCompile Include="Source Code\ParticleSystem.cpp" />
+    <ClCompile Include="Source Code\Particle.cpp" />
     <ClCompile Include="Source Code\Primitive.cpp" />
     <ClCompile Include="Source Code\Texture.cpp" />
     <ClCompile Include="Source Code\Timer.cpp" />
@@ -82,6 +82,7 @@
     <ClInclude Include="Source Code\Camera.h" />
     <ClInclude Include="Source Code\Color.h" />
     <ClInclude Include="Source Code\Component.h" />
+    <ClInclude Include="Source Code\Emitter.h" />
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="Source Code\External\imGui\backends\imgui_impl_sdl.h" />
@@ -168,8 +169,7 @@
     <ClInclude Include="Source Code\ModuleScene.h" />
     <ClInclude Include="Source Code\ModuleTexture.h" />
     <ClInclude Include="Source Code\ModuleWindow.h" />
-    <ClInclude Include="Source Code\ParticleModule.h" />
-    <ClInclude Include="Source Code\ParticlesSystem.h" />
+    <ClInclude Include="Source Code\Particle.h" />
     <ClInclude Include="Source Code\Primitive.h" />
     <ClInclude Include="Source Code\Texture.h" />
     <ClInclude Include="Source Code\Timer.h" />
