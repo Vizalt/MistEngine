@@ -7,17 +7,6 @@
 class GameObject;
 class Component;
 
-struct Particle {
-
-	float3 pos;
-	Quat rot;
-	float3 scale;
-	float speed;
-	float lifetime;
-
-	float elapsedtime;
-};
-
 class CEmitter : public Component
 
 {

@@ -9,7 +9,7 @@ enum class ComponentType
 	MESH,
 	TEXTURE,
 	CAMERA,
-	EMITTER
+	EMITTER,
 };
 
 class Component

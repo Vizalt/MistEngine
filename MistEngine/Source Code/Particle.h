@@ -10,12 +10,13 @@ class Component;
 class Particle {
 
 	float3 pos, rot, scale;
-	float speed;
+	float3 speed;
 	float lifetime;
 	float elapsedtime;
+	float gravity;
 
 	Particle();
-	Particle(float3 pos, float3 rot, float3 scale, float speed, float lifetime);
+	Particle(float3 pos, float3 rot, float3 scale, float3 speed, float gravity, float lifetime);
 	Particle(GameObject* owner);
 	~Particle();
 
