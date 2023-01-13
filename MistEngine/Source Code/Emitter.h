@@ -8,7 +8,6 @@ class GameObject;
 class Component;
 
 class CEmitter : public Component
-
 {
 public:
 

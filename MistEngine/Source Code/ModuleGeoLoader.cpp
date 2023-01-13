@@ -378,6 +378,7 @@ void Mesh::Draw()
 	glDrawElements(GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, NULL);
 
 	glPopMatrix();
+
 	glDisableClientState(GL_VERTEX_ARRAY);
 	//cleaning texture
 	glBindTexture(GL_TEXTURE_2D, 0);

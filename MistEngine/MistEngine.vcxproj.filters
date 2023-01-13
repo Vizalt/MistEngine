@@ -193,10 +193,7 @@
     <ClCompile Include="Source Code\Emitter.cpp">
       <Filter>Source Code\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Source Code\Particle.cpp">
-      <Filter>Source Code\ParticleSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Code\ParticleRenderer.cpp">
+    <ClCompile Include="Source Code\ParticleSystem.cpp">
       <Filter>Source Code\ParticleSystem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -486,10 +483,7 @@
     <ClInclude Include="Source Code\Emitter.h">
       <Filter>Source Code\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\Particle.h">
-      <Filter>Source Code\ParticleSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Source Code\ParticleRenderer.h">
+    <ClInclude Include="Source Code\ParticleSystem.h">
       <Filter>Source Code\ParticleSystem</Filter>
     </ClInclude>
   </ItemGroup>

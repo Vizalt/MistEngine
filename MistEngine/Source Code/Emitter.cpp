@@ -1,7 +1,6 @@
 #include "Application.h"
 #include "Emitter.h"
 #include "Transform.h"
-#include "GameObject.h"
 
 
 CEmitter::CEmitter() : Component(nullptr)

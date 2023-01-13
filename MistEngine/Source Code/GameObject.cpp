@@ -34,7 +34,7 @@ GameObject::~GameObject()
 		delete components[0];
 	}*/
 
-	for (size_t i = 0; i < components.size(); i++)
+	for (int i = 0; i < components.size(); i++)
 	{
 		delete components[i];
 	}
@@ -42,7 +42,7 @@ GameObject::~GameObject()
 
 	if (parent != nullptr) {
 
-		for (size_t i = 0; i < parent->children.size(); i++)
+		for (int i = 0; i < parent->children.size(); i++)
 		{
 			if (parent->children[i] == this) {
 				parent->children.erase(parent->children.begin() + i);
