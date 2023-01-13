@@ -72,6 +72,7 @@
     <ClCompile Include="Source Code\ModuleTexture.cpp" />
     <ClCompile Include="Source Code\ModuleWindow.cpp" />
     <ClCompile Include="Source Code\Particle.cpp" />
+    <ClCompile Include="Source Code\ParticleRenderer.cpp" />
     <ClCompile Include="Source Code\Primitive.cpp" />
     <ClCompile Include="Source Code\Texture.cpp" />
     <ClCompile Include="Source Code\Timer.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Source Code\ModuleTexture.h" />
     <ClInclude Include="Source Code\ModuleWindow.h" />
     <ClInclude Include="Source Code\Particle.h" />
+    <ClInclude Include="Source Code\ParticleRenderer.h" />
     <ClInclude Include="Source Code\Primitive.h" />
     <ClInclude Include="Source Code\Texture.h" />
     <ClInclude Include="Source Code\Timer.h" />

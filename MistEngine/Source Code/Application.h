@@ -33,7 +33,7 @@ public:
 private:
 
 	Timer	ms_timer;
-	float	dt;
+	
 	std::vector<Module*> list_modules;
 
 	static Application* app;
@@ -42,6 +42,7 @@ public:
 
 	int fps = 60;
 	Uint32 MsFrame;
+	float	dt;
 
 	Application();
 	~Application();
