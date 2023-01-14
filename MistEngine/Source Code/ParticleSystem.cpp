@@ -40,6 +40,7 @@ void ParticleSystem::Emit(ParticleProps& particleProps)
 	particle.pos = particleProps.pos;
 	particle.scale = particleProps.scale;
 
+	text = particleProps.texture;
 	// Velocity
 	particle.speed = particleProps.speed;
 	//particle.speed.x += particleProps.speedVariation.x * (Random::Float() - 0.5f);
@@ -51,7 +52,7 @@ void ParticleSystem::Emit(ParticleProps& particleProps)
 
 	particle.LifeTime = particleProps.LifeTime;
 
-	ListIndex = --ListIndex % ParticleList.size();
+	ListIndex = ++ListIndex % ParticleList.size();
 }
 
 void ParticleSystem::ParticleBuffer()
@@ -60,15 +61,15 @@ void ParticleSystem::ParticleBuffer()
 	{
 		// Front
 		0, 1, 2, // ABC
-		1, 3, 2, // BDC
+		2, 3, 0, // BDC
 	};
 
 	float vertices[]
 	{
 		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//a
 		 0.5f, -0.5f, 0.0f, 1.0f, 1.0f,//b
-		-0.5f,  0.5f, 0.0f, 0.0f, 0.0f,//c
-		 0.5f,  0.5f, 0.0f, 0.0f, 1.0f,//d
+		 0.5f,  0.5f, 0.0f, 0.0f, 0.0f,//c
+		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,//d
 
 	};
 
@@ -99,7 +100,7 @@ void ParticleSystem::Render() {
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTICES, (void*)(sizeof(float) * 3));
 	//bind and use other buffers
 
-	if (textID != 0) {
+	if (text) {
 
 		glBindTexture(GL_TEXTURE_2D, textID);
 

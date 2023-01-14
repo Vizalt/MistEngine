@@ -15,6 +15,8 @@ struct ParticleProps
 	float3 speed, speedVariation;
 	float4 Color;
 
+	bool texture = true;
+
 	float LifeTime = 1.0f;
 };
 
@@ -45,8 +47,10 @@ public:
 	void ParticleBuffer();
 	void Render();
 
+	bool text = true;
+
 	std::vector<Particle> ParticleList;
-	uint32_t ListIndex = 999;
+	uint32_t ListIndex = 0;
 
 	uint id_indices = 0;
 	uint id_vertices = 0;

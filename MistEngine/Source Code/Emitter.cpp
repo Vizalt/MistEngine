@@ -19,6 +19,7 @@ CEmitter::CEmitter() : Component(nullptr)
 
 	particleProps.LifeTime = 1.0f;
 
+	textureID = Application::GetApp()->texture->checkerID;
 	particleSystem.textID = Application::GetApp()->texture->checkerID;
 	particleSystem.ParticleBuffer();
 
@@ -31,7 +32,7 @@ CEmitter::CEmitter(GameObject* owner) : Component(owner)
 	this->owner = owner;
 
 	//Default Particle
-	particleProps.pos = float3::zero;
+	particleProps.pos = owner->transform->position;
 	particleProps.rot = float3::zero;
 	particleProps.scale = float3::one;
 	particleProps.speed = float3::one;
@@ -40,6 +41,7 @@ CEmitter::CEmitter(GameObject* owner) : Component(owner)
 
 	particleProps.LifeTime = 1.0f;
 
+	textureID = Application::GetApp()->texture->checkerID;
 	particleSystem.textID = Application::GetApp()->texture->checkerID;
 	particleSystem.ParticleBuffer();
 
@@ -51,15 +53,12 @@ CEmitter::~CEmitter()
 	
 }
 
-bool CEmitter::Update()
-{
-	particleProps.pos = owner->transform->position;
-	
+void CEmitter::Update()
+{	
 	particleSystem.Emit(particleProps);
 
 	particleSystem.Update();
 
-	return true;
 }
 
 void CEmitter::RenderParticles()
@@ -79,7 +78,7 @@ void CEmitter::Inspector()
 		ImGui::InputFloat("Life Time", &particleProps.LifeTime);
 		ImGui::ColorEdit4("Birth Color", particleProps.Color.ptr());
 
-		if (ImGui::Checkbox("Particle Texture\t", &PrintText));
+		if (ImGui::Checkbox("Particle Texture\t", &particleProps.texture));
 	}
 
 	RefreshParticleText();
@@ -93,7 +92,7 @@ void CEmitter::RefreshParticleText()
 {
 	uint text = 0;
 
-	if (PrintText) {
+	if (particleProps.texture) {
 		text = textureID;
 	}
 	else {

@@ -16,7 +16,7 @@ public:
 	CEmitter(GameObject* owner);
 	~CEmitter();
 
-	bool Update();
+	void Update();
 
 	void RenderParticles();
 
