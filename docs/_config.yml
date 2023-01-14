@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: Mist Engine
+description: C++/C# Game Engine
+show_downloads: true
