@@ -1,27 +1,42 @@
-# Mist Engine
-## About the Engine
-Mist Engine is a 3D Game Engine made by students of CITM for the assignment of Videogame Engine Development.
 
-## Team Members
-**[David Benages](https://github.com/Divangus):**
-- -----
+# About the Engine
+Mist Engine is a 3D Game Engine that provides a wide variety of tools and features for its users. This engine was conceived and developed as a project in the Videogame Engine Development assignment by students of the Videogame Design and Development degree at CITM.
 
-**[Marina Albalà](https://github.com/Vizalt):**
-- ----
 
-## Core Sub-Systems
+
+
+# About Team Members
+### **[David Benages](https://github.com/Divangus)**
+#### David's contributions to the engine:
+-
+-
+-
+...
+
+
+### **[Marina Albalà](https://github.com/Vizalt)**
+#### Marina's contributions to the engine:
+-
+-
+-
+...
+
+# Core Sub-Systems
 - Editor Docking
 - GameObject & Component System
 - Camera Culling
 - Particle System
 - Camera Editor and Movement
 
-## Video
+# Particle Sub-System
+Mist Engine has...
+[Gif1]
+# Video
 
-## Last Release
+# Last Release
 Click [here](https://github.com/Vizalt/MistEngine/releases) to see our last release!
 
-## License
+# License
 
 MIT License
 
