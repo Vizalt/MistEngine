@@ -55,6 +55,8 @@ CEmitter::~CEmitter()
 
 void CEmitter::Update()
 {	
+	particleProps.pos = owner->transform->position;
+
 	particleSystem.Emit(particleProps);
 
 	particleSystem.Update();
@@ -78,9 +80,8 @@ void CEmitter::Inspector()
 		ImGui::InputFloat("Life Time", &particleProps.LifeTime);
 		ImGui::ColorEdit4("Birth Color", particleProps.Color.ptr());
 
-		if (ImGui::Checkbox("Particle Texture\t", &particleProps.texture));
+		ImGui::Checkbox("Particle Texture\t", &particleProps.texture);
 	}
-
 	RefreshParticleText();
 
 	ImGui::NewLine();

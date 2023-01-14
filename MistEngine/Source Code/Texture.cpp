@@ -59,7 +59,7 @@ void CTexture::Inspector()
 {
 	if (ImGui::CollapsingHeader("Texture"))
 	{
-		if (ImGui::Checkbox("Loaded Texture\t", &PrintLoaded));
+		ImGui::Checkbox("Loaded Texture\t", &PrintLoaded);
 	}
 	RefreshTexture();
 
