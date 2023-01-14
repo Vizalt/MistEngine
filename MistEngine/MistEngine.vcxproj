@@ -67,6 +67,7 @@
     <ClCompile Include="Source Code\ModuleGui.cpp" />
     <ClCompile Include="Source Code\ModuleHierarchy.cpp" />
     <ClCompile Include="Source Code\ModuleInput.cpp" />
+    <ClCompile Include="Source Code\ModuleParticles.cpp" />
     <ClCompile Include="Source Code\ModuleRenderer3D.cpp" />
     <ClCompile Include="Source Code\ModuleScene.cpp" />
     <ClCompile Include="Source Code\ModuleTexture.cpp" />
@@ -165,12 +166,14 @@
     <ClInclude Include="Source Code\ModuleGui.h" />
     <ClInclude Include="Source Code\ModuleHierarchy.h" />
     <ClInclude Include="Source Code\ModuleInput.h" />
+    <ClInclude Include="Source Code\ModuleParticles.h" />
     <ClInclude Include="Source Code\ModuleRenderer3D.h" />
     <ClInclude Include="Source Code\ModuleScene.h" />
     <ClInclude Include="Source Code\ModuleTexture.h" />
     <ClInclude Include="Source Code\ModuleWindow.h" />
     <ClInclude Include="Source Code\ParticleSystem.h" />
     <ClInclude Include="Source Code\Primitive.h" />
+    <ClInclude Include="Source Code\Random.h" />
     <ClInclude Include="Source Code\Texture.h" />
     <ClInclude Include="Source Code\Timer.h" />
     <ClInclude Include="Source Code\Transform.h" />

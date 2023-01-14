@@ -11,7 +11,7 @@
 #include "Component.h"
 #include "Primitive.h"
 #include "Camera.h"
-
+#include "ModuleParticles.h"
 
 #include "ModuleHierarchy.h"
 #include "ModuleRenderer3D.h"
@@ -162,7 +162,12 @@ void ModuleGeoLoader::Draw()
 		if (!App->camera->sceneCam->ContainsAaBox(meshes[i])) continue;
 
 		meshes[i]->Draw();
+
 		App->camera->sceneCam->printCount ++;
+	}
+
+	for (int i = 0; i < App->particle->emitterVector.size(); i++) {
+		App->particle->emitterVector[i]->RenderParticles();
 	}
 
 	for (int i = 0; i < gObjPrimList.size(); i++) {
@@ -181,6 +186,10 @@ void ModuleGeoLoader::DrawGame()
 
 		meshes[i]->Draw();
 		App->renderer3D->mainCam->printCount++;
+	}
+
+	for (int i = 0; i < App->particle->emitterVector.size(); i++) {
+		App->particle->emitterVector[i]->RenderParticles();
 	}
 
 	for (int i = 0; i < gObjPrimList.size(); i++) {

@@ -26,6 +26,7 @@ Application::Application()
 	scene = new ModuleScene(this);
 	hierarchy = new ModuleHierarchy(this);
 	editor = new ModuleEditor(this);
+	particle = new ModuleParticles(this);
 
 	LOG("...");
 
@@ -39,6 +40,7 @@ Application::Application()
 	AddModule(input);
 
 	AddModule(texture);
+	AddModule(particle);
 	AddModule(loader);	
 	AddModule(hierarchy);
 	AddModule(scene);

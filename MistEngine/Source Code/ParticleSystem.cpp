@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "ParticleSystem.h"
 
+//#include "Random.h"
+
 
 ParticleSystem::ParticleSystem() {
 	
@@ -31,33 +33,55 @@ void ParticleSystem::Update() {
 	}
 }
 
+void ParticleSystem::Emit(ParticleProps& particleProps)
+{
+	Particle& particle = ParticleList[ListIndex];
+	particle.Active = true;
+	particle.pos = particleProps.pos;
+	particle.scale = particleProps.scale;
+
+	// Velocity
+	particle.speed = particleProps.speed;
+	//particle.speed.x += particleProps.speedVariation.x * (Random::Float() - 0.5f);
+	//particle.speed.y += particleProps.speedVariation.y * (Random::Float() - 0.5f);
+	//particle.speed.z += particleProps.speedVariation.z * (Random::Float() - 0.5f);
+
+	// Color
+	Color = particleProps.Color;
+
+	particle.LifeTime = particleProps.LifeTime;
+
+	ListIndex = --ListIndex % ParticleList.size();
+}
+
 void ParticleSystem::ParticleBuffer()
 {
-	uint vertices[]
+	uint indices[]
 	{
 		// Front
 		0, 1, 2, // ABC
 		1, 3, 2, // BDC
 	};
 
+	float vertices[]
+	{
+		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//a
+		 0.5f, -0.5f, 0.0f, 1.0f, 1.0f,//b
+		-0.5f,  0.5f, 0.0f, 0.0f, 0.0f,//c
+		 0.5f,  0.5f, 0.0f, 0.0f, 1.0f,//d
+
+	};
+
 	//Fill buffers with vertices
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glGenBuffers(1, (GLuint*)&(id_vertices));
 	glBindBuffer(GL_ARRAY_BUFFER, id_vertices);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * VERTICES, vertices, GL_STATIC_DRAW);
-
-	float indices[]
-	{
-		-0.5f, -0.5f, 0.0f,//a
-		 0.5f, -0.5f, 0.0f,//b
-		-0.5f,  0.5f, 0.0f,//c
-		 0.5f,  0.5f, 0.0f,//d
-	};
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 4 * VERTICES, vertices, GL_STATIC_DRAW);
 
 	//Fill buffers with indices
 	glGenBuffers(1, (GLuint*)&(id_indices));
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * 12, indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * 6, indices, GL_STATIC_DRAW);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 
@@ -75,17 +99,27 @@ void ParticleSystem::Render() {
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTICES, (void*)(sizeof(float) * 3));
 	//bind and use other buffers
 
-	glBindTexture(GL_TEXTURE_2D, textID);
+	if (textID != 0) {
+
+		glBindTexture(GL_TEXTURE_2D, textID);
+
+	}
+	else {
+		glColor4f(Color.x, Color.y, Color.z, Color.w);
+	}
 	//Indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 
 	for (int i = 0; i < ParticleList.size(); i++)
 	{
+		if (!ParticleList[i].Active)
+			continue;
+
 		glPushMatrix();
 		
 		glMultMatrixf(ParticleList[i].GetTransformMatrix().ptr());
 
-		glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, NULL);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, NULL);
 
 		glPopMatrix();
 	}

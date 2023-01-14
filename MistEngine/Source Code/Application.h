@@ -13,6 +13,7 @@
 #include "ModuleScene.h"
 #include "ModuleHierarchy.h"
 #include "ModuleEditor.h"
+#include "ModuleParticles.h"
 
 #include <vector>
 
@@ -29,6 +30,7 @@ public:
 	ModuleScene* scene;
 	ModuleHierarchy* hierarchy;
 	ModuleEditor* editor;
+	ModuleParticles* particle;
 
 private:
 

@@ -36,10 +36,16 @@ bool ModuleScene::Start()
 		objdebug->children[i]->transform->SetTransformMatrix();
 	}*/
 
-	file_path = "Assets/street/scene.DAE";
+	/*file_path = "Assets/street/scene.DAE";
 	objdebug = App->loader->LoadFile(file_path);
 	objdebug->transform->rotation.z = -90;
-	objdebug->transform->SetTransformMatrix();
+	objdebug->transform->SetTransformMatrix();*/
+
+	GameObject* b = new GameObject(App->hierarchy->roots);
+
+	CEmitter* emitter = new CEmitter(b);
+
+	b->components.push_back(emitter);
 	
 
 	return ret;
