@@ -1,4 +1,5 @@
-# Welcome to the Mist Engine wiki!
+# Mist Engine
+## About the Engine
 Mist Engine is a 3D Game Engine made by students of CITM for the assignment of Videogame Engine Development.
 
 ## Team Members
@@ -8,13 +9,20 @@ Mist Engine is a 3D Game Engine made by students of CITM for the assignment of V
 **[Marina Albalà](https://github.com/Vizalt):**
 - ----
 
+## Core Sub-Systems
+- Editor Docking
+- GameObject & Component System
+- Camera Culling
+- Particle System
+- Camera Editor and Movement
+
 ## Video
 
 ## Last Release
 Click [here](https://github.com/Vizalt/MistEngine/releases) to see our last release!
 
 ## License
-```
+
 MIT License
 
 Copyright (c) 2022 Marina Albalà
@@ -36,5 +44,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-```
+
 
