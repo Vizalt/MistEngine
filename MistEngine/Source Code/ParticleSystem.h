@@ -18,8 +18,6 @@ struct Particle
 
 	float LifeTime = 1.0f;
 
-	GLuint textID = 0;
-
 	bool Active = false;
 
 	void SetTransformMatrix();
@@ -33,6 +31,8 @@ public:
 	~ParticleSystem();
 
 	void Update();
+
+	void ParticleBuffer();
 	void Render();
 
 	std::vector<Particle> ParticleList;
@@ -40,5 +40,6 @@ public:
 
 	uint id_indices = 0;
 	uint id_vertices = 0;
+	GLuint textID = 0;
 
 };

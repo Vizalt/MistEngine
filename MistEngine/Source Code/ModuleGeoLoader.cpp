@@ -363,7 +363,7 @@ void Mesh::Draw()
 
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * VERTICES, NULL);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTICES, (void*)(sizeof(float) * 3));
-	// � bind and use other buffers
+	// bind and use other buffers
 
 	glBindTexture(GL_TEXTURE_2D, id_texture);
 	//Indices
