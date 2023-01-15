@@ -9,22 +9,28 @@ Mist Engine is a 3D Game Engine that provides a wide variety of tools and featur
 ### **[David Benages](https://github.com/Divangus)**
 #### David's contributions to the engine:
 - Camera
-- Components
+- Game Objects & Components
 - Frustrum Culling
 - Drag&Drop
 - Primitives
 - Implemented External Libraries
 - Inspector
-
-
+- FBX Importer
+- Texture Loader
+- Particle Emitter
+- Particle System
 
 ### **[Marina Albalà](https://github.com/Vizalt)**
 #### Marina's contributions to the engine:
 - Mouse Picking
 - UI Interface
+- Engine Menus
 - Hierarchy
 - Play/Stop/Pause
 - Console
+- Web Page
+- Video
+- Particle System
 
 
 # **Core Sub-Systems**
