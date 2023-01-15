@@ -1,5 +1,6 @@
 theme: jekyll-theme-cayman
 title: Mist Engine
-description: C++/C# Game Engine
+description: C++ Game Engine
+name: "David Benages and Marina Albalà"
 show_downloads: true
-header-img: https://raw.githubusercontent.com/Vizalt/MistEngine/main/docs/images/HeaderMist.PNG
+
