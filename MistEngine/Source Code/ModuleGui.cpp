@@ -128,6 +128,15 @@ update_status ModuleGui::Update(float dt)
 					App->scene->createCamera(App->hierarchy->roots);
 				}
 			}
+			if (ImGui::Selectable("Create Particle Emitter")) {
+				if (App->hierarchy->objSelected != nullptr) {
+					GameObject* parent = App->hierarchy->objSelected;
+					App->scene->createEmitter(parent);
+				}
+				else {
+					App->scene->createEmitter(App->hierarchy->roots);
+				}
+			}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Help")) {

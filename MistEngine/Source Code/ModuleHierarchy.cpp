@@ -51,11 +51,11 @@ update_status ModuleHierarchy::Update(float dt)
 {
 	DrawHierarchy();
 
-	if (App->input->GetKey(SDL_SCANCODE_DELETE))
+	/*if (App->input->GetKey(SDL_SCANCODE_DELETE))
 	{
 		delete objSelected;
 		objSelected = nullptr;
-	}
+	}*/
 
 	ImGui::Begin("Inspector");
 
@@ -112,6 +112,11 @@ void ModuleHierarchy::DrawHierarchy()
 				if (ImGui::Selectable("Create Camera")) {
 					GameObject* parent = objSelected;
 					App->scene->createCamera(parent);
+					ImGui::CloseCurrentPopup();
+				}
+				if (ImGui::Selectable("Create Particle Emitter")) {
+					GameObject* parent = objSelected;
+					App->scene->createEmitter(parent);
 					ImGui::CloseCurrentPopup();
 				}
 				ImGui::EndPopup();

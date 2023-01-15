@@ -107,7 +107,7 @@ void CEmitter::Inspector()
 		ImGui::NewLine();
 		ImGui::Checkbox("Active\t", &active);
 	}
-	RefreshParticleText();
+	//RefreshParticleText();
 
 	ImGui::NewLine();
 	ImGui::Separator();
@@ -116,14 +116,5 @@ void CEmitter::Inspector()
 
 void CEmitter::RefreshParticleText()
 {
-	uint text = 0;
-
-	if (particleProps.texture) {
-		text = textureID;
-	}
-	else {
-		text = 0;
-	}
-	
-	particleSystem.textID = text;
+	particleSystem.textID = textureID;
 }

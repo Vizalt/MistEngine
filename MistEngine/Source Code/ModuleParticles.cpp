@@ -53,8 +53,8 @@ update_status ModuleParticles::Update(float dt)
 			if (!fireworksList[i]->explosion) {
 				fireworksList[i]->speed = float3::zero;
 				fireworksList[i]->GetComponentEmitter()->particleProps.speed = float3(1.0f, 1.0f, 1.0f);
-				fireworksList[i]->GetComponentEmitter()->particleProps.speedVariation = float3(20.0f, 20.0f, 20.0f);
-				fireworksList[i]->GetComponentEmitter()->particleProps.LifeTime = 8.0f;
+				fireworksList[i]->GetComponentEmitter()->particleProps.speedVariation = float3(50.0f, 50.0f, 50.0f);
+				fireworksList[i]->GetComponentEmitter()->particleProps.LifeTime = 10.0f;
 				fireworksList[i]->explosion = true;
 				fireworksList[i]->LifeTime = 25.0f;
 			}
@@ -99,19 +99,40 @@ void ModuleParticles::castFirework() {
 	GameObject* f = new GameObject();
 
 	f->name = "firework";
-	f->transform->position = float3(0.0f, 2.0f, 0.0f);
+
+	float posX = Random::RandomFloat() * 10;
+	float posZ = Random::RandomFloat() * 10;
+
+	f->transform->position = float3(posX, 2.0f, posZ);
 	f->transform->SetTransformMatrix();
 	CEmitter* emitter2 = new CEmitter(f);
-	emitter2->textureID = App->texture->LoadTexture("Assets/smokeTexture.png");
-	emitter2->RefreshParticleText();
+	
+	int randomText = 1 + (rand() % 4);
+	switch (randomText) {
+	case 1:
+		emitter2->textureID = App->texture->LoadTexture("Assets/fire1.png");
+		break;
+	case 2:
+		emitter2->textureID = App->texture->LoadTexture("Assets/fire2.png");
+		break;
+	case 3:
+		emitter2->textureID = App->texture->LoadTexture("Assets/fire3.png");
+		break;
+	case 4:
+		emitter2->textureID = App->texture->LoadTexture("Assets/fire4.png");
+		break;
+	default:
+		emitter2->textureID = App->texture->LoadTexture("Assets/fire1.png");
+		break;
+	}
 
-	float spd = (Random::RandomFloat() + 1) * 10;
+	emitter2->RefreshParticleText();
 
 	emitter2->particleProps.speed = float3(0.0f, -10.0f, 0.0f);
 	emitter2->particleProps.speedVariation = float3(1.0f, -1.0f, 1.0f);
 	emitter2->particleProps.LifeTime = 5.0f;
 
-	float Objspd = 50.0f;
+	float Objspd = Random::RandomFloat() * 50;
 
 	f->speed = float3(0.0f, Objspd, 0.0f);
 

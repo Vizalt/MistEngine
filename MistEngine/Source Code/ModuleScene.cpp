@@ -247,6 +247,20 @@ GameObject* ModuleScene::createCamera(GameObject* parent)
 	return b;
 }
 
+GameObject* ModuleScene::createEmitter(GameObject* parent)
+{
+	//Smoke Particles
+	GameObject* b = new GameObject(App->hierarchy->roots);
+
+	b->name = "Particle emitter";
+
+	CEmitter* emitter = new CEmitter(b);
+	emitter->RefreshParticleText();
+	b->components.push_back(emitter);
+
+	return b;
+}
+
 ImVec2 ModuleScene::NormalizeMouse(float x, float y, float w, float h, ImVec2 pos)
 {
 	//GLfloat ndc_x = 2.0 * x / w - 1.0;
