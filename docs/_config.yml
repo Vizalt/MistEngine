@@ -1,4 +1,4 @@
-theme: minimal-mistakes-jekyll
+theme: jekyll-theme-cayman
 title: "Mist Engine"
 description: C++ Game Engine
 name: "David Benages and Marina Albalà"
