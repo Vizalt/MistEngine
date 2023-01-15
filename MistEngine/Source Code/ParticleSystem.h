@@ -11,9 +11,11 @@ class Component;
 
 struct ParticleProps
 {
-	float3 pos, rot, scale;
+	float3 pos, rot;
 	float3 speed, speedVariation;
-	float4 Color;
+	float4 Color, endColor;
+
+	float3 beginScale, endScale, scaleVariaton;
 
 	bool texture = true;
 
@@ -26,7 +28,9 @@ struct Particle
 	float4x4 transformMat = float4x4::identity;
 	float3 speed;
 
-	float LifeTime = 1.0f;
+	float3 beginScale, endScale;
+
+	float LifeTime = 1.0f, LifeRemaining = 0.0f;
 
 	bool Active = false;
 
@@ -50,11 +54,14 @@ public:
 	bool text = true;
 
 	std::vector<Particle> ParticleList;
-	uint32_t ListIndex = 0;
+	uint32_t ListIndex = 999;
 
 	uint id_indices = 0;
 	uint id_vertices = 0;
 	GLuint textID = 0;
 	float4 Color = float4(255.0f, 255.0f, 255.0f, 1.0f);
+	float4 endColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
+
+	float4 printColor = float4(255.0f, 255.0f, 255.0f, 1.0f);
 
 };

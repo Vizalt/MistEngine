@@ -199,6 +199,9 @@
     <ClCompile Include="Source Code\ModuleParticles.cpp">
       <Filter>Source Code\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Source Code\Random.cpp">
+      <Filter>Source Code\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source Code\External\MathGeoLib\include\Geometry\AABB.h">
@@ -489,11 +492,11 @@
     <ClInclude Include="Source Code\ParticleSystem.h">
       <Filter>Source Code\ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source Code\Random.h">
-      <Filter>Source Code\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="Source Code\ModuleParticles.h">
       <Filter>Source Code\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Source Code\Random.h">
+      <Filter>Source Code\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

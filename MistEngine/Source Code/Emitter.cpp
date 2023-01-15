@@ -12,10 +12,12 @@ CEmitter::CEmitter() : Component(nullptr)
 	//Default Particle
 	particleProps.pos = float3::zero;
 	particleProps.rot = float3::zero;
-	particleProps.scale = float3::one;
-	particleProps.speed = float3::one;
+	particleProps.beginScale = float3::one;
+	particleProps.endScale = float3::zero;
+	particleProps.speed = float3(0.0f, 1.0f, 0.0f);
 	particleProps.speedVariation = float3::one;
 	particleProps.Color = float4(255.0f, 255.0f, 255.0f, 1.0f); //r g b a
+	particleProps.endColor = float4(0.0f, 0.0f, 0.0f, 0.0f); //r g b a
 
 	particleProps.LifeTime = 1.0f;
 
@@ -34,10 +36,12 @@ CEmitter::CEmitter(GameObject* owner) : Component(owner)
 	//Default Particle
 	particleProps.pos = owner->transform->position;
 	particleProps.rot = float3::zero;
-	particleProps.scale = float3::one;
-	particleProps.speed = float3::one;
+	particleProps.beginScale = float3::one;
+	particleProps.endScale = float3::zero;
+	particleProps.speed = float3(0.0f, 1.0f, 0.0f);
 	particleProps.speedVariation = float3::one;
 	particleProps.Color = float4(255.0f, 255.0f, 255.0f, 1.0f); //r g b a
+	particleProps.endColor = float4(0.0f, 0.0f, 0.0f, 0.0f); //r g b a
 
 	particleProps.LifeTime = 1.0f;
 
@@ -74,12 +78,18 @@ void CEmitter::Inspector()
 	if (ImGui::CollapsingHeader("Particle Emitter"))
 	{
 		ImGui::Text("X\t\t Y\t\t Z");
-		ImGui::InputFloat3("Particle Scale", particleProps.scale.ptr());
+		ImGui::InputFloat3("Particle Begin Scale", particleProps.beginScale.ptr());
+		ImGui::Text("X\t\t Y\t\t Z");
+		ImGui::InputFloat3("Particle End Scale", particleProps.endScale.ptr());
+		ImGui::NewLine();
 		ImGui::Text("X\t\t Y\t\t Z");
 		ImGui::InputFloat3("Speed", particleProps.speed.ptr());
+		ImGui::Text("X\t\t Y\t\t Z");
+		ImGui::InputFloat3("Speed Variaton", particleProps.speedVariation.ptr());
 		ImGui::InputFloat("Life Time", &particleProps.LifeTime);
-		ImGui::ColorEdit4("Birth Color", particleProps.Color.ptr());
-
+		ImGui::NewLine();
+		ImGui::ColorEdit4("Color", particleProps.Color.ptr());
+		ImGui::ColorEdit4("End Color", particleProps.endColor.ptr());
 		ImGui::Checkbox("Particle Texture\t", &particleProps.texture);
 	}
 	RefreshParticleText();

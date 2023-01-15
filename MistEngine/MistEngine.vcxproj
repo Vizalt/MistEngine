@@ -74,6 +74,7 @@
     <ClCompile Include="Source Code\ModuleWindow.cpp" />
     <ClCompile Include="Source Code\ParticleSystem.cpp" />
     <ClCompile Include="Source Code\Primitive.cpp" />
+    <ClCompile Include="Source Code\Random.cpp" />
     <ClCompile Include="Source Code\Texture.cpp" />
     <ClCompile Include="Source Code\Timer.cpp" />
     <ClCompile Include="Source Code\Transform.cpp" />

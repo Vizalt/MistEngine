@@ -2,6 +2,7 @@
 #include "ModuleEditor.h"
 #include<string>
 #include "Globals.h"
+#include "Random.h"
 
 extern Application* externalapp = nullptr;
 
@@ -67,6 +68,7 @@ bool Application::Init()
 
 	// Call Init() in all modules
 	LOG("Application Init --------------");
+	Random::Init();
 	for (size_t i = 0; i < list_modules.size(); i++)
 	{
 		ret = list_modules[i]->Init();

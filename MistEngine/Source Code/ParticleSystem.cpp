@@ -1,8 +1,6 @@
 #include "Application.h"
 #include "ParticleSystem.h"
-
-//#include "Random.h"
-
+#include "Random.h"
 
 ParticleSystem::ParticleSystem() {
 	
@@ -21,14 +19,14 @@ void ParticleSystem::Update() {
 		if (!ParticleList[i].Active)
 			continue;
 
-		if (ParticleList[i].LifeTime <= 0.0f)
+		if (ParticleList[i].LifeRemaining <= 0.0f)
 		{
 			ParticleList[i].Active = false;
 			continue;
 		}
 
-		ParticleList[i].LifeTime -= Application::GetApp()->dt;
-		ParticleList[i].pos += ParticleList[i].speed * Application::GetApp()->dt;	
+		ParticleList[i].LifeRemaining -= Application::GetApp()->dt;
+		ParticleList[i].pos += ParticleList[i].speed * Application::GetApp()->dt;
 		ParticleList[i].SetTransformMatrix();
 	}
 }
@@ -38,38 +36,40 @@ void ParticleSystem::Emit(ParticleProps& particleProps)
 	Particle& particle = ParticleList[ListIndex];
 	particle.Active = true;
 	particle.pos = particleProps.pos;
-	particle.scale = particleProps.scale;
+	particle.beginScale = particleProps.beginScale + particleProps.scaleVariaton * (Random::RandomFloat() - 0.5f); //Random number between -0.5 / 0.5
+	particle.endScale = particleProps.endScale;
 
 	text = particleProps.texture;
 	// Velocity
 	particle.speed = particleProps.speed;
-	//particle.speed.x += particleProps.speedVariation.x * (Random::Float() - 0.5f);
-	//particle.speed.y += particleProps.speedVariation.y * (Random::Float() - 0.5f);
-	//particle.speed.z += particleProps.speedVariation.z * (Random::Float() - 0.5f);
+	particle.speed.x += particleProps.speedVariation.x * (Random::RandomFloat() - 0.5f);
+	particle.speed.y += particleProps.speedVariation.y * (Random::RandomFloat() - 0.5f);
+	particle.speed.z += particleProps.speedVariation.z * (Random::RandomFloat() - 0.5f);
 
 	// Color
 	Color = particleProps.Color;
+	endColor = particleProps.endColor;
 
 	particle.LifeTime = particleProps.LifeTime;
+	particle.LifeRemaining = particleProps.LifeTime;
 
-	ListIndex = ++ListIndex % ParticleList.size();
+	ListIndex = --ListIndex % ParticleList.size();
 }
 
 void ParticleSystem::ParticleBuffer()
 {
 	uint indices[]
 	{
-		// Front
-		0, 1, 2, // ABC
-		2, 3, 0, // BDC
+		0, 1, 2, 
+		2, 3, 0, 
 	};
 
 	float vertices[]
 	{
-		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,//a
-		 0.5f, -0.5f, 0.0f, 1.0f, 1.0f,//b
-		 0.5f,  0.5f, 0.0f, 0.0f, 0.0f,//c
-		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,//d
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, //0
+		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, //1
+		 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, //2
+		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, //3
 
 	};
 
@@ -105,9 +105,7 @@ void ParticleSystem::Render() {
 		glBindTexture(GL_TEXTURE_2D, textID);
 
 	}
-	else {
-		glColor4f(Color.x, Color.y, Color.z, Color.w);
-	}
+
 	//Indices
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
 
@@ -115,6 +113,15 @@ void ParticleSystem::Render() {
 	{
 		if (!ParticleList[i].Active)
 			continue;
+
+		float life = ParticleList[i].LifeRemaining / ParticleList[i].LifeTime;
+		ParticleList[i].scale = Lerp(ParticleList[i].endScale, ParticleList[i].beginScale, life);
+		printColor = Lerp(endColor, Color, life);
+		ParticleList[i].SetTransformMatrix();
+
+		if (!text) {
+			glColor4f(printColor.x, printColor.y, printColor.z, printColor.w);
+		}
 
 		glPushMatrix();
 		
