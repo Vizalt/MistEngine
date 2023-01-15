@@ -55,6 +55,7 @@ Furthermore, another feature of the particle system is the use of the Billboard 
 To illustrate what Mist Engine's particle system is capable of, upon starting the software, you can see how the initial scenario contains several emitters in the chimneys of the houses that produce smoke-simulating particulates, also you can press 1 to generate a firework effect.
 
 ![EngineGif2](https://user-images.githubusercontent.com/70697960/212568941-8ae00a3e-ff4c-4ba3-9901-db995e254da0.gif)
+
 ![EngineGif](https://user-images.githubusercontent.com/70697960/212568942-397a4f5b-861e-4892-8c17-e540db9732b2.gif)
 
 # **WorkFlow Video**
