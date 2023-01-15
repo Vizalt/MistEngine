@@ -54,8 +54,6 @@ public:
 	void Render();
 	void Billboard(Particle &particle);
 
-	
-
 	bool text = true;
 
 	std::vector<Particle> ParticleList;

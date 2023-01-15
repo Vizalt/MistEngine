@@ -3,6 +3,7 @@
 #include "Random.h"
 #include "Camera.h"
 #include "Transform.h"
+#include "ModuleScene.h"
 
 ParticleSystem::ParticleSystem() {
 	
@@ -173,7 +174,14 @@ float4x4 Particle::GetTransformMatrix()
 void ParticleSystem::Billboard(Particle &particle) {
 
 	float3 right, up, look;
-	CCamera* cam = Application::GetApp()->camera->sceneCam;
+	CCamera* cam;
+
+	if (Application::GetApp()->scene->sceneSelected) {
+		cam = Application::GetApp()->camera->sceneCam;
+	}
+	else {
+		cam = Application::GetApp()->renderer3D->mainCam;
+	}
 
 	look = float3(cam->FrustumCam.pos - particle.pos).Normalized();
 	up = cam->FrustumCam.up;
@@ -204,39 +212,6 @@ void ParticleSystem::Billboard(Particle &particle) {
 	transform.Transpose();
 
 	particle.transformMat = transform;
-	
-
-	/*float3 X = float3(0, 1, 0).Cross(FrustumCam.front).Normalized();
-	FrustumCam.up = FrustumCam.front.Cross(X);*/
-
-	//float3x3 rot = float3x3(xAxis, yAxis, zAxis);
-	//float4x4 newOrient = float4x4::FromTRS(particle.pos, rot, particle.scale);
-
-	/*float4x4 temp = particle.GetTransformMatrix();
-	temp.Inverse();
-
-	newOrient = temp.Mul(newOrient);*/
-	//particle.SetTransform(newOrient);
-	//particle.SetTransformMatrix();
-
-	/*look = float3(cam->FrustumCam.pos - particle.pos).Normalized();
-	up = cam->FrustumCam.up;
-	right = up.Cross(look);
-
-	float4x4 rotation = float4x4::identity;
-	rotation[0][0] = right.x;
-	rotation[1][0] = right.y;
-	rotation[2][0] = right.z;
-	rotation[0][1] = up.x;
-	rotation[1][1] = up.y;
-	rotation[2][1] = up.z;
-	rotation[0][2] = look.x;
-	rotation[1][2] = look.y;
-	rotation[2][2] = look.z;
-
-	float4x4 translation = float4x4::TranslatePart()
-
-	particle.transformMat = transform;*/
 }
 
 

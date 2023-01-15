@@ -41,15 +41,24 @@ bool ModuleScene::Start()
 	objdebug->transform->rotation.z = -90;
 	objdebug->transform->SetTransformMatrix();
 
+	//Smoke Particles
 	GameObject* b = new GameObject(App->hierarchy->roots);
 	b->name = "emitter";
-
+	b->transform->position = float3(33.7f, 7.5f, -30.5f);
+	b->transform->SetTransformMatrix();
 	CEmitter* emitter = new CEmitter(b);
-
 	emitter->textureID = App->texture->LoadTexture("Assets/smokeTexture.png");
 	emitter->RefreshParticleText();
-
 	b->components.push_back(emitter);
+
+	GameObject* c = new GameObject(App->hierarchy->roots);
+	c->name = "emitter";
+	c->transform->position = float3(-40.6f, 10.5f, 24.7f);
+	c->transform->SetTransformMatrix();
+	CEmitter* emitter2 = new CEmitter(c);
+	emitter2->textureID = App->texture->LoadTexture("Assets/smokeTexture.png");
+	emitter2->RefreshParticleText();
+	c->components.push_back(emitter2);
 	
 
 	return ret;
@@ -98,6 +107,11 @@ void ModuleScene::SceneWindow()
 {
 	ImGui::Begin("Scene");
 	WindowSize = ImGui::GetContentRegionAvail();
+
+	if (ImGui::IsWindowFocused())
+	{
+		sceneSelected = true;
+	}
 
 	//Prevent image stretching by setting new aspect ratio
 	float aspectRatio = WindowSize.x / WindowSize.y;
@@ -188,6 +202,11 @@ void ModuleScene::GameWindow()
 	ImGui::Begin("Game");
 	//ImGui::PopStyleColor();
 	WindowSize = ImGui::GetContentRegionAvail();
+
+	if (ImGui::IsWindowFocused())
+	{
+		sceneSelected = false;
+	}
 
 	float aspectRatio = WindowSize.x / WindowSize.y;
 	App->renderer3D->mainCam->FrustumCam.verticalFov = App->renderer3D->mainCam->FOV * DEGTORAD;

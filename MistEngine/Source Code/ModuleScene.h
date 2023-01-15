@@ -40,6 +40,8 @@ public:
 
 	void OnSave();
 
+	bool sceneSelected = false;
+
 private:
 	std::string file_path;
 	std::string texture_path;
