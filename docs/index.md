@@ -40,7 +40,6 @@ ImGui's docking helped us to provide a cleaner workspace, allowing us to move th
 The engine utilizes a Component system and Gameobjects. This allows us to create as many as desired and allows to adjust them to specific needs.
 ### Camera Culling
 Camera Culling allows the scene to be rendered to give the program faster and more accurate rendering by not drawing meshes that are not on the screen.
-### Particle System
 
 ### Camera Editor and Movement
 Mist Engine includes a camera which can be controlled by the user, along with some parameters that allow customizing and moving the game's camera.
@@ -52,7 +51,7 @@ Within the software, is included an inspector that makes it possible to modify s
 
 Furthermore, another feature of the particle system is the use of the Billboard component. This allows the particles to always face the camera, both in the scene and in the game.
 
-To illustrate what Mist Engine's particle system is capable of, upon starting the software, you can see how the initial scenario contains several emitters in the chimneys of the houses that produce smoke-simulating particulates.
+To illustrate what Mist Engine's particle system is capable of, upon starting the software, you can see how the initial scenario contains several emitters in the chimneys of the houses that produce smoke-simulating particulates, also you can press 1 to generate a firework effect.
 
 ![Gif1]()
 # **WorkFlow Video**
