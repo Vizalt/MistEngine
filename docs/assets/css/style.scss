@@ -10,5 +10,11 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #000000;
-    background-image: url('file:///C:\Users\marin\Desktop\background.jpg') 0 0 repeat;
+    background-image: url('/images/HeaderMist.PNG') 0 0 repeat;
 }
+#header {
+  background-image: url('/images/HeaderMist.PNG');
+  background-size: cover;
+  background-position: center;
+}
+
