@@ -1,5 +1,6 @@
 # **Mist Engine**
-![MistEngine](https://github.com/Vizalt/MistEngine/blob/main/docs/images/HeaderMist.PNG?raw=true)
+![MistEngine](https://user-images.githubusercontent.com/70697960/212569055-4accfc6d-1d94-464d-a436-509cb50b2276.PNG)
+
 # **About the Engine**
 Mist Engine is a 3D Game Engine that provides a wide variety of tools and features for its users. This engine was conceived and developed as a project in the Videogame Engine Development assignment by students of the Videogame Design and Development degree at CITM.
 
@@ -53,7 +54,9 @@ Furthermore, another feature of the particle system is the use of the Billboard 
 
 To illustrate what Mist Engine's particle system is capable of, upon starting the software, you can see how the initial scenario contains several emitters in the chimneys of the houses that produce smoke-simulating particulates, also you can press 1 to generate a firework effect.
 
-![Gif1]()
+![EngineGif2](https://user-images.githubusercontent.com/70697960/212568941-8ae00a3e-ff4c-4ba3-9901-db995e254da0.gif)
+![EngineGif](https://user-images.githubusercontent.com/70697960/212568942-397a4f5b-861e-4892-8c17-e540db9732b2.gif)
+
 # **WorkFlow Video**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/7fIiIfjpLBI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
