@@ -1,6 +1,8 @@
-theme: Jekyll-theme-minimal-mistakes
-title: Mist Engine
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "air"
+title: "Mist Engine"
 description: C++ Game Engine
+name: "David Benages and Marina Albalà"
 show_downloads: true
 header:
   background-image: https://github.com/Vizalt/MistEngine/blob/main/docs/images/HeaderMist.PNG
