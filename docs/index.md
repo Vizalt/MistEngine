@@ -51,7 +51,7 @@ Click [here](https://github.com/Vizalt/MistEngine/releases) to see our last rele
 
 MIT License
 
-Copyright (c) 2022 Marina Albalà
+Copyright (c) 2022 Marina Albalà and David Benages
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
