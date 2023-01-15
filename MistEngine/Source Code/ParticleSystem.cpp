@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "ParticleSystem.h"
 #include "Random.h"
+#include "Camera.h"
+#include "Transform.h"
 
 ParticleSystem::ParticleSystem() {
 	
@@ -47,8 +49,8 @@ void ParticleSystem::Emit(ParticleProps& particleProps)
 	particle.speed.z += particleProps.speedVariation.z * (Random::RandomFloat() - 0.5f);
 
 	// Color
-	Color = particleProps.Color;
-	endColor = particleProps.endColor;
+	particle.Color = particleProps.Color;
+	particle.endColor = particleProps.endColor;
 
 	particle.LifeTime = particleProps.LifeTime;
 	particle.LifeRemaining = particleProps.LifeTime;
@@ -100,6 +102,7 @@ void ParticleSystem::Render() {
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * VERTICES, (void*)(sizeof(float) * 3));
 	//bind and use other buffers
 
+
 	if (text) {
 
 		glBindTexture(GL_TEXTURE_2D, textID);
@@ -114,10 +117,13 @@ void ParticleSystem::Render() {
 		if (!ParticleList[i].Active)
 			continue;
 
+
 		float life = ParticleList[i].LifeRemaining / ParticleList[i].LifeTime;
 		ParticleList[i].scale = Lerp(ParticleList[i].endScale, ParticleList[i].beginScale, life);
-		printColor = Lerp(endColor, Color, life);
+		float4 printColor = Lerp(ParticleList[i].endColor, ParticleList[i].Color, life);
 		ParticleList[i].SetTransformMatrix();
+
+		Billboard(ParticleList[i]);
 
 		if (!text) {
 			glColor4f(printColor.x, printColor.y, printColor.z, printColor.w);
@@ -151,7 +157,86 @@ void Particle::SetTransformMatrix()
 	transformMat = float4x4::FromTRS(pos, q, scale).Transposed();
 }
 
+void Particle::SetTransform(float4x4 matrix)
+{
+	Quat rotation;
+	matrix.Decompose(pos, rotation, scale);
+
+	rot = rotation.ToEulerXYZ();
+}
+
 float4x4 Particle::GetTransformMatrix()
 {
 	return transformMat;
 }
+
+void ParticleSystem::Billboard(Particle &particle) {
+
+	float3 right, up, look;
+	CCamera* cam = Application::GetApp()->camera->sceneCam;
+
+	look = float3(cam->FrustumCam.pos - particle.pos).Normalized();
+	up = cam->FrustumCam.up;
+	right = up.Cross(look);
+
+	float4x4 transform = float4x4::identity;
+	transform[0][0] = right.x * particle.scale.x;
+	transform[1][0] = right.y;
+	transform[2][0] = right.z;
+
+	transform[0][1] = up.x;
+	transform[1][1] = up.y * particle.scale.y;
+	transform[2][1] = up.z;
+
+	transform[0][2] = look.x;
+	transform[1][2] = look.y;
+	transform[2][2] = look.z * particle.scale.z;
+	
+	transform[0][3] = particle.pos.x;
+	transform[1][3] = particle.pos.y;
+	transform[2][3] = particle.pos.z;
+
+	transform[3][0] = 0;
+	transform[3][1] = 0;
+	transform[3][2] = 0;
+	transform[3][3] = 1;
+
+	transform.Transpose();
+
+	particle.transformMat = transform;
+	
+
+	/*float3 X = float3(0, 1, 0).Cross(FrustumCam.front).Normalized();
+	FrustumCam.up = FrustumCam.front.Cross(X);*/
+
+	//float3x3 rot = float3x3(xAxis, yAxis, zAxis);
+	//float4x4 newOrient = float4x4::FromTRS(particle.pos, rot, particle.scale);
+
+	/*float4x4 temp = particle.GetTransformMatrix();
+	temp.Inverse();
+
+	newOrient = temp.Mul(newOrient);*/
+	//particle.SetTransform(newOrient);
+	//particle.SetTransformMatrix();
+
+	/*look = float3(cam->FrustumCam.pos - particle.pos).Normalized();
+	up = cam->FrustumCam.up;
+	right = up.Cross(look);
+
+	float4x4 rotation = float4x4::identity;
+	rotation[0][0] = right.x;
+	rotation[1][0] = right.y;
+	rotation[2][0] = right.z;
+	rotation[0][1] = up.x;
+	rotation[1][1] = up.y;
+	rotation[2][1] = up.z;
+	rotation[0][2] = look.x;
+	rotation[1][2] = look.y;
+	rotation[2][2] = look.z;
+
+	float4x4 translation = float4x4::TranslatePart()
+
+	particle.transformMat = transform;*/
+}
+
+

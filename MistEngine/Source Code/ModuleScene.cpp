@@ -36,14 +36,17 @@ bool ModuleScene::Start()
 		objdebug->children[i]->transform->SetTransformMatrix();
 	}*/
 
-	/*file_path = "Assets/street/scene.DAE";
+	file_path = "Assets/street/scene.DAE";
 	objdebug = App->loader->LoadFile(file_path);
 	objdebug->transform->rotation.z = -90;
-	objdebug->transform->SetTransformMatrix();*/
+	objdebug->transform->SetTransformMatrix();
 
 	GameObject* b = new GameObject(App->hierarchy->roots);
+	b->name = "emitter";
 
 	CEmitter* emitter = new CEmitter(b);
+
+	emitter->textureID = App->texture->LoadTexture("Assets/smokeTexture.png");
 
 	b->components.push_back(emitter);
 	
@@ -66,6 +69,7 @@ update_status ModuleScene::Update(float dt)
 		App->renderer3D->mainCam->TransformCam();
 	}
 
+	
 	
 
 	return UPDATE_CONTINUE;

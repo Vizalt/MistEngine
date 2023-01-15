@@ -59,11 +59,14 @@ CEmitter::~CEmitter()
 
 void CEmitter::Update()
 {	
+
 	particleProps.pos = owner->transform->position;
 
 	particleSystem.Emit(particleProps);
 
 	particleSystem.Update();
+
+	
 
 }
 

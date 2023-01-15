@@ -23,6 +23,7 @@ public:
 	float3 position, scale, rotation;
 
 	void SetTransformMatrix();
+	void SetTransform(float4x4 matrix);
 	void Inspector();
 
 	

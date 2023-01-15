@@ -34,6 +34,14 @@ void Transform::SetTransformMatrix()
 	lTransform = float4x4::FromTRS(position, q, scale).Transposed();
 }
 
+void Transform::SetTransform(float4x4 matrix)
+{
+	Quat rot;
+	matrix.Decompose(position, rot, scale);
+
+	rotation = rot.ToEulerXYZ();
+}
+
 void Transform::Inspector()
 {
 	if (owner->parent != nullptr) {

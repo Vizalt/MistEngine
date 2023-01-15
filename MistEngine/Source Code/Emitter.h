@@ -24,6 +24,8 @@ public:
 
 	void RefreshParticleText();
 
+	
+
 	bool PrintText = true;
 
 	GLuint textureID = 0;

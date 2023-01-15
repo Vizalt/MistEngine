@@ -27,6 +27,7 @@ struct Particle
 	float3 pos, rot, scale;
 	float4x4 transformMat = float4x4::identity;
 	float3 speed;
+	float4 Color, endColor;
 
 	float3 beginScale, endScale;
 
@@ -35,6 +36,7 @@ struct Particle
 	bool Active = false;
 
 	void SetTransformMatrix();
+	void SetTransform(float4x4 matrix);
 	float4x4 GetTransformMatrix();
 };
 
@@ -50,6 +52,9 @@ public:
 
 	void ParticleBuffer();
 	void Render();
+	void Billboard(Particle &particle);
+
+	
 
 	bool text = true;
 
@@ -59,9 +64,5 @@ public:
 	uint id_indices = 0;
 	uint id_vertices = 0;
 	GLuint textID = 0;
-	float4 Color = float4(255.0f, 255.0f, 255.0f, 1.0f);
-	float4 endColor = float4(0.0f, 0.0f, 0.0f, 0.0f);
-
-	float4 printColor = float4(255.0f, 255.0f, 255.0f, 1.0f);
 
 };
