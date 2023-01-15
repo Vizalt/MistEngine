@@ -2,3 +2,5 @@ theme: Jekyll-theme-minimal-mistakes
 title: Mist Engine
 description: C++ Game Engine
 show_downloads: true
+header:
+  background-image: https://github.com/Vizalt/MistEngine/blob/main/docs/images/HeaderMist.PNG
