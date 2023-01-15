@@ -1,5 +1,4 @@
-theme: jekyll-theme-cayman
+theme: Jekyll-theme-minimal-mistakes
 title: Mist Engine
-description: C++/C# Game Engine
+description: C++ Game Engine
 show_downloads: true
-header-img: https://raw.githubusercontent.com/Vizalt/MistEngine/main/docs/images/HeaderMist.PNG
