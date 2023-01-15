@@ -47,6 +47,7 @@ bool ModuleScene::Start()
 	CEmitter* emitter = new CEmitter(b);
 
 	emitter->textureID = App->texture->LoadTexture("Assets/smokeTexture.png");
+	emitter->RefreshParticleText();
 
 	b->components.push_back(emitter);
 	
