@@ -2,6 +2,7 @@
 #include "Emitter.h"
 #include "Transform.h"
 #include "ModuleParticles.h"
+#include "GameObject.h"
 
 
 CEmitter::CEmitter() : Component(nullptr)

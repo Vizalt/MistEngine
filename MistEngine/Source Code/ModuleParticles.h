@@ -4,6 +4,7 @@
 #include "ModuleRenderer3D.h"
 #include "ParticleSystem.h"
 #include "Emitter.h"
+#include "GameObject.h"
 
 #include <vector>
 
@@ -19,10 +20,13 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	void castFirework();
 
 public:
 
 	vector<CEmitter*> emitterVector;
+
+	vector<GameObject*> fireworksList;
 
 private:
 

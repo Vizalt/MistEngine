@@ -43,7 +43,7 @@ bool ModuleScene::Start()
 
 	//Smoke Particles
 	GameObject* b = new GameObject(App->hierarchy->roots);
-	b->name = "emitter";
+	b->name = "Someke 1";
 	b->transform->position = float3(33.7f, 7.5f, -30.5f);
 	b->transform->SetTransformMatrix();
 	CEmitter* emitter = new CEmitter(b);
@@ -52,7 +52,7 @@ bool ModuleScene::Start()
 	b->components.push_back(emitter);
 
 	GameObject* c = new GameObject(App->hierarchy->roots);
-	c->name = "emitter";
+	c->name = "Smoke 2";
 	c->transform->position = float3(-40.6f, 10.5f, 24.7f);
 	c->transform->SetTransformMatrix();
 	CEmitter* emitter2 = new CEmitter(c);

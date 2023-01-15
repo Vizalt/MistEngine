@@ -61,6 +61,6 @@ public:
 
 	uint id_indices = 0;
 	uint id_vertices = 0;
-	GLuint textID = 0;
+	uint textID = 0;
 
 };

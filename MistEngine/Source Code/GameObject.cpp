@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "Transform.h"
 #include "Mesh.h"
+#include "Emitter.h"
 
 GameObject::GameObject()
 {
@@ -168,6 +169,19 @@ CCamera* GameObject::GetComponentCamera()
 		if (components[i]->type == ComponentType::CAMERA)
 		{
 			return (CCamera*)components[i];
+		}
+	}
+
+	return nullptr;
+}
+
+CEmitter* GameObject::GetComponentEmitter()
+{
+	for (int i = 0; i < components.size(); i++) {
+
+		if (components[i]->type == ComponentType::EMITTER)
+		{
+			return (CEmitter*)components[i];
 		}
 	}
 

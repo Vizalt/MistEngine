@@ -1,6 +1,7 @@
 #pragma once
 #include "Globals.h"
 #include "imgui.h"
+#include "MathGeoLib.h"
 
 #include <vector>
 #include <string>
@@ -10,6 +11,7 @@ class Component;
 class Transform;
 class CMesh;
 class CCamera;
+class CEmitter;
 
 class GameObject
 {
@@ -33,6 +35,7 @@ public:
 	CMesh* GetComponentMesh();
 	GameObject* GetCompMesh();
 	CCamera* GetComponentCamera();
+	CEmitter* GetComponentEmitter();
 
 	void FixRotationYZ();
 
@@ -46,5 +49,9 @@ public:
 	std::vector<Component*> components;
 	GameObject* parent;
 	std::vector<GameObject*> children;
+
+	bool active = false, explosion = false;
+	int LifeTime;
+	float3 speed;
 
 };

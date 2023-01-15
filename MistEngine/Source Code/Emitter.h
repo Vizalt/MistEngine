@@ -28,7 +28,7 @@ public:
 
 	bool PrintText = true;
 
-	GLuint textureID = 0;
+	uint textureID = 0;
 
 	ParticleProps particleProps;
 	ParticleSystem particleSystem;
