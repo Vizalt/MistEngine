@@ -25,6 +25,10 @@ Click [here](https://github.com/Vizalt/MistEngine) to see our project:
 - **Holding Shift + 'WASD'** - Duplicates movement speed
 - **LALT + Left Click** - Orbit around Selected Object.
 - **F** - Focus object selected
+- **1** - Casts Fireworks
+
+### Particle System
+The particle system allows to create emitters that launch particles in one direction. An inspector is included in the software that allows you to modify several emitter parameters that will affect the particles, such as velocity, position, initial and final color and scale, as well as the possibility to place any desired texture.
 
 ### Inspector
 Displays all different components of the selected GameObjects and allows the user to edit them.
@@ -34,6 +38,7 @@ Displays all different components of the selected GameObjects and allows the use
 - Component Mesh - Show all info about differents meshes vertex of selected object
 - Component Textures - Allow viewing textures.
 - Component Camera - Edit camera of gameobjects (FOV, Near Distance and Far Distance) and shows number of render objects.
+- Component Emitter - Edits the emitter selected 
 
 ### GameObject Camera
 Create different cameras that can be configured as Game Camera.
