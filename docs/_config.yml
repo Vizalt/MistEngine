@@ -1,7 +1,8 @@
-theme: jekyll-theme-architect
+theme: jekyll-theme-primer
 title: "Mist Engine"
 description: C++ Game Engine
 name: "David Benages and Marina Albalà"
 show_downloads: true
-header:
-  background-image: https://github.com/Vizalt/MistEngine/blob/main/docs/images/HeaderMist.PNG
+
+sass:
+  style: :compressed
