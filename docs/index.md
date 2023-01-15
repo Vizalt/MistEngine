@@ -31,16 +31,18 @@ Mist Engine is a 3D Game Engine that provides a wide variety of tools and featur
 ### Editor Docking
 ImGui's docking helped us to provide a cleaner workspace, allowing us to move the windows we created freely.
 ### Gameobject & Component System
-
+The engine utilizes a Component system and Gameobjects. This allows us to create as many as desired and allows to adjust them to specific needs.
 ### Camera Culling
+Camera Culling allows the scene to be rendered to give the program faster and more accurate rendering by not drawing meshes that are not on the screen.
 ### Particle System
+
 ### Camera Editor and Movement
 Mist Engine includes a camera which can be controlled by the user, along with some parameters that allow customizing and moving the game's camera.
 
 # **Particle Sub-System**
 Mist Engine has...
 [Gif1]
-# Video
+# **Video**
 
 # **Last Release**
 Click [here](https://github.com/Vizalt/MistEngine/releases) to see our last release!
