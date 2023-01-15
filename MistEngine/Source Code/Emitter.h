@@ -24,7 +24,7 @@ public:
 
 	void RefreshParticleText();
 
-	
+	bool active;
 
 	bool PrintText = true;
 

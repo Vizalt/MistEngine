@@ -24,8 +24,11 @@ CEmitter::CEmitter() : Component(nullptr)
 	textureID = Application::GetApp()->texture->checkerID;
 	particleSystem.textID = Application::GetApp()->texture->checkerID;
 	particleSystem.ParticleBuffer();
+	
+	active = true;
 
 	Application::GetApp()->particle->emitterVector.push_back(this);
+
 }
 
 CEmitter::CEmitter(GameObject* owner) : Component(owner)
@@ -48,8 +51,11 @@ CEmitter::CEmitter(GameObject* owner) : Component(owner)
 	textureID = Application::GetApp()->texture->checkerID;
 	particleSystem.textID = Application::GetApp()->texture->checkerID;
 	particleSystem.ParticleBuffer();
+	
+	active = true;
 
 	Application::GetApp()->particle->emitterVector.push_back(this);
+
 }
 
 CEmitter::~CEmitter()
@@ -59,12 +65,13 @@ CEmitter::~CEmitter()
 
 void CEmitter::Update()
 {	
+	if (active) {
+		particleProps.pos = owner->transform->position;
 
-	particleProps.pos = owner->transform->position;
+		particleSystem.Emit(particleProps);
 
-	particleSystem.Emit(particleProps);
-
-	particleSystem.Update();
+		particleSystem.Update();
+	}
 
 	
 
@@ -72,7 +79,9 @@ void CEmitter::Update()
 
 void CEmitter::RenderParticles()
 {
-	particleSystem.Render();
+	if (active) {
+		particleSystem.Render();
+	}
 }
 
 void CEmitter::Inspector()
@@ -94,6 +103,8 @@ void CEmitter::Inspector()
 		ImGui::ColorEdit4("Color", particleProps.Color.ptr());
 		ImGui::ColorEdit4("End Color", particleProps.endColor.ptr());
 		ImGui::Checkbox("Particle Texture\t", &particleProps.texture);
+		ImGui::NewLine();
+		ImGui::Checkbox("Active\t", &active);
 	}
 	RefreshParticleText();
 
