@@ -4,7 +4,7 @@
 Mist Engine is a 3D Game Engine that provides a wide variety of tools and features for its users. This engine was conceived and developed as a project in the Videogame Engine Development assignment by students of the Videogame Design and Development degree at CITM.
 
 # **About Team Members**
-![TeamMembers (1) (1)](https://user-images.githubusercontent.com/70697960/212539542-bb666527-98be-4619-bb5e-16c2c3f60e6b.jpeg)
+![TeamMembers](https://user-images.githubusercontent.com/70697960/212539542-bb666527-98be-4619-bb5e-16c2c3f60e6b.jpeg)
 
 ### **[David Benages](https://github.com/Divangus)**
 #### David's contributions to the engine:
@@ -40,9 +40,16 @@ Camera Culling allows the scene to be rendered to give the program faster and mo
 Mist Engine includes a camera which can be controlled by the user, along with some parameters that allow customizing and moving the game's camera.
 
 # **Particle Sub-System**
-Mist Engine has...
-[Gif1]
-# **Video**
+Mist Engine includes a particle system. It has been developed with the purpose of creating a particle emitter as desired by the user.
+
+Within the software, is included an inspector that makes it possible to modify several parameters of the emitter which will affect the particles, such as speed, position and starting and ending color and scale, as well as being possible to place any desired texture.
+
+Furthermore, another feature of the particle system is the use of the Billboard component. This allows the particles to always face the camera, both in the scene and in the game.
+
+To illustrate what Mist Engine's particle system is capable of, upon starting the software, you can see how the initial scenario contains several emitters in the chimneys of the houses that produce smoke-simulating particulates.
+
+![Gif1]()
+# **WorkFlow Video**
 
 # **Last Release**
 Click [here](https://github.com/Vizalt/MistEngine/releases) to see our last release!
