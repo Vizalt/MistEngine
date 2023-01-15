@@ -1,9 +1,9 @@
-# Mist Engine
+# **Mist Engine**
 ![MistEngine](https://github.com/Vizalt/MistEngine/blob/main/docs/images/HeaderMist.PNG?raw=true)
-# About the Engine
+# **About the Engine**
 Mist Engine is a 3D Game Engine that provides a wide variety of tools and features for its users. This engine was conceived and developed as a project in the Videogame Engine Development assignment by students of the Videogame Design and Development degree at CITM.
 
-# About Team Members
+# **About Team Members**
 ![TeamMembers (1) (1)](https://user-images.githubusercontent.com/70697960/212539542-bb666527-98be-4619-bb5e-16c2c3f60e6b.jpeg)
 
 ### **[David Benages](https://github.com/Divangus)**
@@ -27,22 +27,25 @@ Mist Engine is a 3D Game Engine that provides a wide variety of tools and featur
 - Console
 
 
-# Core Sub-Systems
-- Editor Docking
-- GameObject & Component System
-- Camera Culling
-- Particle System
-- Camera Editor and Movement
+# **Core Sub-Systems**
+### Editor Docking
+ImGui's docking helped us to provide a cleaner workspace, allowing us to move the windows we created freely.
+### Gameobject & Component System
 
-# Particle Sub-System
+### Camera Culling
+### Particle System
+### Camera Editor and Movement
+Mist Engine includes a camera which can be controlled by the user, along with some parameters that allow customizing and moving the game's camera.
+
+# **Particle Sub-System**
 Mist Engine has...
 [Gif1]
 # Video
 
-# Last Release
+# **Last Release**
 Click [here](https://github.com/Vizalt/MistEngine/releases) to see our last release!
 
-# License
+# **License**
 
 MIT License
 
