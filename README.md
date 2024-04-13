@@ -1,5 +1,5 @@
 # GameEngine
-A 3D Game Engine made by students of CITM for the assigment of Videogame Engine Development. 
+A 3D Game Engine made by students of CITM for the assignment of Videogame Engine Development. 
 
 
 ### Our GitHubs:
