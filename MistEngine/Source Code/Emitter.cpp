@@ -15,6 +15,7 @@ CEmitter::CEmitter() : Component(nullptr)
 	particleProps.rot = float3::zero;
 	particleProps.beginScale = float3::one;
 	particleProps.endScale = float3::zero;
+	particleProps.scaleVariaton = float3::one;
 	particleProps.speed = float3(0.0f, 1.0f, 0.0f);
 	particleProps.speedVariation = float3::one;
 	particleProps.Color = float4(255.0f, 255.0f, 255.0f, 1.0f); //r g b a
@@ -42,6 +43,7 @@ CEmitter::CEmitter(GameObject* owner) : Component(owner)
 	particleProps.rot = float3::zero;
 	particleProps.beginScale = float3::one;
 	particleProps.endScale = float3::zero;
+	particleProps.scaleVariaton = float3::one;
 	particleProps.speed = float3(0.0f, 1.0f, 0.0f);
 	particleProps.speedVariation = float3::one;
 	particleProps.Color = float4(255.0f, 255.0f, 255.0f, 1.0f); //r g b a
